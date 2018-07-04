@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        <section class="container--news container-pagination container my-5">
+            {# All news #}
+            {% for news in allNews %}
+                <article role="article" class="content-pagination row my-2 p-3">
+                    <div class="col-lg-6">
+                        <a href="/news/{{ news.slug }}">
+                            <img class="img-fluid rounded"
+                                 src="/web/img/news/{{ news.img }}" alt="{{ news.slug }}">
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="/news/{{ news.slug }}"><h5>{{ news.title }}</h5></a>
+                        <p>
+                            <span><i class="fas fa-clock"></i> {{ news.datePub|time_diff }}</span>
+                            –
+                            <span><i class="fas fa-comment"></i> {{ news.comment }}</span></p>
+                        <p class="text-justify">{{ news.content|truncate(255, false)|raw }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+
+            <nav aria-label="..." style="background: transparent;">
+                <ul class="pagination justify-content-end pagination-sm"></ul>
+            </nav>
+        </section>
+    </main>
+{% endblock main %}

@@ -1,0 +1,72 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        <section class="container">
+            {# Subcategory and topics list #}
+            {% if singleSubcategory is not null %}
+                <h3 class="title--subcategory mt-5">{{ singleSubcategory.name }}</h3>
+                <hr>
+                <section class="container--subcategory container-pagination"
+                         style="box-shadow: 0 0 .5rem black inset;overflow: hidden;">
+                    {% for topic in showTopic %}
+                        <div class="content-pagination">
+                            <div class="row text-center text-lg-left p-4"
+                                 style="{% if loop.index % 2 %}background: rgba(129, 115, 84, .1)
+                                 {% endif %}">
+                                <div class="col-lg-5">
+                                    <a class="card-link"
+                                       href="/forum/{{ singleSubcategory.slug }}/topics/{{ topic.id }}">{{ topic.subject }}
+                                    </a>
+                                    {% if topic.is_closed == 1 %}
+                                        <i class="fas fa-lock"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2">
+                                    <i class="fas fa-comment"></i> {{ topic.message }}
+                                </div>
+                                <div class="col-lg-3">
+                                    <span>par <a href="/account/character-{{ topic.idUser }}">
+                                            {{ topic.pseudo }}
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="col-lg-2">
+                                    {{ topic.datePub|localizeddate('medium', 'short') }}
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </section>
+                <section class="container mt-5">
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <a href="/forum/{{ singleSubcategory.slugCategory }}" class="btn">
+                                Retour
+                            </a>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                            {% if sessionUser is not null and singleSubcategory.slug is not null %}
+                                {% if valideAccount.characterValide == 1 or singleSubcategory.freeAccess == 1 %}
+                                    <a href="/forum/{{ singleSubcategory.slug }}/newtopic" class="btn">
+                                        Créer un sujet
+                                    </a>
+                                {% endif %}
+                            {% elseif sessionUser is null and singleSubcategory.slug is not null %}
+                                <a href="/sign-in">
+                                    Vous devez vous connecter pour créer un sujet.
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-12 mt-5">
+                            <nav aria-label="..." style="background: transparent;">
+                                <ul class="pagination justify-content-end pagination-sm"></ul>
+                            </nav>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+        </section>
+    </main>
+{% endblock main %}

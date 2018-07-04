@@ -1,0 +1,67 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main class="d-flex justify-content-center align-items-center">
+        <section class="container my-5">
+            <div class="row flex-column align-items-center justify-content-center">
+                <form method="post" class="col-md-5">
+                    <fieldset>
+                        <legend class="h2">Connexion</legend>
+                        {# Error #}
+                        <div class="form-group">
+                            <ul class="list-group">
+                                {% for error in sign if error is not null %}
+                                    <li class="list-unstyled">
+                                        <span class="badge badge-warning">Erreur</span>
+                                        {{ error }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {# Email #}
+                        <div class="form-group">
+                            <label for="signin-email" class="w-100">
+                                Email
+                                <span class="text-danger">*</span>
+                                <input id="signin-email" placeholder="missive@domaine.ex" type="email"
+                                       name="signin_email" class="form-control" required>
+                            </label>
+                        </div>
+                        {# Password #}
+                        <div class="form-group">
+                            <label for="signin-password" class="w-100">
+                                Mot de passe
+                                <span class="text-danger">*</span>
+                                <input id="signin-password" placeholder="Aucun maître-espion admis"
+                                       type="password" name="signin_password" class="form-control" required>
+                            </label>
+                        </div>
+                        <label for="signin-checkbox" title="Permet de conserver votre session">
+                            <input id="signin-checkbox" type="checkbox" name="signin_checkbox">
+                            Maintenir la connexion
+                            <span class="display-info text-ln-gold">
+                                <i class="fas fa-info-circle"></i>
+                                <small class="content-info text-justify">
+                                    Maintenir la connexion autorise le site à se souvenir de vous afin
+                                    de vous connecter automatiquement à l'avenir.
+                                </small>
+                            </span>
+                        </label>
+                        <hr>
+                        <div class="form-group">
+                            <p>
+                                <a href="/sign-up">
+                                    Pas encore inscrit ?
+                                </a>
+                            </p>
+                            <p>
+                                <a href="/forgot-password">Mot de passe oublié ?</a>
+                            </p>
+                            <button type="submit" name="signin_submit" class="btn">Se connecter</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock main %}

@@ -1,0 +1,76 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    {% if sessionUser is not null or sessionUser.idGroup >= 2 %}
+        <main class="d-flex justify-content-center align-items-center">
+            <section class="container--topic container p-5">
+                <form method="post" class="d-flex justify-content-center align-items-center"
+                      enctype="multipart/form-data">
+                    <fieldset>
+                        <legend class="h2">
+                            Éditer "<em>{{ getNews.title }}</em>"
+                        </legend>
+                        <ul class="list-group">
+                            {% for error in editNews if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="form-group">
+                            <label for="title" class="w-100">
+                                Titre
+                                <span class="text-danger">*</span>
+                                <input type="text" name="edit_title" id="title" placeholder="Titre"
+                                       value="{{ getNews.title }}" class="form-control" required>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="slug" class="w-100">
+                                Slug
+                                <span class="text-danger">*</span>
+                                <input type="text" name="edit_slug" id="slug" placeholder="Slug"
+                                       value="{{ getNews.slug }}" class="form-control" required>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="date" class="w-100">
+                                Date de fin
+                                <input type="date" name="edit_date" id="date" placeholder="Date de fin"
+                                       value="{% if getNews.dateEnd is not null %}{{ getNews.dateEnd|date("Y-m-d", option_timezone_convert) }}{% endif %}"
+                                       class="form-control">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="image" class="w-100">
+                                Image
+                                <input type="file" name="edit_img" id="imag" placeholder="Image"
+                                       value="{{ getNews.img }}" class="form-control">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="w-100">
+                                Contenu <span class="text-danger">*</span>
+                            </label>
+                            <textarea name="edit_content" id="content" cols="30" rows="10"
+                                      placeholder="Votre message" class="col-lg-12"
+                                      required>{{ getNews.content }}</textarea>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <button name="edit_news_submit" type="submit" class="btn">Éditer</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+    {% else %}
+        <main>
+            <section class="container-fluid p-5 mt-auto box--message">
+                <div class="d-flex justify-content-center">
+                    <p class="m-auto">Impossible d'éditer ce message.</p>
+                </div>
+            </section>
+        </main>
+    {% endif %}
+{% endblock main %}

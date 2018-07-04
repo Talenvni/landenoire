@@ -1,0 +1,141 @@
+{# Info Tab #}
+<section class="container--profil-info container my-5 py-5 rounded">
+    <div class="d-flex flex-lg-row flex-column">
+        {# Avatar #}
+        <div class="col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center">
+            {% if showAccount.avatar is not null %}
+                <img src="/web/img/avatar/{{ showAccount.avatar }}"
+                     alt="Avatar" class="img-fluid rounded" width="250px" height="400px">
+            {% else %}
+                <img src="/web/img/avatar/default.png"
+                     alt="Avatar" class="img-fluid rounded">
+            {% endif %}
+        </div>
+        {# Character sheet #}
+        <div class="profil--info-list col-lg-6 p-4 rounded">
+            <div class="container">
+                <div class="row">
+                    <ul class="col-lg-6">
+                        <li><span>Âge :</span>
+                            {{ showAccount.age }}
+                            {% if showAccount.age == 1 %}an{% elseif showAccount.age is null %}
+                            {% else %}ans{% endif %}
+                        </li>
+                        <li><span>Sexe :</span> {{ showAccount.sexe }}</li>
+                        <li><span>Race :</span> {{ showAccount.race }}</li>
+                    </ul>
+                    <ul class="col-lg-6">
+                        <li>
+                            <span>Richesse :</span>
+                            {% if showCoin %}
+                                {{ showAccount.gold }} <span class="gold">or.</span>
+                                {{ showAccount.silver }} <span class="silver">ar.</span>
+                                {{ showAccount.copper }} <span class="copper">cu.</span>
+                            {% endif %}
+                        </li>
+                        <li><span>Réputation :</span>
+                            <span style="font-weight: normal;
+                                    {% if showAccount.reputation < 0 %}color: crimson;
+                            {% elseif showAccount.reputation > 0 %}color: forestgreen;
+                                                {% endif %}">
+                                {{ showAccount.reputation }}
+                            </span>
+                        </li>
+                        <li><span>Crédit Avatar :</span>
+                            <a href="{{ showAccount.creditAvatar }}" target="_blank">
+                                Lien direct
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="container row">
+                    <div class="d-block">
+                        <a href="/codex/align" target="_blank" class="h3">Alignement</a>
+                        <span class="h3">-</span>
+                        <span class="h3">{{ showAccount.alignement }}</span>
+                    </div>
+                </div>
+                <div class="container">
+                    <p class="text-justify">{{ showAccount.alignText|raw }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Heading #}
+    {% for heading in showHeading %}
+        <div class="profil--info-block container my-5">
+            <h3>{{ heading.name }}</h3>
+            <hr class="mb-4">
+            {% for paragraph in showParagraph if paragraph.idHeading == heading.id %}
+                {% if paragraph.idUser == showAccount.id and paragraph.showContent == 1 %}
+                    <div class="p-3">
+                        {{ paragraph.content|raw }}
+                    </div>
+                {% endif %}
+                {% if paragraph.idUser == showAccount.id and paragraph.showContent == 0 %}
+                    <p>{{ showAccount.pseudo }} ne souhaite pas partager ce contenu.</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    {# Relation #}
+    <div class="profil--info-block container my-5">
+        <h3>Relation</h3>
+        <hr class="mb-4">
+        <div class="bg-transparent d-lg-flex justify-content-lg-between" style="box-shadow: none;">
+            <div class="col-lg-5" style="background: none; box-shadow: none;">
+                <h5>Ennemi&middot;s</h5>
+                <div class="p-3" style="overflow-y: auto;">
+                    {% for vote in showVote %}
+                        {% if vote.disliked == 1 %}
+                            <span class="text-danger">
+                                {% if not loop.last %}
+                                    {{ vote.pseudo }},
+                                {% endif %}
+                                {% if loop.last %}
+                                    {{ vote.pseudo }}.
+                                {% endif %}
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-5" style="background: none; box-shadow: none;">
+                <h5>Ami&middot;s</h5>
+                <div class="p-3" style="overflow-y: auto;">
+                    {% for vote in showVote %}
+                        {% if vote.liked == 1 %}
+                            <span class="text-success">{{ vote.pseudo }}.&nbsp;</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% if showAccount.id != sessionUser.id and sessionUser is not null %}
+            <form method="post" class="d-flex flex-column flex-lg-row justify-content-around align-items-center">
+                <button name="ennemi" type="submit" class="btn mt-4"
+                        {% if selectVote.idPoster == sessionUser.id and selectVote.disliked == 1 %}
+                            disabled
+                        {% endif %}>
+                    Je déprécie {{ showAccount.pseudo }}
+                </button>
+                <button name="friend" type="submit" class="btn mt-4"
+                        {% if selectVote.idPoster == sessionUser.id and selectVote.liked == 1 %}
+                            disabled
+                        {% endif %}>
+                    J'apprécie {{ showAccount.pseudo }}
+                </button>
+            </form>
+        {% endif %}
+    </div>
+
+    {% if showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
+        <div class="text-center">
+            <a href="/account/character-{{ showAccount.id }}/parameter"
+               class="btn">Modifier le profil</a>
+        </div>
+    {% endif %}
+</section>

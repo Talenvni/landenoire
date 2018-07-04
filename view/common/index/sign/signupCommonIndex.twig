@@ -1,0 +1,125 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main class="d-flex justify-content-center align-items-center">
+        <section class="container my-5">
+            <div class="row flex-column align-items-center justify-content-center">
+                <form method="post" class="col-md-5">
+                    <fieldset>
+                        <legend class="h2">Inscription</legend>
+                        {# Error #}
+                        <div class="form-group">
+                            <ul class="list-group">
+                                {% for error in sign if error is not null %}
+                                    <li class="list-unstyled">
+                                        <span class="badge badge-warning">Erreur</span>
+                                        {{ error }}
+                                    </li>
+                                {% endfor %}
+                                {% for error in signUpValidation if error is not null %}
+                                    <li class="list-unstyled">
+                                        <span class="badge badge-warning">Erreur</span>
+                                        {{ error }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {# Email #}
+                        <div class="form-group">
+                            <label for="signup-email" class="w-100">
+                                Email
+                                <span class="text-danger">*</span>
+                                <input id="signup-email" placeholder="missive@domaine.ex" type="email"
+                                       name="signup_email" class="form-control" required>
+                                <small class="form-text text-muted">
+                                    Votre email ne sera visible pour personne.
+                                    <span class="display-info text-ln-gold">
+                                        <i class="fas fa-info-circle"></i>
+                                        <small class="content-info text-justify">
+                                            Votre email ne servira qu'à vous identifier et à faciliter le lien
+                                            avec l'administration. Il ne sera en aucun cas partager au public.
+                                        </small>
+                                    </span>
+                                </small>
+                            </label>
+                        </div>
+                        {# Pseudo #}
+                        <div class="form-group">
+                            <label for="signup-pseudo" class="w-100">
+                                Pseudo
+                                <span class="text-danger">*</span>
+                                <input id="signup-pseudo" placeholder="Le nom de votre légende" type="text"
+                                       name="signup_pseudo" class="form-control" required>
+                                <small class="form-text text-muted">
+                                    Votre pseudo ne pourra pas être modifié.
+                                    <span class="display-info text-ln-gold">
+                                        <i class="fas fa-info-circle"></i>
+                                        <small class="content-info text-justify">
+                                            Votre pseudo représente votre personnage. Par soucis de réalisme,
+                                            vous ne pourrez pas en changer. Choisissez judicieusement.
+                                            <br>
+                                            Notez que le pseudo prend au minimum 3 caractères.
+                                        </small>
+                                    </span>
+                                </small>
+                            </label>
+                        </div>
+                        {# Password #}
+                        <div class="form-group">
+                            <label for="signup-password" class="w-100">
+                                Mot de passe
+                                <span class="text-danger">*</span>
+                                <input id="signup-password" placeholder="Veillez à le garder secret"
+                                       type="password" name="signup_password" class="form-control" required>
+                                <small class="form-text text-muted">
+                                    Min. 8 caractères alphanumériques.
+                                    <span class="display-info text-ln-gold">
+                                        <i class="fas fa-info-circle"></i>
+                                        <small class="content-info text-justify">
+                                            Afin de renforcer votre sécurité, nous demandons un mot de passe
+                                            de minimum 8 caractéres alphanumériques. Les mots de passe sont
+                                            sensibles à la case (majuscule).
+                                        </small>
+                                    </span>
+                                </small>
+                            </label>
+                        </div>
+                        {# Password confirm #}
+                        <div class="form-group">
+                            <label for="signup-password-confirm" class="w-100">
+                                Mot de passe
+                                <span class="text-danger">*</span>
+                                <input id="signup-password-confirm"
+                                       placeholder="Confirmation du mot de passe"
+                                       type="password" name="signup_password_confirm"
+                                       class="form-control" required>
+                            </label>
+                        </div>
+                        {# Captcha #}
+                        <div class="g-recaptcha form-group"
+                             data-sitekey="6Lc_aUwUAAAAANbh1215itunfHXiXjzuKH_kQspw"></div>
+                        <hr>
+                        <div class="form-group">
+                            <p>
+                                <a class="card-link" href="/sign-in">
+                                    Déjà inscrit ?
+                                </a>
+                                <span class="display-info d-block text-ln-gold">
+                                        Demande expirée ?
+                                        <small class="content-info text-justify">
+                                            Si vous recevez l'erreur « Demande expirée »,
+                                            pas de panique. Un email vous est envoyé au moment-même
+                                            de l'erreur.<br>
+                                            Par mesure de sécurité, chaque demande expire après
+                                            1 heure de delai.
+                                        </small>
+                                </span>
+                            </p>
+                            <button type="submit" name="signup_submit" class="btn">S'inscrire</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock main %}

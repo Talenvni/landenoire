@@ -1,0 +1,45 @@
+{# Preference Tab #}
+
+<section class="container--profil-info container my-5 py-5 rounded">
+    <div class="d-flex justify-content-center mt-5">
+        <div class="profil--info-list py-4 container rounded">
+            <div class="row d-flex justify-content-center text-center">
+                <h2>Édition des descriptifs</h2>
+            </div>
+            <hr class="mt-0 mb-4">
+            <form method="post" class="form-group">
+                <div class="row d-flex text-center">
+                    {% for heading in showHeading %}
+                        <div class="col-lg-3">
+                            <h5>Afficher {{ heading.name }}</h5>
+                            <div>
+                                <label for="{{ heading.name|lower }}">Oui</label>
+                                <input id="{{ heading.name|lower }}" name="{{ heading.name|lower }}"
+                                       type="radio" value="yes">
+                                <label for="{{ heading.name|lower ~ '2' }}">Non</label>
+                                <input id="{{ heading.name|lower ~ '2' }}" name="{{ heading.name|lower }}"
+                                       type="radio" value="no">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if sessionUser.id == showAccount.id %}
+                    <div class="row justify-content-center mt-4">
+                        <button type="submit" class="btn" name="descriptif_submit">
+                            Éditer
+                        </button>
+                    </div>
+                {% endif %}
+                <div class="row mt-4 justify-content-center">
+                    <h5 class="col-lg-3 text-center text-lg-right">Consigne :</h5>
+                    <ul class="col-lg-9 text-center text-lg-left">
+                        <li class="font-italic col-lg-10">
+                            Permet de masquer ou d'afficher les descriptifs au public.
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

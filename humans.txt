@@ -1,0 +1,17 @@
+/* TEAM */
+
+Valentin Saint-Jean
+webdev.valentin@gmail.com
+@WebdeVal
+Namur, Belgium
+
+/* THANKS */
+
+Bunch of websites, tutorials and all of you
+
+/* SITE */
+
+Last update: 2018/07/04
+Standards: HTML5, CSS3, PHP
+Components: jQuery, Bootstrap, Twig, AJAX
+Software: PHPStorm, Composer, Git, NodeJS, SCSS, COMPASS

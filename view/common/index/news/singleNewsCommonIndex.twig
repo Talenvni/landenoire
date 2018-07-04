@@ -1,0 +1,88 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        <section class="news--container container my-5">
+            {# Single news #}
+            <div role="article" class="content--news row">
+                <div class="col-lg-12 text-justify">
+                    <h3 class="text-ln-gold">{{ singleNews.title }}</h3>
+                    <hr>
+                    <p>
+                        {{ singleNews.content|raw }}
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <a href="/news" class="btn">
+                        Retour
+                    </a>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    {% if sessionUser.groupName == "Administrateur" %}
+                        <a href="/news/{{ singleNews.slug }}/{{ singleNews.id }}" class="btn">
+                            Éditer
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# Total comment #}
+            <div class="row">
+                <div class="col-lg-12 mt-5 mb-3">
+                    {% if countComment <= 1 %}
+                        <h3>Commentaire ({{ countComment }})</h3>
+                    {% else %}
+                        <h3>Commentaires ({{ countComment }})</h3>
+                    {% endif %}
+                </div>
+            </div>
+            {# Comment #}
+            {% for comment in allComment %}
+                <div class="comment--news">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-between align-items-center text-justify">
+                                <h3>
+                                    <a href="/account/character-{{ comment.idUser }}">{{ comment.pseudo }}</a>
+                                </h3>
+                                <span>{{ comment.datePub|localizeddate('medium', 'none') }}</span>
+                            </div>
+                            {{ comment.message|raw }}
+                        </div>
+                    </div>
+                    {% if not loop.last %}
+                        <hr>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {# New Comment #}
+            {% if sessionUser is not null %}
+                <fieldset class="container my-5">
+                    <legend class="h2">Nouveau commentaire</legend>
+                    <form method="post">
+                        <div class="form-group">
+                            <textarea name="comment_message" id="comment-message" cols="30"
+                                      rows="10" placeholder="Poster un commentaire"
+                                      class="form-control col-lg-12"></textarea>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <button id="comment-submit" name="comment_submit" type="submit" class="btn">
+                                Envoyer
+                            </button>
+                        </div>
+                    </form>
+                </fieldset>
+            {% else %}
+                <div class="container my-5 border rounded">
+                    <div class="row justify-content-center align-items-center" style="min-height: 30vh;">
+                        <p class="text-center px-3">
+                            Vous devez être connecté pour poster un commentaire.
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+{% endblock main %}

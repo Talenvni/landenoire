@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+    {# Meta #}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="location" content="france">
+    <meta name="keywords" content="forum, role-play, jeu de rôle, lande, noire">
+    <meta name="author" content="Valentin Saint-Jean">
+    <meta name="description" content="Lande Noire est un forum jeu de rôle Dark Fantasy au tour par tour.">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/web/icon/browserconfig.xml">
+    {# Icon #}
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/web/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/web/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/web/icon/favicon-16x16.png">
+    <link rel="manifest" href="/web/icon/site.webmanifest">
+    <link rel="mask-icon" href="/web/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/web/icon/favicon.ico">
+    {# Humans #}
+    <link type="text/plain" rel="author" href="/humans.txt">
+    {# Bootstrap #}
+    <link rel="stylesheet" href="/web/scss/vendor/bootstrap/bootstrap.css">
+    {# Animate #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    {# Style #}
+    <link rel="stylesheet" href="/web/scss/vendor/trumbowyg/trumbowyg.css">
+    <link rel="stylesheet" href="/web/scss/vendor/trumbowyg/trumbowyg.colors.css">
+    <link rel="stylesheet" href="/web/scss/style.css">
+    {% block style %}{% endblock style %}
+    {# Title #}
+    <title>{{ title }} &bull; LN</title>
+    {# Captcha #}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+
+{# Flash Message #}
+{% if flashMessage is not null %}
+    <div id="flash-container" class="container-fluid py-2 fixed-bottom animated slideInUp border-top"
+         style="z-index: 1040; background: #2d3035;">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    {{ flashMessage|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{# Header #}
+{% block header %}{% endblock header %}
+
+{# Nav #}
+{% block nav %}
+    <nav id="nav" class="navbar navbar-expand-lg navbar-dark p-0 sticky-top">
+        {# Button #}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {# Navbar #}
+        <div id="navbar" class="collapse navbar-collapse justify-content-center text-center">
+            <ul class="navbar-nav">
+                <li class="nav-item {% if title == 'Accueil' %}active{% endif %}">
+                    <a class="nav-link" href="/home">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown {% if title == 'Codex' %}active{% endif %}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Codex
+                    </a>
+                    <div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-header">L'Univers</a>
+                        <a class="dropdown-item" href="/codex/history">Histoire</a>
+                        <a class="dropdown-item" href="/codex/align">Alignement</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-header">Généralités</a>
+                        <a class="dropdown-item" href="/codex/faq">F.A.Q</a>
+                    </div>
+                </li>
+                <li class="nav-item {% if title == 'Actualités' or singleNews is defined %}active{% endif %}">
+                    <a class="nav-link" href="/news">Actualités</a>
+                </li>
+                <li class="nav-item {% if title == 'Forum' %}active{% endif %}">
+                    <a class="nav-link" href="/forum">Forum</a>
+                </li>
+                <span class="nav-link disabled d-md-block d-none" style="pointer-events: none;">—</span>
+                {% if sessionUser is empty %}
+                    <li class="nav-item {% if title == 'Connexion' %}active{% endif %}">
+                        <a class="nav-link" href="/sign-in">Connexion</a>
+                    </li>
+                {% endif %}
+                {% if sessionUser is not empty %}
+                    <li class="nav-item {% if title == 'Taverne' %}active{% endif %}">
+                        <a id="view-link" class="nav-link" href="/tavern">
+                            Taverne
+                        </a>
+                    </li>
+                    <li class="nav-item {% if title == 'Profil' %}active{% endif %}">
+                        <a class="nav-link text-ln-gold" href="/account/character-{{ sessionUser.id }}">
+                            {{ sessionUser.pseudo|truncate(1, true, '') }}
+                        </a>
+                    </li>
+                    <li class="nav-item {% if title == 'Connexion' %}active{% endif %}">
+                        <a class="nav-link" href="/sign-out">Déconnexion</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+
+<div class="decoration-top"></div>
+
+{# Main #}
+{% block main %}
+{% endblock main %}
+
+{# Scroll to Top #}
+<span id="scrollToTop" class="text-center" aria-hidden="true">
+    <i class="fas fa-angle-up fa-2x"></i>
+</span>
+
+{# Footer #}
+{% block footer %}
+    <footer role="contentinfo" class="container-fluid bg-ln-coal py-3">
+        <div class="row my-3">
+            <div class="col-lg-12 text-center text-muted">
+                <span>
+                    <ins class="legalmark d-inline-block">&copy;</ins>2018 Lande Noire. Tous droits réservés.
+                </span>
+                <br>
+                <span>Toutes les oeuvres affichées appartiennent à leur propriétaire.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="https://pegi.info/" target="_blank">
+                    <img src="/web/img/thumbs/pegi18.jpg" alt="Pegi 18" title="Déconseillé aux moins de 18 ans">
+                </a>
+                <img src="/web/img/thumbs/violence.jpg" alt="Violence" title="Violence">
+                <img src="/web/img/thumbs/bad-language.jpg" alt="Langage grossier" title="Langage grossier">
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}
+
+{# jQuery #}
+<script src="/web/js/jQuery.min.js"></script>
+
+{# Bootstrap #}
+<script src="/web/js/vendor/popper/popper.min.js"></script>
+<script src="/web/js/vendor/bootstrap/bootstrap.min.js"></script>
+
+{# Main jQuery #}
+<script src="/web/js/vendor/wowAnimate/wow.min.js"></script>
+<script src="/web/js/vendor/rellaxParallax/rellax.min.js"></script>
+<script src="/web/js/vendor/trumbowyg/trumbowyg.min.js"></script>
+<script src="/web/js/vendor/trumbowyg/trumbowyg.colors.min.js"></script>
+<script src="/web/js/vendor/trumbowyg/fr.min.js"></script>
+<script src="/web/js/script.js"></script>
+<script src="/web/js/pagination.js"></script>
+
+{# Ajax #}
+<script src="/web/js/ajax/tavern.ajax.js"></script>
+
+{# FontAwesome #}
+<script defer
+        src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"
+        integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
+        crossorigin="anonymous"></script>
+<script defer
+        src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"
+        integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+        crossorigin="anonymous"></script>
+
+{# Main script #}
+<script>
+    // ------------
+    // WOW animated
+    // ------------
+    (function () {
+        new WOW().init();
+    })(); // End WOW animated
+</script>
+<script>
+    // ---------------
+    // Rellax parallax
+    // ---------------
+    (function () {
+        new Rellax('.rellax');
+    })(); // End Rellax parallax
+</script>
+<script>
+    // --------------
+    // Trumbowyg area
+    // --------------
+    (function () {
+        let iconPath = '/web/scss/vendor/trumbowyg/icons.svg';
+        $('textarea').trumbowyg({
+            autogrow: true,
+            autogrowEditorOnEnter: true,
+            svgPath: iconPath,
+            lang: 'fr',
+            btnsDef: {
+                alignement: {
+                    dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ico: 'justifyLeft'
+                },
+                exposant: {
+                    dropdown: ['superscript', 'subscript'],
+                    ico: 'superscript'
+                },
+                liste: {
+                    dropdown: ['unorderedList', 'orderedList'],
+                    ico: 'unorderedList'
+                }
+            },
+            btns: [
+                'formatting',
+                ['bold', '|', 'em', '|', 'del'],
+                'foreColor',
+                'alignement',
+                'exposant',
+                'liste',
+                'link',
+                'insertImage',
+                'horizontalRule',
+                'fullscreen'
+            ]
+        });
+    })(); // End Trumbowyg area
+</script>
+{% block script %}{% endblock script %}
+</body>
+</html>

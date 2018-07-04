@@ -1,0 +1,159 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    {# Totals #}
+    <section class="container">
+        <div class="row justify-content-between">
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total inscrits</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-users"></i>
+                        {{ totalUsers }}
+                </span>
+                </div>
+            </div>
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total sujets</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-align-left"></i>
+                        {{ totalTopics }}
+                </span>
+                </div>
+            </div>
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total messages</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-comments"></i>
+                        {{ totalMessages }}
+                </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# List users #}
+    <section class="container my-5">
+        <div class="row justify-content-center">
+            <table class="listUsers table table-hover table-bordered table-striped">
+                <thead>
+                <tr class="text-uppercase">
+                    <th scope="col">ID</th>
+                    <th scope="col">Ban</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Pseudo</th>
+                    <th scope="col">Validé</th>
+                    <th scope="col">Messages/sujets</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in listUsers %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        {% if user.isBanned %}
+                            <td class="text-danger">Banni</td>
+                        {% endif %}
+                        {% if not user.isBanned %}
+                            <td class="text-muted">Banni</td>
+                        {% endif %}
+                        <td><a href="/oversight/user-{{ user.id }}">{{ user.email }}</a></td>
+                        {% if user.isConnect %}
+                            <td class="text-success">{{ user.pseudo }}</td>
+                        {% endif %}
+                        {% if not user.isConnect %}
+                            <td class="text-muted">{{ user.pseudo }}</td>
+                        {% endif %}
+                        {% if user.tokenConfirm is not null %}
+                            <td class="text-info">Validé</td>
+                        {% endif %}
+                        {% if not user.tokenConfirm %}
+                            <td class="text-warning">Invalidé</td>
+                        {% endif %}
+                        <td>{{ user.message }}/{{ user.topic }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    {# Recents #}
+    <section class="container-fluid mb-5">
+        <div class="row">
+            {# Users #}
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        Nouveaux inscrits
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for recent in recentUsers %}
+                            <li class="list-group-item">
+                                <a href="/account/character-{{ recent.id }}">
+                                    {{ recent.pseudo }} - {{ recent.groupName }}
+                                    <br>
+                                    <small>
+                                        {{ recent.email }}
+                                        -
+                                        {{ recent.tokenConfirm|localizeddate('medium', 'short') }}
+                                    </small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {# Topics #}
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        Nouveaux sujets
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for recent in recentTopics %}
+                            <li class="list-group-item">
+                                <a href="/forum/{{ recent.slug }}/topics/{{ recent.id }}">
+                                    {{ recent.subject }} - {{ recent.pseudo }}
+                                    <br>
+                                    <small>{{ recent.datePub|localizeddate('medium', 'short') }}</small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {# Messages #}
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        Nouveaux messages
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for recent in recentMessages %}
+                            <li class="list-group-item">
+                                <a href="/forum/{{ recent.slug }}/topics/{{ recent.idTopic }}">
+                                    {{ recent.content|truncate(10, true) }} - {{ recent.pseudo }}
+                                    <br>
+                                    <small>
+                                        {{ recent.datePub|localizeddate('medium', 'short') }}
+                                    </small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}
+
+{% block script %}
+
+{% endblock script %}

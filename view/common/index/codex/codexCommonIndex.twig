@@ -1,0 +1,19 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+
+    {% if codexTab == 'history' %}
+        {% include 'codex/history.twig' %}
+    {% endif %}
+
+    {# Align Page #}
+    {% if codexTab == 'align' %}
+        {% include 'codex/align.twig' %}
+    {% endif %}
+
+    {# FAQ Page #}
+    {% if codexTab == 'faq' %}
+        {% include 'codex/faq.twig' %}
+    {% endif %}
+
+{% endblock main %}

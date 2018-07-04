@@ -1,0 +1,115 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    {# Totals #}
+    <section class="container">
+        <div class="row justify-content-between">
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total catégories</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-users"></i>
+                        {{ totalCategory }}
+                </span>
+                </div>
+            </div>
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total sous-catégories</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-align-left"></i>
+                        {{ totalSubcategory }}
+                </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# List heading #}
+    <section class="container my-5">
+        <h2>En-têtes</h2>
+        <div class="row justify-content-center">
+            <table class="listUsers table table-hover table-bordered table-striped">
+                <thead>
+                <tr class="text-uppercase">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for title in listTitle %}
+                    <tr>
+                        <td>{{ title.id }}</td>
+                        <td><a href="/oversight/forum/heading/{{ title.id }}">{{ title.name }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    {# List category #}
+    <section class="container my-5">
+        <h2>Catégories</h2>
+        <div class="row justify-content-center">
+            <table class="listUsers table table-hover table-bordered table-striped">
+                <thead>
+                <tr class="text-uppercase">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nom en-tête</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for category in listCategory %}
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td><a href="/oversight/forum/category/{{ category.id }}">{{ category.name }}</a></td>
+                        <td>{{ category.nameTitle }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    {# List subcategory #}
+    <section class="container my-5">
+        <h2>Sous-catégories</h2>
+        <div class="row justify-content-center">
+            <table class="listUsers table table-hover table-bordered table-striped">
+                <thead>
+                <tr class="text-uppercase">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nom catégorie</th>
+                    <th scope="col">Accès libre</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for subcategory in listSubcategory %}
+                    <tr>
+                        <td>{{ subcategory.id }}</td>
+                        <td>
+                            <a href="/oversight/forum/subcategory/{{ subcategory.id }}">{{ subcategory.name }}</a>
+                        </td>
+                        <td>{{ subcategory.nameCategory }}</td>
+                        {% if subcategory.freeAccess == 1 %}
+                            <td>Accès libre</td>
+                        {% else %}
+                            <td>Accès restreint</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock main %}
+
+{% block script %}
+
+{% endblock script %}

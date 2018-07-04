@@ -1,0 +1,146 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main class="d-flex flex-column justify-content-center align-items-center">
+        <section class="container container-pagination p-0 m-0">
+            {# Subcategory and topics list #}
+            {% if singleTopic is not null and singleTopic.slug is not null %}
+                <div class="row align-items-center justify-content-between mt-5">
+                    <h3 class="topic--title">{{ singleTopic.subject }}</h3>
+                    {% if singleTopic.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
+                        <a class="link--edit" title="Éditer le titre du sujet"
+                           href="/forum/{{ singleTopic.slug }}/topics/{{ singleTopic.id }}/subject/{{ singleTopic.id }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                <hr class="row">
+                {% for message in showMessage %}
+                    <div class="content-pagination row align-items-start justify-content-between my-5">
+                        <div class="d-none d-lg-block">
+                            <img src="/web/img/avatar/{{ message.avatar }}" alt="" class="rounded border"
+                                 style="box-shadow: 0 0 .5rem black">
+                        </div>
+                        <section class="container--topic col-lg-9 {% if not loop.index % 2 %}order-first{% endif %}"
+                                 style="{% if not loop.index % 2 %}border-radius: 1rem 0 1rem 1rem;{% else %}border-radius: 0 1rem 1rem 1rem;{% endif %}">
+                            <div class="container">
+                                <div class="row {% if not loop.index % 2 %}justify-content-end{% else %}justify-content-start{% endif %}">
+                                <span>
+                                    <a class="card-link" href="/account/character-{{ message.idUser }}">
+                                        {{ message.pseudo }}
+                                    </a>
+                                </span>
+                                </div>
+                            </div>
+                            <hr class="m-0">
+                            <div class="container">
+                                <div class="row {% if not loop.index % 2 %}justify-content-start{% else %}justify-content-end{% endif %}">
+                                    <p>
+                                        {{ message.datePub|localizeddate('medium', 'short') }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="container">
+                                {{ message.content|raw }}
+                            </div>
+
+                            {% if message.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
+                                <div class="container my-3">
+                                    <div class="row justify-content-end">
+                                        <a class="link--edit" data-toggle="tooltip" data-placement="top"
+                                           title="Éditer"
+                                           href="/forum/{{ singleTopic.slug }}/topics/{{ singleTopic.id }}/edit/{{ message.id }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </section>
+                    </div>
+                {% endfor %}
+
+                {# Buttons #}
+                <div class="container my-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <form method="post">
+                                {% if singleTopic.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
+                                    {% if singleTopic.is_closed == 0 %}
+                                        <button name="close_subject" class="btn mb-3">
+                                            Clôturer le sujet
+                                        </button>
+                                    {% else %}
+                                        <button name="close_subject" class="btn mb-3">
+                                            Rouvrir le sujet
+                                        </button>
+                                    {% endif %}
+                                {% endif %}
+                            </form>
+                            <a href="/forum/{{ singleTopic.slug }}/topics" class="btn">
+                                Retour
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <nav aria-label="..." style="background: transparent;">
+                                <ul class="pagination justify-content-end pagination-sm"></ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+
+        {# Create new message #}
+        {% if sessionUser is not null and singleTopic.is_closed == 0 and singleTopic.slug is not null %}
+            {% if valideAccount.characterValide == 1 or singleTopic.freeAccess == 1 %}
+                <section class="container-fluid p-5 mt-auto box--message">
+                    <form method="post" class="container">
+                        <fieldset>
+                            <legend class="h2">Nouveau message</legend>
+                            <div>
+                                <ul class="list-group">
+                                    {% for error in addMessage if error is not null %}
+                                        <li class="list-unstyled">
+                                            <span class="badge badge-warning">Erreur</span>
+                                            {{ error }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div>
+                            <textarea name="messageContent" id="messageContent" cols="30"
+                                      rows="10" placeholder="Votre message" class="col-lg-12"></textarea>
+                            </div>
+                            <div class="mt-2 text-center">
+                                <button type="submit" class="btn">Envoyer</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </section>
+            {% endif %}
+        {% endif %}
+        {% if sessionUser is null %}
+            <section class="box--message container-fluid p-5">
+                <div class="row justify-content-center">
+                    <p class="m-auto">Vous devez être connecté pour poster un nouveau message.</p>
+                </div>
+            </section>
+        {% endif %}
+        {% if singleTopic.slug is null and sessionUser is not null %}
+            <section class="box--message container-fluid py-4 my-5">
+                <div class="row flex-column align-items-center">
+                    <p class="m-auto">Ce sujet n'existe pas.</p>
+                    <a class="card-link" href="/forum">Retour</a>
+                </div>
+            </section>
+        {% endif %}
+        {% if singleTopic.is_closed == 1 and sessionUser is not null %}
+            <section class="box--message container-fluid py-4 my-5">
+                <div class="row flex-column align-items-center">
+                    <p class="m-auto">Ce sujet est clôt.</p>
+                    <a class="card-link" href="/forum/{{ singleTopic.slug }}/topics">Retour</a>
+                </div>
+            </section>
+        {% endif %}
+    </main>
+{% endblock main %}

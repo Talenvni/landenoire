@@ -1,0 +1,112 @@
+{# Security Tab #}
+
+<section class="container--profil-info container my-5 py-5 rounded">
+    <div class="profil--info-list py-4 container rounded">
+        <div class="row justify-content-center text-center">
+            <h2>Mot de passe et email</h2>
+        </div>
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <form method="post" class="col-lg-6">
+                <fieldset>
+                    <legend class="h5">Changer email</legend>
+                    <div>
+                        <ul class="list-group">
+                            {% for error in email if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="newEmail" class="control-label">
+                            Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="newEmail"
+                                   placeholder="Nouvel email"
+                                   type="email" name="newEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailPassword" class="control-label">
+                            Mot de passe
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="emailPassword"
+                                   placeholder="Confirmation"
+                                   type="password" name="emailPassword" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <p class="text-danger">Vous serez déconnecté.</p>
+                            <button type="submit" class="btn"
+                                    name="newEmailSubmit">Changer
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <form method="post" class="form-horizontal col-lg-6">
+                <fieldset>
+                    <legend class="h5">Changer mot de passe</legend>
+                    <div>
+                        <ul class="list-group">
+                            {% for error in password if password is not null %}
+                                <li class="list-group-item bg-transparent">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="changeOld" class="control-label">
+                            Mot de passe
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id=changeOld"
+                                   placeholder="Mot de passe (actuel)"
+                                   type="password" name="changeOld" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="changePassword" class="control-label">
+                            Mot de passe
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="changePassword"
+                                   placeholder="Mot de passe (nouveau)"
+                                   type="password" name="changePassword" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="changeConfirm" class="control-label">
+                            Mot de passe
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="changeConfirm"
+                                   placeholder="Mot de passe (confirmation)"
+                                   type="password" name="changeConfirm" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <p class="text-danger">Vous serez déconnecté.</p>
+                            <button type="submit" class="btn">Changer</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

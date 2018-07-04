@@ -1,0 +1,7 @@
+User-agent: *
+
+Disallow: /view/
+Disallow: /action/
+Disallow: /node_modules/
+Disallow: /vendor/
+Disallow: /.idea/

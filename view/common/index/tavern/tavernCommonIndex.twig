@@ -1,0 +1,55 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        {% if sessionUser is not null %}
+            {# Middle Separator #}
+            <section class="tavern--separator container">
+                <div class="d-flex justify-content-center align-items-center">
+                    <blockquote class="blockquote text-center py-3 wow fadeIn" data-wow-duration="2s">
+                        <span id="tavern--separator-word">
+                            Bien l'bonjour, <strong>{{ sessionUser.pseudo }}</strong> !
+                            <br>
+                            Entrez donc et profitez du feu ! .
+                        </span>
+                    </blockquote>
+                </div>
+            </section>
+
+            <div class="chatbox--title container d-flex">
+                <h5 class="m-0">Taverne, en ligne :
+                    <span id="chatbox--users"></span>
+                </h5>
+            </div>
+            <section id="chat" class="box--message chatbox--container container">
+                <div class="row">
+                    <div id="chatbox" class="w-100">
+
+                    </div>
+                </div>
+            </section>
+            <form id="chatForm" method="post" action="/action/ajax/TavernInsert.php"
+                  class="chatForm container form-group mb-5">
+                <div class="row justify-content-around align-items-center">
+                    <textarea id="chatMessage" name="chatMessage" class="form-control col-lg-10"
+                              placeholder="Message"></textarea>
+                    <div id="chatbox--error"></div>
+                    <button type="submit" id="chatSubmit" class="btn my-2"
+                            name="chatSubmit">Tavernier, un mot !
+                    </button>
+                    {% if sessionUser.idGroup >= 2 %}
+                        <button type="button" id="chatRefresh" class="btn my-2"
+                                name="chatRefresh">Rafraîchir
+                        </button>
+                    {% endif %}
+                </div>
+            </form>
+        {% endif %}
+    </main>
+{% endblock main %}
+
+{% block script %}
+    <script>
+
+    </script>
+{% endblock script %}

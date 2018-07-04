@@ -1,0 +1,319 @@
+{# Parameters Tab #}
+{% if profilTab == 'parameter' and checkProfil == false %}
+    <section class="container--profil-info container my-5 py-5 rounded">
+        {# Avatar #}
+        <div class="d-flex justify-content-center">
+            <div class="profil--info-list py-4 container rounded">
+                <div class="row justify-content-center">
+                    <h2>Avatar</h2>
+                </div>
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    <ul class="list-group">
+                        {% for error in editInfo if infoSubmit is not null %}
+                            <li class="list-unstyled">
+                                <span class="badge badge-warning">Erreur</span>
+                                {{ error }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <form method="post" class="form-group" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="avatar" class="form-control-label">Nouvel Avatar</label>
+                            <input id="avatar" name="avatar" type="file" class="form-control"
+                                   style="overflow: hidden;">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="creditAvatar" class="form-control-label">Crédit Avatar</label>
+                            <input id="creditAvatar" name="creditAvatar"
+                                   type="url" class="form-control"
+                                   value="{{ showAccount.creditAvatar }}"
+                                   placeholder="Insérer l'URL vers l'image originel">
+                        </div>
+                    </div>
+                    {% if showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
+                        <div class="row justify-content-center mt-4">
+                            <button type="submit" class="btn" name="infoSubmit">
+                                Éditer l'Avatar
+                            </button>
+                        </div>
+                    {% endif %}
+                    <div class="row mt-4 justify-content-center">
+                        <h5 class="col-lg-3 text-center text-lg-right">Consigne :</h5>
+                        <ul class="col-lg-9 text-center text-lg-left">
+                            <li class="font-italic col-lg-10">
+                                Les images doivent être de type
+                                <span lang="en" translate="no">digital painting</span>
+                                et aux dimensions <span>250x400.</span>
+                            </li>
+                            <li class="font-italic col-lg-10">
+                                Si vous ne détenez pas les droits sur l'image,
+                                nous vous demandons d'insérer l'URL renvoyant à l'image de
+                                son auteur.
+                            </li>
+                            <li class="font-italic text-warning col-lg-10">
+                                Tout abus ou changement non justifié sera sanctionné. En cas de
+                                question ou de problème, veuillez contacter l'administration.
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {# Alignement #}
+        <div class="d-flex justify-content-center mt-5">
+            <div class="profil--info-list py-4 container rounded">
+                <div class="row justify-content-center">
+                    <h2>Alignement</h2>
+                </div>
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    <ul class="list-group">
+                        {% for error in editInfo if alignSubmit is not null %}
+                            <li class="list-unstyled">
+                                <span class="badge badge-warning">Erreur</span>
+                                {{ error }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <form method="post" class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="align" class="form-control-label">
+                                Alignement de {{ showAccount.pseudo }}
+                            </label>
+                            <select name="align" id="align" class="form-control">
+                                <optgroup label="Bon">
+                                    <option value="bon loyal"
+                                            {% if showAccount.alignement == 'Bon loyal' %}selected
+                                            {% endif %}>
+                                        Loyal
+                                    </option>
+                                    <option value="bon neutre"
+                                            {% if showAccount.alignement == 'Bon neutre' %}selected
+                                            {% endif %}>
+                                        Neutre
+                                    </option>
+                                    <option value="bon chaotique"
+                                            {% if showAccount.alignement == 'Bon chaotique' %}selected
+                                            {% endif %}>
+                                        Chaotique
+                                    </option>
+                                </optgroup>
+
+                                <optgroup label="Neutre">
+                                    <option value="neutre loyal"
+                                            {% if showAccount.alignement == 'Neutre loyal' %}selected
+                                            {% endif %}>
+                                        Loyal
+                                    </option>
+                                    <option value="neutre"
+                                            {% if showAccount.alignement == 'Neutre' %}selected
+                                            {% endif %}>
+                                        Neutre
+                                    </option>
+                                    <option value="neutre chaotique"
+                                            {% if showAccount.alignement == 'Neutre chaotique' %}selected
+                                            {% endif %}>
+                                        Chaotique
+                                    </option>
+                                </optgroup>
+
+                                <optgroup label="Mauvais">
+                                    <option value="mauvais loyal"
+                                            {% if showAccount.alignement == 'Mauvais loyal' %}selected
+                                            {% endif %}>
+                                        Loyal
+                                    </option>
+                                    <option value="mauvais neutre"
+                                            {% if showAccount.alignement == 'Mauvais neutre' %}selected
+                                            {% endif %}>
+                                        Neutre
+                                    </option>
+                                    <option value="mauvais chaotique"
+                                            {% if showAccount.alignement == 'Mauvais chaotique' %}selected
+                                            {% endif %}>
+                                        Chaotique
+                                    </option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="row">
+                                <label for="alignText" class="form-control-label col-sm-6">
+                                    Descriptif d'alignement
+                                </label>
+                                <div id="count" class="d-flex justify-content-end col-sm-6"></div>
+                            </div>
+                            <textarea name="alignText" id="alignText" cols="30" rows="10"
+                                      placeholder="Votre description d'alignement"
+                                      class="form-control">{{ showAccount.alignText }}</textarea>
+                        </div>
+                    </div>
+                    {% if showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
+                        <div class="row justify-content-center mt-4">
+                            <button type="submit" class="btn" name="alignSubmit">
+                                Éditer l'alignement
+                            </button>
+                        </div>
+                    {% endif %}
+                    <div class="row mt-4 d-flex justify-content-center">
+                        <h5 class="col-lg-3 text-center text-lg-right">Consigne :</h5>
+                        <ul class="col-lg-9 text-center text-lg-left">
+                            <li class="font-italic col-lg-10">
+                                L'alignement de votre personnage détermine sa philosophie.
+                                Pour en apprendre davantage sur les alignements, consultez la
+                                <a href="/codex/align">page des alignements</a>.
+                            </li>
+                            <li class="font-italic col-lg-10">
+                                Le champ d'alignement est un bref descriptif de la philosophie propre
+                                à votre personnage. <span>Maximum 255 caractères !</span>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {# Admin edit #}
+        {% if sessionUser.idGroup >= 2 %}
+            <div class="d-flex justify-content-center mt-5">
+                <div class="profil--info-list py-4 container rounded">
+                    <div class="row justify-content-center">
+                        <h2>Édition par administration</h2>
+                    </div>
+                    <hr class="mt-0 mb-4">
+                    <form method="post" class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="age" class="form-control-label">
+                                    Âge de {{ showAccount.pseudo }}
+                                </label>
+                                <input type="date" name="age" class="form-control" placeholder="Âge"
+                                       value="{% if showAccount.age is null %}1200-01-01{% else %}{{ showAccount.birthday }}{% endif %}">
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label for="sexe" class="form-control-label">
+                                    Sexe de {{ showAccount.pseudo }}
+                                </label>
+                                <select name="sexe" id="sexe" class="form-control">
+                                    <option value="neutre" {% if showAccount.sexe == 'neutre' %}selected
+                                            {% endif %}>Neutre
+                                    </option>
+                                    <option value="femme" {% if showAccount.sexe == 'femme' %}selected
+                                            {% endif %}>Femme
+                                    </option>
+                                    <option value="homme" {% if showAccount.sexe == 'homme' %}selected
+                                            {% endif %}>Homme
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label for="race" class="form-control-label">
+                                    Race de {{ showAccount.pseudo }}
+                                </label>
+                                <select name="race" id="sexe" class="form-control">
+                                    <option value="humain" {% if showAccount.race == 'humain' %}selected
+                                            {% endif %}>Humain
+                                    </option>
+                                    <option value="automate" {% if showAccount.race == 'automate' %}selected
+                                            {% endif %}>Automate
+                                    </option>
+                                    <option value="inconnu" {% if showAccount.race == 'inconnu' %}selected
+                                            {% endif %}>Inconnu
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-lg-3">
+                                <label for="gold">Fortune en Or</label>
+                                <input name="gold" id="gold" type="number" class="form-control"
+                                       value="{{ showAccount.gold }}" placeholder="Montant en or">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="silver">Fortune en Argent</label>
+                                <input name="silver" id="silver" type="number" class="form-control"
+                                       value="{{ showAccount.silver }}" placeholder="Montant en argent">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="copper"> Fortune en Cuivre</label>
+                                <input name="copper" id="copper" type="number" class="form-control"
+                                       value="{{ showAccount.copper }}" placeholder="Montant en cuivre">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="reput">Réputation</label>
+                                <input name="reputation" id="reput" type="number" class="form-control"
+                                       value="{{ showAccount.reputation }}" placeholder="Réputation">
+                            </div>
+                        </div>
+                            <div class="form-check mt-5">
+                                <input name="character_valide" id="validate" type="checkbox"
+                                       class="form-check-input"
+                                       {% if showAccount.characterValide == 1 %}checked{% endif %}>
+                                <label for="validate" class="form-check-label">
+                                    Valider la fiche de personnage
+                                </label>
+                            </div>
+                        {% if sessionUser.idGroup >= 2 %}
+                            <div class="row justify-content-center mt-4">
+                                <button type="submit" class="btn" name="infoAdminSubmit">
+                                    Éditer
+                                </button>
+                            </div>
+                        {% endif %}
+                        <div class="row mt-4 d-flex justify-content-center">
+                            <h5 class="col-lg-3 text-center text-lg-right">Consigne :</h5>
+                            <ul class="col-lg-9 text-center text-lg-left">
+                                <li class="font-italic col-lg-10">
+                                    L'âge augmente chaque année automatiquement.
+                                </li>
+                                <li class="font-italic col-lg-10 text-warning">
+                                    Aucun changement abusif de la richesse ou de la réputation.
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+
+        {# showHeading and Paragraph #}
+        <form method="post" class="form-group">
+            {% for heading in showHeading %}
+                <div class="container my-5">
+                    <h3>{{ heading.name }}</h3>
+                    <hr class="mb-4">
+                    <div class="paragraph-3">
+                        {% for paragraph in showParagraph if paragraph.idHeading == heading.id %}
+                            {% if paragraph.idUser == showAccount.id %}
+                                <label for="edit{{ heading.name }}" hidden></label>
+                                <textarea name="edit{{ heading.name }}" id="edit{{ heading.name }}"
+                                          cols="30"
+                                          rows="10" class="form-control">{{ paragraph.content }}</textarea>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            {% if showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
+                <div class="row justify-content-center mt-4">
+                    <button type="submit" class="btn" name="headingSubmit">
+                        Éditer les champs
+                    </button>
+                </div>
+            {% endif %}
+            <div class="container text-center mt-4">
+                <a href="/codex/faq">
+                    Pourquoi ne puis-je pas modifier tous les champs ? (F.A.Q.)
+                </a>
+            </div>
+        </form>
+    </section>
+{% endif %}

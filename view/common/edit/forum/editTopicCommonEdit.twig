@@ -1,0 +1,38 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    {% if sessionUser is not null and getTopic.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
+        <main class="d-flex justify-content-center align-items-center">
+            <section class="container--topic container p-5">
+                <form method="post" class="d-flex justify-content-center align-items-center">
+                    <fieldset>
+                        <legend class="h2">Éditer le sujet<span class="text-danger">*</span></legend>
+                        <ul class="list-group">
+                            {% for error in editTopic if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="form-group">
+                                <input type="text" name="edit_topic" placeholder="Titre du sujet"
+                                       value="{{ getTopic.subject }}" class="form-control-lg" required>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <button name="edit_topic_submit" type="submit" class="btn">Éditer</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+    {% else %}
+        <main>
+            <section class="container-fluid p-5 mt-auto box--message">
+                <div class="d-flex justify-content-center">
+                    <p class="m-auto">Impossible d'éditer ce message.</p>
+                </div>
+            </section>
+        </main>
+    {% endif %}
+{% endblock main %}

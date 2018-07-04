@@ -1,0 +1,56 @@
+{
+    "name": "valentin/lande-noire",
+    "description": "Forum role-play",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Valentin",
+            "email": "webdev.valentin@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {
+        "twig/twig": "*",
+        "twig/extensions": "*",
+        "symfony/translation": "*",
+        "altorouter/altorouter": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "action\\general\\": "action/general/",
+            "action\\core\\common\\index\\": [
+                "action/core/common/index/home",
+                "action/core/common/index/codex",
+                "action/core/common/index/news",
+                "action/core/common/index/sign",
+                "action/core/common/index/account",
+                "action/core/common/index/forum",
+                "action/core/common/index/tavern"
+            ],
+            "action\\core\\common\\edit\\": [
+                "action/core/common/edit/home",
+                "action/core/common/edit/news",
+                "action/core/common/edit/sign",
+                "action/core/common/edit/account",
+                "action/core/common/edit/forum"
+            ],
+            "action\\core\\admin\\index\\": [
+                "action/core/admin/index/home",
+                "action/core/admin/index/news",
+                "action/core/admin/index/sign",
+                "action/core/admin/index/account",
+                "action/core/admin/index/forum",
+                "action/core/admin/index/tavern"
+            ],
+            "action\\core\\admin\\edit\\": [
+                "action/core/admin/edit/home",
+                "action/core/admin/edit/news",
+                "action/core/admin/edit/sign",
+                "action/core/admin/edit/account",
+                "action/core/admin/edit/forum",
+                "action/core/admin/edit/tavern"
+            ]
+        }
+    }
+}

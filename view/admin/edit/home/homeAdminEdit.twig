@@ -1,0 +1,70 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    <section class="container my-5">
+        <div class="row flex-column align-items-center justify-content-center">
+            <form method="post" class="col-md-5">
+                <fieldset>
+                    <legend class="h2">Éditer {{ editUser.pseudo }}</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in editUser if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {# Email #}
+                    <div class="form-group">
+                        <label for="editEmail" class="w-100">
+                            Email
+                            <span class="text-danger">*</span>
+                            <input id="editEmail" placeholder="missive@domaine.ex" type="email"
+                                   name="editEmail" class="form-control" value="{{ editUser.email }}" required>
+                        </label>
+                    </div>
+                    {# Pseudo #}
+                    <div class="form-group">
+                        <label for="editPseudo" class="w-100">
+                            Pseudonyme
+                            <span class="text-danger">*</span>
+                            <input id="editPseudo" placeholder="Pseudo"
+                                   type="text" name="editPseudo" class="form-control"
+                                   value="{{ editUser.pseudo }}" required>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="editGroup" class="w-100">
+                            Rang
+                            <select name="editGroup" id="editGroup" class="form-control"
+                                    {# Can't change admin rank #}
+                                    {% if editUser.idGroup == 3 %}disabled{% endif %}>
+                                {% for group in editGroup %}
+                                    <option value="{{ group.id }}"
+                                            {% if group.id == editUser.idGroup %}selected{% endif %}
+                                            {% if group.id == 3 %}disabled{% endif %}>
+                                        {{ group.groupName }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="editBan" class="form-check-label">
+                            Bannir
+                            <input id="editBan" type="checkbox" class="form-control" name="editBan"
+                                   {% if editUser.isBanned == 1 %}checked{% endif %}>
+                        </label>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="editSubmit" class="btn">Éditer</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+{% endblock main %}

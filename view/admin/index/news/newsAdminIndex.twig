@@ -1,0 +1,97 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    {# Totals #}
+    <section class="container">
+        <div class="row justify-content-between">
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total actualités</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-users"></i>
+                        {{ totalNews }}
+                </span>
+                </div>
+            </div>
+
+            <div class="card col-lg-3">
+                <div class="card-body">
+                    <span class="text-uppercase">Total commentaires</span>
+                    <br>
+                    <span class="text-muted ">
+                    <i class="fas fa-comments"></i>
+                        {{ totalComments }}
+                </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# News on #}
+    <section class="container my-5">
+        <h2>Actualités en cours</h2>
+        <div class="row justify-content-center">
+            <table class="listUsers table table-hover table-bordered table-striped">
+                <thead>
+                <tr class="text-uppercase">
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Parution</th>
+                    <th scope="col">Date finale</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for news in newsOn %}
+                    <tr>
+                        <td>{{ news.id }}</td>
+                        <td><a href="/oversight/news/{{ news.id }}">{{ news.title }}</a></td>
+                        <td>{{ news.pseudo }}</td>
+                        <td>{{ news.datePub|localizeddate('medium', 'none') }}</td>
+                        {% if news.dateEnd is null %}
+                            <td class="text-success">Aucune limite</td>
+                        {% endif %}
+                        {% if news.dateEnd is not null %}
+                            <td class="text-success">{{ news.dateEnd|localizeddate('medium', 'none') }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    {# News off #}
+    <section class="container my-5">
+        <h2>Actualités achevées</h2>
+        <div class="row justify-content-center">
+            <table class="listUsers table table-hover table-bordered table-striped">
+                <thead>
+                <tr class="text-uppercase">
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Parution</th>
+                    <th scope="col">Date finale</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for news in newsOff %}
+                    <tr>
+                        <td>{{ news.id }}</td>
+                        <td><a href="/oversight/news/{{ news.id }}">{{ news.title }}</a></td>
+                        <td>{{ news.pseudo }}</td>
+                        <td>{{ news.datePub|localizeddate('medium', 'none') }}</td>
+                        <td class="text-warning">{{ news.dateEnd|localizeddate('medium', 'none') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock main %}
+
+{% block script %}
+
+{% endblock script %}

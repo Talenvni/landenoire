@@ -1,0 +1,61 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    <section class="container my-5">
+        <div class="row flex-column align-items-center justify-content-center">
+            <form method="post" class="col-md-5" enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="h2">Créer</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in createNews if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="w-100">
+                            Titre
+                            <input name="title" type="text" id="title" placeholder="Titre"
+                                   class="form-control">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="slug" class="w-100">
+                            Slug
+                            <input name="slug" type="text" id="slug" placeholder="slug"
+                                   class="form-control">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="img" class="w-100">
+                            Image
+                            <input name="img" type="file" id="img"
+                                   class="form-control">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="w-100">
+                            Date de fin
+                            <input name="dateend" type="date" id="date"
+                                   class="form-control">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="content" class="w-100">Message</label>
+                            <textarea name="content" id="content" cols="30" rows="10"
+                                      class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="createNews" class="btn">Éditer</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+{% endblock main %}

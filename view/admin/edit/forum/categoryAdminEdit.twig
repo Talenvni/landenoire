@@ -1,0 +1,86 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    <section class="container my-5">
+        <div class="row flex-column align-items-center justify-content-center">
+            <form method="post" class="col-md-5" enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="h2">Éditer {{ editCategory.name }}</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in editCategory if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {# Id #}
+                    <div class="form-group">
+                        <label for="editId" class="w-100">
+                            <input name="editId" type="hidden" id="editId" placeholder="ID"
+                                   class="form-control" value="{{ editCategory.id }}">
+                        </label>
+                    </div>
+                    {# Titre #}
+                    <div class="form-group">
+                        <label for="editName" class="w-100">
+                            Titre
+                            <span class="text-danger">*</span>
+                            <input id="editName" placeholder="Titre" type="text"
+                                   name="editName" class="form-control"
+                                   value="{{ editCategory.name }}" required>
+                        </label>
+                    </div>
+                    {# Slug #}
+                    <div class="form-group">
+                        <label for="editSlug" class="w-100">
+                            Slug
+                            <span class="text-danger">*</span>
+                            <input id="editSlug" placeholder="Slug"
+                                   type="text" name="editSlug" class="form-control"
+                                   value="{{ editCategory.slug }}" required>
+                        </label>
+                    </div>
+                    {# Image #}
+                    <div class="form-group">
+                        <label for="editImg" class="w-100">
+                            Image
+                            <span class="text-danger">*</span>
+                            <input name="editImg" type="file" id="editImg" class="form-control"
+                                   value="{{ editCategory.img }}">
+                        </label>
+                    </div>
+                    {# Heading #}
+                    <div class="form-group">
+                        <label for="editGroup" class="w-100">
+                            En-tête
+                            <select name="editGroup" id="editGroup" class="form-control">
+                                {% for group in editGroup %}
+                                    <option value="{{ group.id }}"
+                                            {% if group.id == editCategory.idHeading %}selected{% endif %}>
+                                        {{ group.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    {# Content #}
+                    <div class="form-group">
+                        <label for="editContent" class="w-100">
+                            Contenu <span class="text-danger">*</span>
+                        </label>
+                        <textarea name="editContent" id="editContent" cols="30" rows="10"
+                                  class="form-control">{{ editCategory.content }}</textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="editCategory" class="btn">Éditer</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+{% endblock main %}

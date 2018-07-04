@@ -1,0 +1,177 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    <section class="container my-5">
+        <div class="row justify-content-between">
+
+            {# Category #}
+            <form method="post" class="col-md-5" enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="h2">Créer catégorie</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in createForum if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {# Titre #}
+                    <div class="form-group">
+                        <label for="create-name" class="w-100">
+                            Titre
+                            <span class="text-danger">*</span>
+                            <input id="create-name" placeholder="Titre" type="text"
+                                   name="create_name" class="form-control" required>
+                        </label>
+                    </div>
+                    {# Slug #}
+                    <div class="form-group">
+                        <label for="create-slug" class="w-100">
+                            Slug
+                            <span class="text-danger">*</span>
+                            <input id="create-slug" placeholder="Slug"
+                                   type="text" name="create_slug" class="form-control" required>
+                        </label>
+                    </div>
+                    {# Image #}
+                    <div class="form-group">
+                        <label for="create-img" class="w-100">
+                            Image
+                            <span class="text-danger">*</span>
+                            <input name="create_img" type="file" id="create-img" class="form-control"
+                                   required>
+                        </label>
+                    </div>
+                    {# Heading #}
+                    <div class="form-group">
+                        <label for="choose-group" class="w-100">
+                            En-tête
+                            <select name="choose_group" id="choose-group" class="form-control">
+                                {% for group in chooseHeading %}
+                                    <option value="{{ group.id }}">
+                                        {{ group.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    {# Content #}
+                    <div class="form-group">
+                        <label for="create-content" class="w-100">
+                            Contenu <span class="text-danger">*</span>
+                        </label>
+                        <textarea name="create_content" id="create-content" cols="30" rows="10"
+                                  class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="create_category" class="btn">Créer</button>
+                    </div>
+                </fieldset>
+            </form>
+
+            {# Subcategory #}
+            <form method="post" class="col-md-5" enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="h2">Créer sous-catégorie</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in createForum if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {# Titre #}
+                    <div class="form-group">
+                        <label for="create-name" class="w-100">
+                            Titre
+                            <span class="text-danger">*</span>
+                            <input id="create-name" placeholder="Titre" type="text"
+                                   name="create_name" class="form-control" required>
+                        </label>
+                    </div>
+                    {# Slug #}
+                    <div class="form-group">
+                        <label for="create-slug" class="w-100">
+                            Slug
+                            <span class="text-danger">*</span>
+                            <input id="create-slug" placeholder="Slug"
+                                   type="text" name="create_slug" class="form-control" required>
+                        </label>
+                    </div>
+                    {# Image #}
+                    <div class="form-group">
+                        <label for="create-img" class="w-100">
+                            Image
+                            <span class="text-danger">*</span>
+                            <input name="create_img" type="file" id="create-img" class="form-control"
+                                   required>
+                        </label>
+                    </div>
+                    {# Heading #}
+                    <div class="form-group">
+                        <label for="choose-group" class="w-100">
+                            En-tête
+                            <select name="choose_group" id="choose-group" class="form-control">
+                                {% for group in chooseCategory %}
+                                    <option value="{{ group.id }}">
+                                        {{ group.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    {# Content #}
+                    <div class="form-group">
+                        <label for="create-content" class="w-100">
+                            Contenu <span class="text-danger">*</span>
+                        </label>
+                        <textarea name="create_content" id="create-content" cols="30" rows="10"
+                                  class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="create_subcategory" class="btn">Créer</button>
+                    </div>
+                </fieldset>
+            </form>
+
+            {# Heading #}
+            <form method="post" class="col-md-5 my-5 mx-auto">
+                <fieldset>
+                    <legend class="h2">Créer en-tête</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in createForum if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="w-100">
+                            Titre
+                            <input name="create_name" type="text" id="title" placeholder="Titre"
+                                   class="form-control" required>
+                        </label>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="create_heading" class="btn">Créer</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+{% endblock main %}

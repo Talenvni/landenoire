@@ -1,0 +1,38 @@
+{% extends 'admin.twig' %}
+
+{% block main %}
+    <section class="container my-5">
+        <div class="row flex-column align-items-center justify-content-center">
+            <form method="post" class="col-md-5">
+                <fieldset>
+                    <legend class="h2">Éditer {{ editHeading.name }}</legend>
+                    {# Error #}
+                    <div class="form-group">
+                        <ul class="list-group">
+                            {% for error in editHeading if error is not null %}
+                                <li class="list-unstyled">
+                                    <span class="badge badge-warning">Erreur</span>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {# Email #}
+                    <div class="form-group">
+                        <label for="editName" class="w-100">
+                            En-tête
+                            <span class="text-danger">*</span>
+                            <input id="editName" placeholder="En-tête" type="text"
+                                   name="editName" class="form-control"
+                                   value="{{ editHeading.name }}" required>
+                        </label>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" name="editHeading" class="btn">Éditer</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+{% endblock main %}
