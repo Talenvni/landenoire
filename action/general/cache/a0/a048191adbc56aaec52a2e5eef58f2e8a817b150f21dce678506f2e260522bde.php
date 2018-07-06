@@ -66,7 +66,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
         // line 33
         echo "    <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.css\">
     <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.colors.css\">
-    <link rel=\"stylesheet\" href=\"/web/scss/style.css\">
+    <link rel=\"stylesheet\" href=\"/web/scss/style.min.css\">
     ";
         // line 36
         $this->displayBlock('style', $context, $blocks);
@@ -152,10 +152,18 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 
 ";
         // line 174
+        echo "<script type=\"text/javascript\" id=\"cookiebanner\"
+        src=\"https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js\"
+        data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\" data-expires=\"2629800\"
+        data-message=\"Halte, voyageur ! En poursuivant sur ce site, vous acceptez l'utilisation des cookies.\"
+        data-zindex=\"9999\"></script>
+
+";
+        // line 181
         echo "<script src=\"/web/js/ajax/tavern.ajax.js\"></script>
 
 ";
-        // line 177
+        // line 184
         echo "<script defer
         src=\"https://use.fontawesome.com/releases/v5.0.8/js/solid.js\"
         integrity=\"sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l\"
@@ -166,7 +174,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
         crossorigin=\"anonymous\"></script>
 
 ";
-        // line 187
+        // line 194
         echo "<script>
     // ------------
     // WOW animated
@@ -224,9 +232,9 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
     })(); // End Trumbowyg area
 </script>
 ";
-        // line 243
+        // line 250
         $this->displayBlock('script', $context, $blocks);
-        // line 244
+        // line 251
         echo "</body>
 </html>
 ";
@@ -393,7 +401,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 ";
     }
 
-    // line 243
+    // line 250
     public function block_script($context, array $blocks = array())
     {
     }
@@ -410,7 +418,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 
     public function getDebugInfo()
     {
-        return array (  397 => 243,  373 => 135,  370 => 134,  365 => 125,  358 => 117,  349 => 113,  343 => 110,  339 => 109,  333 => 108,  322 => 103,  319 => 102,  309 => 98,  307 => 97,  298 => 93,  290 => 90,  271 => 76,  263 => 73,  259 => 71,  252 => 65,  249 => 63,  246 => 62,  241 => 59,  236 => 36,  230 => 244,  228 => 243,  170 => 187,  159 => 177,  155 => 174,  145 => 165,  140 => 161,  136 => 158,  133 => 156,  131 => 134,  125 => 129,  122 => 127,  120 => 125,  115 => 121,  113 => 62,  110 => 60,  108 => 59,  105 => 57,  96 => 51,  89 => 46,  87 => 45,  81 => 40,  76 => 38,  74 => 37,  72 => 36,  67 => 33,  64 => 31,  61 => 29,  58 => 27,  47 => 17,  34 => 5,  29 => 1,);
+        return array (  405 => 250,  381 => 135,  378 => 134,  373 => 125,  366 => 117,  357 => 113,  351 => 110,  347 => 109,  341 => 108,  330 => 103,  327 => 102,  317 => 98,  315 => 97,  306 => 93,  298 => 90,  279 => 76,  271 => 73,  267 => 71,  260 => 65,  257 => 63,  254 => 62,  249 => 59,  244 => 36,  238 => 251,  236 => 250,  178 => 194,  167 => 184,  163 => 181,  155 => 174,  145 => 165,  140 => 161,  136 => 158,  133 => 156,  131 => 134,  125 => 129,  122 => 127,  120 => 125,  115 => 121,  113 => 62,  110 => 60,  108 => 59,  105 => 57,  96 => 51,  89 => 46,  87 => 45,  81 => 40,  76 => 38,  74 => 37,  72 => 36,  67 => 33,  64 => 31,  61 => 29,  58 => 27,  47 => 17,  34 => 5,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -449,7 +457,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
     {# Style #}
     <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.css\">
     <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.colors.css\">
-    <link rel=\"stylesheet\" href=\"/web/scss/style.css\">
+    <link rel=\"stylesheet\" href=\"/web/scss/style.min.css\">
     {% block style %}{% endblock style %}
     {# Title #}
     <title>{{ title }} &bull; LN</title>
@@ -586,6 +594,13 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 <script src=\"/web/js/vendor/trumbowyg/fr.min.js\"></script>
 <script src=\"/web/js/script.js\"></script>
 <script src=\"/web/js/pagination.js\"></script>
+
+{# Cookie Accept #}
+<script type=\"text/javascript\" id=\"cookiebanner\"
+        src=\"https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js\"
+        data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\" data-expires=\"2629800\"
+        data-message=\"Halte, voyageur ! En poursuivant sur ce site, vous acceptez l'utilisation des cookies.\"
+        data-zindex=\"9999\"></script>
 
 {# Ajax #}
 <script src=\"/web/js/ajax/tavern.ajax.js\"></script>

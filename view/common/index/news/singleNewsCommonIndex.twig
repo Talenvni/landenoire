@@ -58,7 +58,7 @@
                 </div>
             {% endfor %}
             {# New Comment #}
-            {% if sessionUser is not null %}
+            {% if sessionUser is not null and newComment.isBanned == 0 %}
                 <fieldset class="container my-5">
                     <legend class="h2">Nouveau commentaire</legend>
                     <form method="post">

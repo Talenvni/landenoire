@@ -7656,7 +7656,7 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
   .container--subcategory, .container--topic {
     background: #2d3035;
     border-radius: 1rem;
-    border: 0.01rem solid #7e7e69;
+    border: 0.1rem solid #7e7e69;
     box-sizing: border-box; }
 
   .container--topic {

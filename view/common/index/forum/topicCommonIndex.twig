@@ -49,9 +49,11 @@
                         <div class="col-6 d-flex justify-content-end">
                             {% if sessionUser is not null and singleSubcategory.slug is not null %}
                                 {% if valideAccount.characterValide == 1 or singleSubcategory.freeAccess == 1 %}
-                                    <a href="/forum/{{ singleSubcategory.slug }}/newtopic" class="btn">
-                                        Créer un sujet
-                                    </a>
+                                    {% if valideAccount.isBanned == 0 %}
+                                        <a href="/forum/{{ singleSubcategory.slug }}/newtopic" class="btn">
+                                            Créer un sujet
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             {% elseif sessionUser is null and singleSubcategory.slug is not null %}
                                 <a href="/sign-in">

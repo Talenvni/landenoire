@@ -15,7 +15,8 @@ class TavernCommonIndex {
 			echo TwigLabs::loadTwig()->render( '/tavern/tavernCommonIndex.twig', [
 				'title'    => 'Taverne',
 				'chatbox'  => self::chatbox(),
-				'visiteur' => self::chatboxVisiteur()
+				'visiteur' => self::chatboxVisiteur(),
+				'userBan'  => self::userBan()
 			] );
 		} catch ( Twig_Error_Loader $e ) {
 			die( 'ERROR FROM TWIG : ' . $e->getMessage() );
@@ -41,5 +42,14 @@ class TavernCommonIndex {
 		WHERE isConnect = 1' )->fetch( PDO::FETCH_OBJ );
 
 		return $session;
+	}
+
+	private static function userBan() {
+		$user = Database::getQuery( '
+		SELECT isBanned
+		FROM ln_users u 
+		WHERE id = ?', [ $_SESSION['user']->id ] )->fetch( PDO::FETCH_OBJ );
+
+		return $user;
 	}
 }

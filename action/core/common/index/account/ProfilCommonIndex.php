@@ -35,7 +35,7 @@ class ProfilCommonIndex {
 	 */
 	private static function showAccount() {
 		$account = Database::getQuery( '
-    	SELECT DISTINCT u.id, groupName, pseudo, age as birthday, (TIMESTAMPDIFF(YEAR, age, NOW()) - 815) as age, sexe, race, avatar, creditAvatar, gold, silver, copper, reputation, alignement, alignText, characterValide
+    	SELECT DISTINCT u.id, groupName, pseudo, age as birthday, (TIMESTAMPDIFF(YEAR, age, NOW()) - 815) as age, sexe, race, avatar, creditAvatar, gold, silver, copper, reputation, alignement, alignText, characterValide, isBanned
     	FROM ln_users u
     	LEFT JOIN ln_users_group g ON u.idGroup = g.id
     	LEFT JOIN ln_users_info i ON u.id = i.idUser

@@ -78,22 +78,31 @@ class SingleNewsCommonIndex {
 	 * @return null Create comment
 	 */
 	private static function newComment() {
-		if ( isset( $_POST['comment_submit'] ) ) :
-			$new_comment = Database::getQuery( '
+		if ( isset( $_SESSION['user'] ) ) :
+			$user = Database::getQuery( '
+		SELECT isBanned
+		FROM ln_users u
+		WHERE id = ? ', [ $_SESSION['user']->id ] )->fetch( \PDO::FETCH_OBJ );
+
+			if ( isset( $_POST['comment_submit'] ) && $user->isBanned == 0 ) :
+				$new_comment = Database::getQuery( '
 			SELECT id, slug
 			FROM ln_news n
 			WHERE slug = ?', [ $_GET['news_slug'] ] )->fetch( \PDO::FETCH_OBJ );
 
-			Database::getQuery( '
+				Database::getQuery( '
 			INSERT INTO ln_news_comment
 			SET idUser = ?, idNews = ?, message = ?, datePub = NOW()', [
-				$_SESSION['user']->id,
-				$new_comment->id,
-				ucfirst( $_POST['comment_message'] )
-			] );
+					$_SESSION['user']->id,
+					$new_comment->id,
+					ucfirst( $_POST['comment_message'] )
+				] );
 
-			MessageFlash::setFlash( 'success', 'Commentaire ajouté' );
-			Helper::redirection( '/news/' . $new_comment->slug );
+				MessageFlash::setFlash( 'success', 'Commentaire ajouté' );
+				Helper::redirection( '/news/' . $new_comment->slug );
+			endif;
+
+			return $user;
 		endif;
 
 		return null;

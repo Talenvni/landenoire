@@ -52,13 +52,15 @@
                             </select>
                         </label>
                     </div>
-                    <div class="form-group">
-                        <label for="editBan" class="form-check-label">
-                            Bannir
-                            <input id="editBan" type="checkbox" class="form-control" name="editBan"
-                                   {% if editUser.isBanned == 1 %}checked{% endif %}>
-                        </label>
-                    </div>
+                    {% if editUser.idGroup < 3 %}
+                        <div class="form-group">
+                            <label for="editBan" class="form-check-label">
+                                Bannir
+                                <input id="editBan" type="checkbox" class="form-control" name="editBan"
+                                       {% if editUser.isBanned == 1 %}checked{% endif %}>
+                            </label>
+                        </div>
+                    {% endif %}
                     <hr>
                     <div class="form-group">
                         <button type="submit" name="editSubmit" class="btn">Éditer</button>

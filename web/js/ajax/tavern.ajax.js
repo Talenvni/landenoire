@@ -3,37 +3,68 @@ setInterval(function () {
     TavernQuery();
     TavernUsers();
 }, 60000); // Refresh Chat
+setTimeout(function () {
+    disconnect()}, 60000
+);
+
+// Add from chat when enter the site
+function connect () {
+    $.ajax({
+        url: '/action/ajax/TavernTimeOut.php',
+        method: 'POST',
+        data: {connect : true},
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log('[ERROR]' + xhr.status + ' ' + thrownError);
+        }
+    }) // Ajax
+} // End Add from chat
+
+// Remove from chat when quit the site
+function disconnect () {
+    $.ajax({
+        url: '/action/ajax/TavernTimeOut.php',
+        method: 'POST',
+        data: {disconnect : true},
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log('[ERROR]' + xhr.status + ' ' + thrownError);
+        }
+    }) // Ajax
+} // End Remove from chat
 
 // *** Post Chat *** //
-$('#chatSubmit').on('click', function (e) {
-    e.preventDefault();
+$('#chatForm').keypress(function (e) {
+    if(e.which === 13 && !e.shiftKey) {
+        e.preventDefault();
 
-    let chatMessage = $('#chatMessage').val();
+        let chatMessage = $('#chatMessage').val();
 
-    if (chatMessage !== '' && chatMessage.length < 255) {
-        $.ajax({
-            url: '/action/ajax/TavernInsert.php',
-            type: 'POST',
-            data: {chatMessage: chatMessage},
-            success: function () {
-                let resetMessage = $('.trumbowyg-editor');
-                resetMessage.html('');
-                resetMessage.focus();
-                $('#chatSubmit').html('').append('Tavernier, un mot !').removeClass('text-warning')
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log('[ERROR]' + xhr.status + ' ' + thrownError);
-            },
-            complete: function () {
-                TavernQuery();
-            }
-        });
-    }
-    if (chatMessage !== '' && chatMessage.length > 255) {
-        $('#chatSubmit').html('').append('Minimum 255 caractères.').addClass('text-warning');
-    }
-    if (chatMessage === '') {
-        $('#chatSubmit').html('').append('Aucun message à envoyer.').addClass('text-warning');
+        if (chatMessage !== '' && chatMessage.length < 255) {
+            $.ajax({
+                url: '/action/ajax/TavernInsert.php',
+                type: 'POST',
+                data: {chatMessage: chatMessage},
+                success: function () {
+                    let resetMessage = $('.trumbowyg-editor');
+                    resetMessage.html('');
+                    resetMessage.focus();
+                    $('#chatSubmit').html('').append('Tavernier, un mot !').removeClass('text-warning')
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('[ERROR]' + xhr.status + ' ' + thrownError);
+                },
+                complete: function () {
+                    connect();
+                    TavernQuery();
+                    TavernUsers();
+                }
+            });
+        }
+        if (chatMessage !== '' && chatMessage.length > 255) {
+            $('#chatSubmit').html('').append('Minimum 255 caractères.').addClass('text-warning');
+        }
+        if (chatMessage === '') {
+            $('#chatSubmit').html('').append('Aucun message à envoyer.').addClass('text-warning');
+        }
     }
 }); // End Post chat
 
@@ -93,7 +124,7 @@ function TavernUsers() {
             for (let i in response) {
                 if (response.hasOwnProperty(i)) {
                     $('#chatbox--users')
-                        .append($('<a href="/account/' + response[i].id + '">' + response[i].pseudo + '</div>'));
+                        .append($('<a href="/account/character-' + response[i].id + '">' + response[i].pseudo + '</div>'));
 
                     $('#chatbox--users a:nth-last-of-type(2)').after(', ');
                 }
@@ -104,27 +135,3 @@ function TavernUsers() {
         }
     }) // Ajax
 } // End show users connected
-
-// Remove from chat when quit the site
-window.onbeforeunload = function () {
-    $.ajax({
-        url: '/action/ajax/TavernTimeOut.php',
-        method: 'POST',
-        data: {disconnect : true},
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log('[ERROR]' + xhr.status + ' ' + thrownError);
-        }
-    }) // Ajax
-}; // End remove from chat
-
-// Add from chat when enter the site
-window.onload = function () {
-    $.ajax({
-        url: '/action/ajax/TavernTimeOut.php',
-        method: 'POST',
-        data: {connect : true},
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log('[ERROR]' + xhr.status + ' ' + thrownError);
-        }
-    }) // Ajax
-}; // End add from chat

@@ -10,22 +10,18 @@
                     {# Each Category #}
                     {% for category in showCategory if category.idHeading == heading.id %}
                         <div class="block--category rounded col-lg-5 col-11 my-2 p-0"
-                             style="background: url('/web/img/category/{{ category.img }}') no-repeat center;background-size: cover;">
-                            <div class="text-center pt-3 px-3">
+                             style="background: url('/web/img/category/{{ category.img }}') no-repeat center;background-size: cover;max-height: 25vh;">
+                            <div class="pt-3 px-3">
                                 <a href="/forum/{{ category.slug }}">
-                                    <h5>{{ category.name }}</h5>
+                                    <h5 class="text-center">{{ category.name }}</h5>
                                     <p class="text-justify">
-                                        {{ category.content }}
+                                        {{ category.content|raw }}
                                     </p>
                                 </a>
                             </div>
-                            <div>
+                            <div class="mt-auto">
                                 <p class="px-3">
-                                    {% for last in lastMessage if last.subcatId == subcat.id %}
-                                        <a href="/forum/{{ last.slug }}/topic-{{ last.idTopic }}">
-                                            Dernier message il y a {{ last.dateMessage|time_diff }}
-                                        </a>
-                                    {% endfor %}
+                                    {{ test }}
                                 </p>
                             </div>
                         </div>

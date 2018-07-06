@@ -14,8 +14,7 @@ if ( $_POST['disconnect'] == true ) :
 		// If not cookie
 		Database::getQuery( '
 		UPDATE ln_users 
-		SET isConnect = 0
-		WHERE id = ?', [ $_SESSION['user']->id ] );
+		SET isConnect = 0');
 	endif;
 
 	return null;

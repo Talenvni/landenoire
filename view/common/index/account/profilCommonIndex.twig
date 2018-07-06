@@ -2,55 +2,57 @@
 
 {% block main %}
     <main>
-        {# Title #}
-        <section class="container--profil-title container-fluid py-4">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-12 text-center">
-                    <h1 class="m-0">{{ showAccount.pseudo }}</h1>
-                    <h5 class="m-0">{{ showAccount.groupName }}</h5>
+        {% if showAccount.isBanned == 0 %}
+            {# Title #}
+            <section class="container--profil-title container-fluid py-4">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-12 text-center">
+                        <h1 class="m-0">{{ showAccount.pseudo }}</h1>
+                        <h5 class="m-0">{{ showAccount.groupName }}</h5>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        {# Mini Nav #}
-        <section class="container-fluid">
-            <nav class="row justify-content-center align-items-center">
-                <ul class="nav navbar">
-                    <li class="nav-item">
-                        <a href="/account/character-{{ showAccount.id }}/info"
-                           class="nav-link text-white">
-                            <i class="fas fa-home d-none d-lg-inline"></i> Info
-                        </a>
-                    </li>
-                    {% if showAccount.id == sessionUser.id %}
-                        <li class="nav-item mx-lg-5">
-                            <a href="/account/character-{{ showAccount.id }}/preference"
-                               class="nav-link text-white"><i class="fas fa-tasks d-none d-lg-inline"></i>
-                                Préférences
-                            </a>
-                        </li>
+            {# Mini Nav #}
+            <section class="container-fluid">
+                <nav class="row justify-content-center align-items-center">
+                    <ul class="nav navbar">
                         <li class="nav-item">
-                            <a href="/account/character-{{ showAccount.id }}/security"
-                               class="nav-link text-white"><i class="fas fa-lock d-none d-lg-inline"></i>
-                                Sécurité
+                            <a href="/account/character-{{ showAccount.id }}/info"
+                               class="nav-link text-white">
+                                <i class="fas fa-home d-none d-lg-inline"></i> Info
                             </a>
                         </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </section>
+                        {% if showAccount.id == sessionUser.id %}
+                            <li class="nav-item mx-lg-5">
+                                <a href="/account/character-{{ showAccount.id }}/preference"
+                                   class="nav-link text-white"><i class="fas fa-tasks d-none d-lg-inline"></i>
+                                    Préférences
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/account/character-{{ showAccount.id }}/security"
+                                   class="nav-link text-white"><i class="fas fa-lock d-none d-lg-inline"></i>
+                                    Sécurité
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </section>
 
-        {% if profilTab == 'info' %}
-            {% include '/account/profilTabInfo.twig' %}
-        {% endif %}
-        {% if profilTab == 'preference' and showAccount.id == sessionUser.id %}
-            {% include '/account/profilTabPreference.twig' %}
-        {% endif %}
-        {% if profilTab == 'security' and showAccount.id == sessionUser.id %}
-            {% include '/account/profilTabSecurity.twig' %}
-        {% endif %}
-        {% if profilTab == 'parameter' and showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
-            {% include '/account/profilTabParameter.twig' %}
+            {% if profilTab == 'info' %}
+                {% include '/account/profilTabInfo.twig' %}
+            {% endif %}
+            {% if profilTab == 'preference' and showAccount.id == sessionUser.id %}
+                {% include '/account/profilTabPreference.twig' %}
+            {% endif %}
+            {% if profilTab == 'security' and showAccount.id == sessionUser.id %}
+                {% include '/account/profilTabSecurity.twig' %}
+            {% endif %}
+            {% if profilTab == 'parameter' and showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
+                {% include '/account/profilTabParameter.twig' %}
+            {% endif %}
         {% endif %}
     </main>
 {% endblock main %}

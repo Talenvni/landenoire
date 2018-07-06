@@ -179,10 +179,14 @@ class ProfilCommonEdit {
 				FROM ln_users_info i
 				WHERE idUser = ?', [ $_GET['account_id'] ] )->fetch( \PDO::FETCH_OBJ );
 
+			if ($create->avatar == null) :
+				$img = 'default.png';
+			endif;
+
 			$_POST['avatar'] = $_FILES['avatar']['name'];
 			$verify          = new Validator();
 			$verify->isDiff( $_POST['uploadOk'], 0, 'Image invalide' );
-			$verify->isDiff( $create->avatar, null, 'Compte invalide' );
+			$verify->isDiff( $create, null, 'Compte invalide' );
 
 			if ( empty( $verify->getFail() ) ) :
 
@@ -191,8 +195,8 @@ class ProfilCommonEdit {
 				endif;
 
 				// Delete old Avatar
-				if ( $create->avatar != $_FILES['avatar']['name'] && ! empty( $_FILES['avatar']['name'] ) ) :
-					if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . '/web/img/avatar/' . $create->avatar ) ) {
+				if ( $create->avatar != $_FILES['avatar']['name'] && ! empty( $_FILES['avatar']['name'] )  ) :
+					if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . '/web/img/avatar/' . $create->avatar ) && $create->avatar != 'default.png' ) {
 						unlink( $_SERVER['DOCUMENT_ROOT'] . '/web/img/avatar/' . $create->avatar );
 					}
 					if ( ! empty( $_FILES['avatar']['name'] ) ) :

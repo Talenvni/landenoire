@@ -57,13 +57,18 @@ class TopicCommonIndex {
 	 * @return mixed
 	 */
 	private static function valideAccount() {
-		$valide = Database::getQuery( '
-		SELECT characterValide
-		FROM ln_users_info
-		WHERE idUser = ?', [
-			$_SESSION['user']->id
-		] )->fetch( \PDO::FETCH_OBJ );
+		if ( $_SESSION['user'] ) :
+			$valide = Database::getQuery( '
+			SELECT characterValide, isBanned
+			FROM ln_users_info i
+			LEFT JOIN ln_users u on i.idUser = u.id
+			WHERE idUser = ?', [
+				$_SESSION['user']->id
+			] )->fetch( \PDO::FETCH_OBJ );
 
-		return $valide;
+			return $valide;
+		endif;
+
+		return null;
 	}
 }

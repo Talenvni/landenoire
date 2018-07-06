@@ -62,7 +62,7 @@ class ForgotPasswordCommonIndex {
 					$email_verify->email,
 					'Changement de mot de passe',
 					'Veuillez cliquer sur ce lien pour changer votre mot de passe.<br>Si vous n\'êtes pas l\'auteur de cette demande, veuillez ne pas tenir compte de cet email.',
-					'http://ln.net/forgot-password/' . $forgot_id . '&' . $forgot_token,
+					'https://www.lande-noire.online/forgot-password/' . $forgot_id . '&' . $forgot_token,
 					'Changer le mot de passe'
 				);
 				MessageFlash::setFlash( 'success', 'Veuillez suivre les instructions par email' );

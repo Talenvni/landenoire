@@ -88,7 +88,7 @@ class SignupCommonIndex {
 						$signup_email,
 						'Validation de compte',
 						'Veuillez cliquer sur ce lien pour valider vote compte sur Lande Noire.<br>Si vous n\'êtes pas l\'auteur de cette demande, veuillez ne pas tenir compte de cet email.',
-						'http://ln.net/sign-up/' . $last_id . '&' . $signup_token,
+						'https://www.lande-noire.online/sign-up/' . $last_id . '&' . $signup_token,
 						'Confirmer le compte'
 					);
 					MessageFlash::setFlash( 'success', 'Veuillez suivre les instructions par email' );
@@ -168,7 +168,7 @@ class SignupCommonIndex {
 					$signup_reload->email,
 					'Validation de compte',
 					'Votre demande ayant expiré, nous vous renvoyons ci-joint un nouveau lien pour confirmer votre compte sur Lande Noire.<br>Si vous n\'êtes pas l\'auteur de cette demande, veuillez ne pas tenir compte de cet email.',
-					'http://ln.net/sign-up/' . $last_id . '&' . $signup_token,
+					'https://www.lande-noire.online/sign-up/' . $last_id . '&' . $signup_token,
 					'Confirmer le compte'
 				);
 

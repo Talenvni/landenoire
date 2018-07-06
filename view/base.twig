@@ -32,7 +32,7 @@
     {# Style #}
     <link rel="stylesheet" href="/web/scss/vendor/trumbowyg/trumbowyg.css">
     <link rel="stylesheet" href="/web/scss/vendor/trumbowyg/trumbowyg.colors.css">
-    <link rel="stylesheet" href="/web/scss/style.css">
+    <link rel="stylesheet" href="/web/scss/style.min.css">
     {% block style %}{% endblock style %}
     {# Title #}
     <title>{{ title }} &bull; LN</title>
@@ -169,6 +169,13 @@
 <script src="/web/js/vendor/trumbowyg/fr.min.js"></script>
 <script src="/web/js/script.js"></script>
 <script src="/web/js/pagination.js"></script>
+
+{# Cookie Accept #}
+<script type="text/javascript" id="cookiebanner"
+        src="https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js"
+        data-effect="fade" data-mask="true" data-linkmsg="En savoir plus." data-expires="2629800"
+        data-message="Halte, voyageur ! En poursuivant sur ce site, vous acceptez l'utilisation des cookies."
+        data-zindex="9999"></script>
 
 {# Ajax #}
 <script src="/web/js/ajax/tavern.ajax.js"></script>
