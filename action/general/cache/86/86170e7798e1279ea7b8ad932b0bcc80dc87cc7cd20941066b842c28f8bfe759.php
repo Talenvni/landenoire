@@ -14,6 +14,7 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
         $this->parent = false;
 
         $this->blocks = array(
+            'script' => array($this, 'block_script'),
         );
     }
 
@@ -401,45 +402,57 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
                 // line 226
                 echo ">Automate
                                     </option>
-                                    <option value=\"inconnu\" ";
+                                    <option value=\"malemort\" ";
                 // line 228
-                if ((twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "race", array()) == "inconnu")) {
+                if ((twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "race", array()) == "malemort")) {
                     echo "selected
                                             ";
                 }
                 // line 229
-                echo ">Inconnu
+                echo ">Malemort
+                                    </option>
+                                    <option value=\"ondin\" ";
+                // line 231
+                if ((twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "race", array()) == "ondin")) {
+                    echo "selected
+                                            ";
+                }
+                // line 232
+                echo ">Ondin
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class=\"row mt-5\">
-                            <div class=\"col-lg-3\">
-                                <label for=\"gold\">Fortune en Or</label>
-                                <input name=\"gold\" id=\"gold\" type=\"number\" class=\"form-control\"
+                            <div class=\"col-lg-4\">
+                                <label for=\"coin\">Monnaie de ";
+                // line 239
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "pseudo", array()), "html", null, true);
+                echo "</label>
+                                <input name=\"coin\" id=\"coin\" type=\"number\" class=\"form-control\"
                                        value=\"";
-                // line 238
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "gold", array()), "html", null, true);
-                echo "\" placeholder=\"Montant en or\">
+                // line 241
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "coin", array()), "html", null, true);
+                echo "\" placeholder=\"Monnaie\">
                             </div>
-                            <div class=\"col-lg-3\">
-                                <label for=\"silver\">Fortune en Argent</label>
-                                <input name=\"silver\" id=\"silver\" type=\"number\" class=\"form-control\"
-                                       value=\"";
-                // line 243
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "silver", array()), "html", null, true);
-                echo "\" placeholder=\"Montant en argent\">
-                            </div>
-                            <div class=\"col-lg-3\">
-                                <label for=\"copper\"> Fortune en Cuivre</label>
-                                <input name=\"copper\" id=\"copper\" type=\"number\" class=\"form-control\"
+                            <div class=\"col-lg-4\">
+                                <label for=\"exp\" class=\"form-control-label\">
+                                    Expérience de ";
+                // line 245
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "pseudo", array()), "html", null, true);
+                echo "
+                                </label>
+                                <input type=\"number\" id=\"exp\" name=\"exp\" class=\"form-control\"
                                        value=\"";
                 // line 248
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "copper", array()), "html", null, true);
-                echo "\" placeholder=\"Montant en cuivre\">
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "experience", array()), "html", null, true);
+                echo "\">
                             </div>
-                            <div class=\"col-lg-3\">
-                                <label for=\"reput\">Réputation</label>
+                            <div class=\"col-lg-4\">
+                                <label for=\"reput\">Réputation de ";
+                // line 251
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "pseudo", array()), "html", null, true);
+                echo "</label>
                                 <input name=\"reputation\" id=\"reput\" type=\"number\" class=\"form-control\"
                                        value=\"";
                 // line 253
@@ -447,19 +460,19 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
                 echo "\" placeholder=\"Réputation\">
                             </div>
                         </div>
-                            <div class=\"form-check mt-5\">
-                                <input name=\"character_valide\" id=\"validate\" type=\"checkbox\"
-                                       class=\"form-check-input\"
-                                       ";
+                        <div class=\"form-check mt-5 mx-auto text-center\">
+                            <input name=\"character_valide\" id=\"validate\" type=\"checkbox\"
+                                   class=\"form-check-input\"
+                                   ";
                 // line 259
                 if ((twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "characterValide", array()) == 1)) {
                     echo "checked";
                 }
                 echo ">
-                                <label for=\"validate\" class=\"form-check-label\">
-                                    Valider la fiche de personnage
-                                </label>
-                            </div>
+                            <label for=\"validate\" class=\"form-check-label\">
+                                Valider la fiche de personnage
+                            </label>
+                        </div>
                         ";
                 // line 264
                 if ((twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2)) {
@@ -568,6 +581,23 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
     </section>
 ";
         }
+        // line 320
+        echo "
+";
+        // line 321
+        $this->displayBlock('script', $context, $blocks);
+    }
+
+    public function block_script($context, array $blocks = array())
+    {
+        // line 322
+        echo "    <script>
+        \$(\"#competence\").select2(
+            {
+                maximumSelectionLength: 2
+            });
+    </script>
+";
     }
 
     public function getTemplateName()
@@ -582,7 +612,7 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
 
     public function getDebugInfo()
     {
-        return array (  562 => 312,  554 => 306,  551 => 305,  543 => 302,  536 => 301,  531 => 299,  524 => 297,  519 => 296,  516 => 295,  511 => 294,  505 => 291,  502 => 290,  498 => 289,  495 => 288,  492 => 286,  475 => 271,  467 => 265,  465 => 264,  455 => 259,  446 => 253,  438 => 248,  430 => 243,  422 => 238,  411 => 229,  406 => 228,  402 => 226,  397 => 225,  393 => 223,  388 => 222,  382 => 219,  373 => 212,  368 => 211,  364 => 209,  359 => 208,  355 => 206,  350 => 205,  344 => 202,  332 => 197,  326 => 194,  314 => 184,  311 => 183,  291 => 164,  283 => 158,  281 => 157,  275 => 154,  258 => 139,  253 => 138,  247 => 134,  242 => 133,  236 => 129,  231 => 128,  222 => 121,  217 => 120,  211 => 116,  206 => 115,  200 => 111,  195 => 110,  186 => 103,  181 => 102,  175 => 98,  170 => 97,  164 => 93,  159 => 92,  151 => 87,  143 => 81,  133 => 78,  129 => 76,  124 => 75,  114 => 67,  89 => 43,  81 => 37,  79 => 36,  72 => 32,  57 => 19,  47 => 16,  43 => 14,  38 => 13,  28 => 5,  25 => 3,  23 => 2,);
+        return array (  594 => 322,  588 => 321,  585 => 320,  575 => 312,  567 => 306,  564 => 305,  556 => 302,  549 => 301,  544 => 299,  537 => 297,  532 => 296,  529 => 295,  524 => 294,  518 => 291,  515 => 290,  511 => 289,  508 => 288,  505 => 286,  488 => 271,  480 => 265,  478 => 264,  468 => 259,  459 => 253,  454 => 251,  448 => 248,  442 => 245,  435 => 241,  430 => 239,  421 => 232,  416 => 231,  412 => 229,  407 => 228,  403 => 226,  398 => 225,  394 => 223,  389 => 222,  383 => 219,  374 => 212,  369 => 211,  365 => 209,  360 => 208,  356 => 206,  351 => 205,  345 => 202,  333 => 197,  327 => 194,  315 => 184,  312 => 183,  292 => 164,  284 => 158,  282 => 157,  276 => 154,  259 => 139,  254 => 138,  248 => 134,  243 => 133,  237 => 129,  232 => 128,  223 => 121,  218 => 120,  212 => 116,  207 => 115,  201 => 111,  196 => 110,  187 => 103,  182 => 102,  176 => 98,  171 => 97,  165 => 93,  160 => 92,  152 => 87,  144 => 81,  134 => 78,  130 => 76,  125 => 75,  115 => 67,  90 => 43,  82 => 37,  80 => 36,  73 => 32,  58 => 19,  48 => 16,  44 => 14,  39 => 13,  29 => 5,  26 => 3,  24 => 2,);
     }
 
     public function getSourceContext()
@@ -814,42 +844,42 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
                                     <option value=\"automate\" {% if showAccount.race == 'automate' %}selected
                                             {% endif %}>Automate
                                     </option>
-                                    <option value=\"inconnu\" {% if showAccount.race == 'inconnu' %}selected
-                                            {% endif %}>Inconnu
+                                    <option value=\"malemort\" {% if showAccount.race == 'malemort' %}selected
+                                            {% endif %}>Malemort
+                                    </option>
+                                    <option value=\"ondin\" {% if showAccount.race == 'ondin' %}selected
+                                            {% endif %}>Ondin
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class=\"row mt-5\">
-                            <div class=\"col-lg-3\">
-                                <label for=\"gold\">Fortune en Or</label>
-                                <input name=\"gold\" id=\"gold\" type=\"number\" class=\"form-control\"
-                                       value=\"{{ showAccount.gold }}\" placeholder=\"Montant en or\">
+                            <div class=\"col-lg-4\">
+                                <label for=\"coin\">Monnaie de {{ showAccount.pseudo }}</label>
+                                <input name=\"coin\" id=\"coin\" type=\"number\" class=\"form-control\"
+                                       value=\"{{ showAccount.coin }}\" placeholder=\"Monnaie\">
                             </div>
-                            <div class=\"col-lg-3\">
-                                <label for=\"silver\">Fortune en Argent</label>
-                                <input name=\"silver\" id=\"silver\" type=\"number\" class=\"form-control\"
-                                       value=\"{{ showAccount.silver }}\" placeholder=\"Montant en argent\">
+                            <div class=\"col-lg-4\">
+                                <label for=\"exp\" class=\"form-control-label\">
+                                    Expérience de {{ showAccount.pseudo }}
+                                </label>
+                                <input type=\"number\" id=\"exp\" name=\"exp\" class=\"form-control\"
+                                       value=\"{{ showAccount.experience }}\">
                             </div>
-                            <div class=\"col-lg-3\">
-                                <label for=\"copper\"> Fortune en Cuivre</label>
-                                <input name=\"copper\" id=\"copper\" type=\"number\" class=\"form-control\"
-                                       value=\"{{ showAccount.copper }}\" placeholder=\"Montant en cuivre\">
-                            </div>
-                            <div class=\"col-lg-3\">
-                                <label for=\"reput\">Réputation</label>
+                            <div class=\"col-lg-4\">
+                                <label for=\"reput\">Réputation de {{ showAccount.pseudo }}</label>
                                 <input name=\"reputation\" id=\"reput\" type=\"number\" class=\"form-control\"
                                        value=\"{{ showAccount.reputation }}\" placeholder=\"Réputation\">
                             </div>
                         </div>
-                            <div class=\"form-check mt-5\">
-                                <input name=\"character_valide\" id=\"validate\" type=\"checkbox\"
-                                       class=\"form-check-input\"
-                                       {% if showAccount.characterValide == 1 %}checked{% endif %}>
-                                <label for=\"validate\" class=\"form-check-label\">
-                                    Valider la fiche de personnage
-                                </label>
-                            </div>
+                        <div class=\"form-check mt-5 mx-auto text-center\">
+                            <input name=\"character_valide\" id=\"validate\" type=\"checkbox\"
+                                   class=\"form-check-input\"
+                                   {% if showAccount.characterValide == 1 %}checked{% endif %}>
+                            <label for=\"validate\" class=\"form-check-label\">
+                                Valider la fiche de personnage
+                            </label>
+                        </div>
                         {% if sessionUser.idGroup >= 2 %}
                             <div class=\"row justify-content-center mt-4\">
                                 <button type=\"submit\" class=\"btn\" name=\"infoAdminSubmit\">
@@ -905,6 +935,15 @@ class __TwigTemplate_328c968001326b37ea0e060caef3b26b895246f1249958e5d1dc99512fb
             </div>
         </form>
     </section>
-{% endif %}", "/account/profilTabParameter.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\account\\profilTabParameter.twig");
+{% endif %}
+
+{% block script %}
+    <script>
+        \$(\"#competence\").select2(
+            {
+                maximumSelectionLength: 2
+            });
+    </script>
+{% endblock script %}", "/account/profilTabParameter.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\account\\profilTabParameter.twig");
     }
 }

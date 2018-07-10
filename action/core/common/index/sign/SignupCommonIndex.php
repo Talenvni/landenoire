@@ -128,9 +128,9 @@ class SignupCommonIndex {
 					[ $_GET['last_id'] ] );
 
 				Database::getQuery( '
-                    INSERT INTO ln_users_info (idUser, gold, silver, copper, avatar, reputation, alignement,
+                    INSERT INTO ln_users_info (idUser, coin, avatar, reputation, alignement,
                      alignText)
-                    VALUES (?, 0, 0, 0, \'default.png\', 0, \'Neutre\', \'Votre descriptif ici.\')',
+                    VALUES (?, 0, \'default.png\', 0, \'Neutre\', \'Votre descriptif ici.\')',
 					[ $_GET['last_id'] ] );
 
 				$heading = Database::getQuery( '

@@ -2,7 +2,7 @@
 
 {% block main %}
     <main>
-        <section class="container">
+        <section class="container my-5">
             {# Each Heading #}
             {% for heading in showHeading %}
                 <h1 class="text-ln-gold-ghost">{{ heading.name }}</h1>
@@ -14,9 +14,7 @@
                             <div class="pt-3 px-3">
                                 <a href="/forum/{{ category.slug }}">
                                     <h5 class="text-center">{{ category.name }}</h5>
-                                    <p class="text-justify">
-                                        {{ category.content|raw }}
-                                    </p>
+                                    {{ category.content|raw }}
                                 </a>
                             </div>
                             <div class="mt-auto">

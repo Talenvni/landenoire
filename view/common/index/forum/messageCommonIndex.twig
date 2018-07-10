@@ -25,7 +25,7 @@
                                  style="{% if not loop.index % 2 %}border-radius: 1rem 0 1rem 1rem;{% else %}border-radius: 0 1rem 1rem 1rem;{% endif %}">
                             <div class="container">
                                 <div class="row {% if not loop.index % 2 %}justify-content-end{% else %}justify-content-start{% endif %}">
-                                <span>
+                                <span style="font-size: 1.3rem;">
                                     <a class="card-link" href="/account/character-{{ message.idUser }}">
                                         {{ message.pseudo }}
                                     </a>

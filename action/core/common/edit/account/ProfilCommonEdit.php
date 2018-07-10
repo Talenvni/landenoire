@@ -6,49 +6,41 @@ use action\general\MessageFlash;
 use action\general\Validator;
 
 class ProfilCommonEdit {
-	/**
-	 * @return null Edit paragraph
-	 */
-	public static function editParagraph() {
-		if ( isset( $_POST['descriptif_submit'] ) ) :
+	public static function clearInventory() {
+		if ( isset( $_POST['inventory_submit'] ) ) :
+			$user = Database::getQuery( '
+			SELECT coin
+			FROM ln_users_info
+			WHERE idUser = ?', [ $_GET['account_id'] ] )->fetch( \PDO::FETCH_OBJ );
+
 			foreach ( $_POST as $key => $value ) :
-
-				if ( $value == 'yes' ) :
-
-					$head = Database::getQuery( '
-					SELECT id, name
-					FROM ln_users_heading
-					WHERE name = ?', [ ucfirst( $key ) ] )->fetch( \PDO::FETCH_OBJ );
-
-					Database::getQuery( '
-						UPDATE ln_users_paragraph
-						SET showContent = 1
-						WHERE idUser = ? AND idHeading = ?', [
-						$_GET['account_id'],
-						$head->id
-					] );
-
-				endif;
-
-				if ( $value == 'no' ) :
-
-					$head = Database::getQuery( '
-					SELECT id, name
-					FROM ln_users_heading
-					WHERE name = ?', [ ucfirst( $key ) ] )->fetch( \PDO::FETCH_OBJ );
+				if ( isset( $value ) && $key != 'inventory_submit' ) :
+					$gain = null;
+					$key == 'commun' ? $gain = 10 : null;
+					$key == 'rare' ? $gain = 100 : null;
+					$key == 'épique' ? $gain = 1000 : null;
+					$key == 'légendaire' ? $gain = 10000 : null;
 
 					Database::getQuery( '
-						UPDATE ln_users_paragraph
-						SET showContent = 0
-						WHERE idUser = ? AND idHeading = ?', [
-						$_GET['account_id'],
-						$head->id
+					UPDATE ln_users_info
+					SET coin = (? + ?)
+					WHERE idUser = ?', [
+						$user->coin,
+						$gain,
+						$_GET['account_id']
 					] );
 
+					Database::getQuery( '
+					DELETE FROM ln_users_inventory
+					WHERE id = ?', [ $value ] );
+
+					MessageFlash::setFlash( 'success', 'Inventaire vidé' );
+					Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
 				endif;
 			endforeach;
-			MessageFlash::setFlash( 'success', 'Descriptif mis à jour' );
-			Helper::redirection( '/account/character-' . $_GET['account_id'] );
+
+			MessageFlash::setFlash( 'warning', 'Veuillez choisir un objet' );
+			Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
 		endif;
 
 		return null;
@@ -179,7 +171,7 @@ class ProfilCommonEdit {
 				FROM ln_users_info i
 				WHERE idUser = ?', [ $_GET['account_id'] ] )->fetch( \PDO::FETCH_OBJ );
 
-			if ($create->avatar == null) :
+			if ( $create->avatar == null ) :
 				$img = 'default.png';
 			endif;
 
@@ -195,7 +187,7 @@ class ProfilCommonEdit {
 				endif;
 
 				// Delete old Avatar
-				if ( $create->avatar != $_FILES['avatar']['name'] && ! empty( $_FILES['avatar']['name'] )  ) :
+				if ( $create->avatar != $_FILES['avatar']['name'] && ! empty( $_FILES['avatar']['name'] ) ) :
 					if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . '/web/img/avatar/' . $create->avatar ) && $create->avatar != 'default.png' ) {
 						unlink( $_SERVER['DOCUMENT_ROOT'] . '/web/img/avatar/' . $create->avatar );
 					}
@@ -252,7 +244,7 @@ class ProfilCommonEdit {
 
 		// Admin edit
 		if ( isset( $_POST['infoAdminSubmit'] ) ) :
-			if ( is_numeric( $_POST['gold'] ) && is_numeric( $_POST['silver'] ) && is_numeric( $_POST['copper'] ) && is_numeric( $_POST['reputation'] ) )  :
+			if ( is_numeric( $_POST['coin'] ) && is_numeric( $_POST['reputation'] ) && is_numeric( $_POST['exp'] ) )  :
 
 				$minDate = date_create();
 				date_sub( $minDate, date_interval_create_from_date_string( '1115 years' ) );
@@ -264,7 +256,7 @@ class ProfilCommonEdit {
 
 				if ( $_POST['age'] > $conditionMinDate && $_POST['age'] < $conditionMaxDate ) :
 
-					if ( $_POST['gold'] >= 0 && $_POST['silver'] >= 0 && $_POST['copper'] >= 0 ) :
+					if ( $_POST['gold'] >= 0 && $_POST['silver'] >= 0 && $_POST['copper'] >= 0 && $_POST['exp'] >= 0 ) :
 						$info = Database::getQuery( '
 							SELECT pseudo
 							FROM ln_users
@@ -278,23 +270,22 @@ class ProfilCommonEdit {
 
 						Database::getQuery( '
 						UPDATE ln_users_info
-						SET age = ?, sexe = ?, race = ?, gold = ?, silver = ?, copper = ?, reputation = ?, characterValide = ?
+						SET age = ?, sexe = ?, race = ?, coin = ?, reputation = ?, characterValide = ?, experience = ?
 						WHERE idUser = ?', [
 							$_POST['age'],
 							$_POST['sexe'],
 							$_POST['race'],
-							$_POST['gold'],
-							$_POST['silver'],
-							$_POST['copper'],
+							$_POST['coin'],
 							$_POST['reputation'],
 							$character,
+							$_POST['exp'],
 							$_GET['account_id']
 						] );
 
 						MessageFlash::setFlash( 'success', 'Profil de ' . $info->pseudo . ' mis à jour' );
 						Helper::redirection( '/account/character-' . $_GET['account_id'] );
 					else :
-						MessageFlash::setFlash( 'warning', 'Les champs de richesse doivent être positif' );
+						MessageFlash::setFlash( 'warning', 'Les champs de richesse et d\'expérience doivent être positif' );
 						Helper::redirection( '/account/character-' . $_GET['account_id'] . '/parameter' );
 					endif;
 				else :

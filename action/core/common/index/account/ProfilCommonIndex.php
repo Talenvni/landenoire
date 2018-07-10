@@ -14,11 +14,13 @@ class ProfilCommonIndex {
 			echo TwigLabs::loadTwig()->render( '/account/profilCommonIndex.twig', [
 				'title'         => 'Compte',
 				'showAccount'   => self::showAccount(),
-				'showCoin'      => self::showCoin(),
 				'showHeading'   => self::showHeading(),
 				'showParagraph' => self::showParagraph(),
+				'showInventory' => self::showInventory(),
+				'showQuality'   => self::showQuality(),
 				'showVote'      => self::showVote(),
-				'selectVote'      => self::selectVote(),
+				'selectVote'    => self::selectVote(),
+				'coin'          => self::coinTransform(),
 				'profilTab'     => $_GET['profil_tab'] ?? 'info'
 			] );
 		} catch ( \Twig_Error_Loader $e ) {
@@ -35,7 +37,7 @@ class ProfilCommonIndex {
 	 */
 	private static function showAccount() {
 		$account = Database::getQuery( '
-    	SELECT DISTINCT u.id, groupName, pseudo, age as birthday, (TIMESTAMPDIFF(YEAR, age, NOW()) - 815) as age, sexe, race, avatar, creditAvatar, gold, silver, copper, reputation, alignement, alignText, characterValide, isBanned
+    	SELECT DISTINCT u.id, groupName, pseudo, age as birthday, (TIMESTAMPDIFF(YEAR, age, NOW()) - 815) as age, sexe, race, avatar, creditAvatar, coin, reputation, alignement, alignText, characterValide, isBanned, experience, floor((25 + sqrt(625 + 100 * experience)) / 50) AS level
     	FROM ln_users u
     	LEFT JOIN ln_users_group g ON u.idGroup = g.id
     	LEFT JOIN ln_users_info i ON u.id = i.idUser
@@ -51,34 +53,19 @@ class ProfilCommonIndex {
 	}
 
 	/**
-	 * @return mixed Show coin
+	 * @return array
 	 */
-	private static function showCoin() {
-		$user = Database::getQuery( '
-			SELECT copper, silver, gold
-			FROM ln_users_info
-			WHERE idUser = ?', [ $_SESSION['user']->id ] )->fetch( \PDO::FETCH_OBJ );
+	private static function coinTransform() {
+		$account = Database::getQuery( '
+    	SELECT DISTINCT coin
+    	FROM ln_users u
+    	LEFT JOIN ln_users_group g ON u.idGroup = g.id
+    	LEFT JOIN ln_users_info i ON u.id = i.idUser
+    	WHERE u.id = ?', [ $_GET['account_id'] ] )->fetch( \PDO::FETCH_OBJ );
 
-		if ( $user->copper >= 100 ) :
-			$newSilver  = floor( $user->copper / 100 );
-			$restCopper = floor( $user->copper % 100 );
+		$coin = Helper::getcoin( $account->coin );
 
-			Database::getQuery( '
-			UPDATE ln_users_info
-			SET copper = ?, silver = (? + ?)
-			WHERE idUser = ?', [ $restCopper, $user->silver, $newSilver, $_SESSION['user']->id ] );
-		endif;
-		if ( $user->silver >= 100 ) :
-			$newGold    = floor( $user->silver / 100 );
-			$restSilver = floor( $user->silver % 100 );
-
-			Database::getQuery( '
-			UPDATE ln_users_info
-			SET silver = ?, gold = (? + ?)
-			WHERE idUser = ?', [ $restSilver, $user->gold, $newGold, $_SESSION['user']->id ] );
-		endif;
-
-		return $user;
+		return $coin;
 	}
 
 	/**
@@ -97,13 +84,39 @@ class ProfilCommonIndex {
 	 */
 	private static function showParagraph() {
 		$paragraph = Database::getQuery( '
-		SELECT DISTINCT idHeading, content, showContent, idUser
+		SELECT DISTINCT idHeading, content, idUser
 		FROM ln_users_paragraph p
 		LEFT JOIN ln_users_heading h on p.idHeading = h.id
 		LEFT JOIN ln_users u on p.idUser = u.id
 		WHERE h.id = p.idHeading' )->fetchAll( \PDO::FETCH_OBJ );
 
 		return $paragraph;
+	}
+
+	/**
+	 * @return array
+	 */
+	private static function showInventory() {
+		$inventory = Database::getQuery( '
+		SELECT i.id, a.name, COUNT(i.idStore) AS number, color, q.name AS quality
+		FROM ln_users_inventory i
+		LEFT JOIN ln_store_article a on i.idStore = a.id
+		LEFT JOIN ln_store_quality q on a.idQuality = q.id
+		WHERE idUser = ?
+		GROUP BY idStore', [ $_GET['account_id'] ] )->fetchAll( \PDO::FETCH_OBJ );
+
+		return $inventory;
+	}
+
+	/**
+	 * @return array
+	 */
+	private static function showQuality() {
+		$inventory = Database::getQuery( '
+		SELECT name, color
+		FROM ln_store_quality q ' )->fetchAll( \PDO::FETCH_OBJ );
+
+		return $inventory;
 	}
 
 	/**
@@ -119,6 +132,9 @@ class ProfilCommonIndex {
 		return $vote;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	private static function selectVote() {
 		$vote = Database::getQuery( '
 		SELECT idUser, idPoster, liked, disliked

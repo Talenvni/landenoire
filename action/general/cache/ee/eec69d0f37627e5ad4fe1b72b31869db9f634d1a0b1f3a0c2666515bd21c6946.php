@@ -41,19 +41,31 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
             top: 0;
             left: 0;
             position: absolute;
-            background: rgba(0,0,0,.6);
+            background: rgba(0, 0, 0, .6);
+        }
+        .container-race {
+            position: relative;
+            min-height: 65vh;
+        }
+        .home-race {
+            -webkit-transform: skewY(-5deg);
+            transform: skewY(-5deg);
+            position: absolute;
+        }
+        .home-race:hover {
+            z-index: 1;
         }
     </style>
 ";
     }
 
-    // line 16
+    // line 28
     public function block_header($context, array $blocks = array())
     {
-        // line 17
+        // line 29
         echo "    <header role=\"banner\" class=\"header--home d-flex flex-column\">
         ";
-        // line 19
+        // line 31
         echo "        <div class=\"container-fluid wow slideInDown\" data-wow-duration=\"1s\">
             <div class=\"row d-md-flex justify-content-center align-items-center d-none\">
                 <img src=\"/web/img/background/logo.png\" alt=\"Logo\" class=\"img-fluid rellax\"
@@ -61,7 +73,7 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
             </div>
         </div>
         ";
-        // line 26
+        // line 38
         echo "        <div class=\"container-fluid wow slideInLeft\" data-wow-duration=\"1s\">
             <div class=\"row\">
                 <div class=\"col-lg-12 d-md-flex align-items-center\">
@@ -71,35 +83,35 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
             </div>
             <div class=\"row\">
                 ";
-        // line 34
+        // line 46
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["recentNews"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["news"]) {
-            // line 35
+            // line 47
             echo "                    <div class=\"col-lg-3 p-0 p-md-2\">
                         <a href=\"/news/";
-            // line 36
+            // line 48
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["news"], "slug", array()), "html", null, true);
             echo "\">
                             <div class=\"news--home d-flex flex-column justify-content-end my-3 px-2 border\"
                                  style=\"background: url('/web/img/news/";
-            // line 38
+            // line 50
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["news"], "img", array()), "html", null, true);
             echo "');background-size: cover;position: relative;min-width: 20vw; min-height: 25vh;overflow: hidden;\">
                                 <div style=\"position: relative;z-index: 1;\">
                                     <div class=\"d-flex justify-content-between\">
                                         <span>";
-            // line 41
+            // line 53
             echo twig_escape_filter($this->env, ("Il y a " . $this->extensions['Twig_Extensions_Extension_Date']->diff($this->env, twig_get_attribute($this->env, $this->source, $context["news"], "datePub", array()))), "html", null, true);
             echo "</span>
                                         <span><i class=\"fas fa-comment\"></i> ";
-            // line 42
+            // line 54
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["news"], "comment", array()), "html", null, true);
             echo "</span>
                                     </div>
                                     <h3 style=\"min-height: 10vh;\">
                                         ";
-            // line 45
+            // line 57
             echo twig_escape_filter($this->env, twig_truncate_filter($this->env, twig_get_attribute($this->env, $this->source, $context["news"], "title", array()), 42, true), "html", null, true);
             echo "
                                     </h3>
@@ -113,71 +125,134 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['news'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 53
+        // line 65
         echo "            </div>
         </div>
     </header>
 ";
     }
 
-    // line 58
+    // line 70
     public function block_main($context, array $blocks = array())
     {
-        // line 59
+        // line 71
         echo "    <main role=\"main\">
         ";
-        // line 61
-        echo "        <section class=\"home--container-intro container\">
-            <div class=\"my-5\">
-                <div class=\"row\">
-                    <div class=\"col-lg-12\">
-                        <h1 class=\"font-weight-bold\">Introduction</h1>
-                    </div>
-                </div>
-                <div class=\"row\">
-                    ";
-        // line 70
-        echo "                    <div class=\"col-lg-7 text-justify\">
-                        <p>
-                            Lande Noire est un <abbr title=\"Role Playing Game\">RPG</abbr>
-                            écriture basé sur un univers fictif
-                            <span lang=\"en\" translate=\"no\">Dark Fantasy / SteamPunk</span>,
-                            <strong>déconseillé aux moins de 18 ans</strong>.
-                            Plongez au sein d'intrigues politiques,
-                            d'explorations avant-gardistes et de conflits destructeurs.
-                        </p>
-                        <p>
-                            Voilà six semaines qu'un mystérieux obélisque est apparu au-dessus
-                            des landes de PériClave. Une brume opaque s'en est échappée dès les premiers jours,
-                            s'imiçant dans les rivières, les bois et les villages. Puis sont arrivées les
-                            disparitions, suivies du chaos et de la peur.
-                        </p>
-                        <p>
-                            Les tambours de guerre résonnent à nouveau.
-                            L'empire s'affaiblit et ses ennemis y voient profit.
-                            Vous êtes un natif des royaumes du Nord en quête de vous-même.<br>
-                            Mais quelque soit votre mission initiale, celle-ci dégénérera très vite.
-                            Dans ce Monde, les apparences sont trompeuses. Votre esprit sera mis à rude épreuve,
-                            ébranlé par l'appel insoutenable de l'Obélisque. Vous devrez côtoyer des forces
-                            dépassant l'entendement, mettre fin à des cultes engendrés du chaos,
-                            faire face aux intentions belliqueuses des pays voisins et combattre votre
-                            propre conscience.
-                        </p>
-                        <p>
-                            Ne faites confiance à personne, pas même à vos sens. Dans la pénombre de la folie,
-                            les créatures attendent leur heure.
-                        </p>
-                        <div class=\"text-center\">
-                            <a href=\"/codex/history\" class=\"btn\">
-                                Découvrir l'Histoire
-                            </a>
+        // line 73
+        echo "        <section class=\"container-fluid border-bottom\">
+            <div class=\"container\">
+                <div class=\"my-5\">
+                    <div class=\"row\">
+                        <div class=\"col-lg-11 offset-1\">
+                            <h1 class=\"font-weight-bold\">Introduction</h1>
                         </div>
                     </div>
-                    ";
-        // line 107
-        echo "                    <div class=\"col-lg-5 d-flex justify-content-center align-items-start my-3\">
-                        <img src=\"/web/img/background/home-quote.gif\" alt=\"Introduction Lande Noire\"
-                             class=\"img-fluid rounded-circle\" style=\"box-shadow: 0 0 1rem #000; width: 400px;height: 400px;\">
+                    <div class=\"row justify-content-center\">
+                        ";
+        // line 83
+        echo "                        <div class=\"col-lg-10 text-justify\">
+                            <p>
+                                Lande Noire est un <abbr title=\"Role Playing Game\">RPG</abbr>
+                                écriture basé sur un univers fictif
+                                <span lang=\"en\" translate=\"no\">Dark Fantasy / SteamPunk</span>,
+                                <strong>déconseillé aux moins de 18 ans</strong>.
+                                Plongez au sein d'intrigues politiques,
+                                d'explorations avant-gardistes et de conflits destructeurs.
+                            </p>
+                            <p>
+                                Voilà six semaines qu'un mystérieux obélisque est apparu au-dessus
+                                des landes de PériClave. Une brume opaque s'en est échappée dès les premiers jours,
+                                s'immisçant dans les rivières, les bois et les villages. Puis sont arrivées les
+                                disparitions, suivies du chaos et de la peur.
+                            </p>
+                            <p>
+                                Les tambours de guerre résonnent à nouveau.
+                                L'empire s'affaiblit et ses ennemis y voient profit.
+                                Vous êtes un natif des royaumes du Nord en quête de vous-même.<br>
+                                Mais quelque soit votre mission initiale, celle-ci dégénérera très vite.
+                                Dans ce Monde, les apparences sont trompeuses.
+                                Votre esprit sera mis à rude épreuve,
+                                ébranlé par l'appel insoutenable de l'Obélisque. Vous devrez côtoyer des forces
+                                dépassant l'entendement, mettre fin à des cultes engendrés du chaos,
+                                faire face aux intentions belliqueuses des pays voisins et combattre votre
+                                propre conscience.
+                            </p>
+                            <p>
+                                Ne faites confiance à personne, pas même à vos sens. Dans la pénombre de la folie,
+                                les créatures attendent leur heure.
+                            </p>
+                            <div class=\"text-center mt-5\">
+                                <a href=\"/codex/history\" class=\"btn\">
+                                    Découvrir le contexte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style=\"background: url('/web/img/background/home-quote.gif') no-repeat fixed center;background-size: cover;height: 15vh;\"></div>
+
+        ";
+        // line 128
+        echo "        <section class=\"container-fluid border-top\">
+            <div class=\"container\">
+                <div class=\"my-5\">
+                    <div class=\"row\">
+                        <div class=\"col-lg-12\">
+                            <h1 class=\"font-weight-bold\">Qui incarnerez-vous ?</h1>
+                        </div>
+                    </div>
+                    <div class=\"row\">
+                        <div class=\"col-lg-5 d-none d-lg-block container-race\">
+                            <img src=\"/web/img/background/race-ondin.jpg\" alt=\"Ondin\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"0\"
+                                 style=\"left: 0;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                            <img src=\"/web/img/background/race-automate.jpg\" alt=\"Automate\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"0.5s\"
+                                 style=\"left: 10vh;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                            <img src=\"/web/img/background/race-malemort.jpg\" alt=\"Malemort\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"1s\"
+                                 style=\"left: 18vh;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                            <img src=\"/web/img/background/race-human.jpg\" alt=\"Humains\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"1.5s\"
+                                 style=\"left: 28vh;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                        </div>
+
+                        ";
+        // line 153
+        echo "                        <div class=\"col-lg-7 text-justify\">
+                            <p>
+                                Dans Lande Noire, vous avez la possibilité de choisir votre nation.
+                                Qui rallierez-vous ?
+                            </p>
+                            <p>
+                                <strong>Les mystérieux Ondins :</strong>
+                                ancienne civiliation conquérante qui a élu
+                                domicile dans la noirceur des abysses ?
+                            </p>
+                            <p>
+                                <strong>Les redoutables malemorts :</strong>
+                                autrefois humains, aujourd'hui corrompus par l'Arcane
+                                les empéchant de trouver le repos éternel ?
+                            </p>
+                            <p>
+                                <strong>Les automates impassibles :</strong>
+                                main-d'oeuvre infatigable dotée d'une conscience
+                                qui aspire à la liberté ?
+                            </p>
+                            <p>
+                                <strong>Les humains téméraires :</strong>
+                                survivants d'un cataclysme qui a pu imposer sa domination
+                                sur le Monde ?
+                            </p>
+                            <div class=\"text-center mt-5\">
+                                <a href=\"/codex/race\" class=\"btn\">
+                                    Découvrir les races
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,7 +273,7 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
 
     public function getDebugInfo()
     {
-        return array (  178 => 107,  140 => 70,  130 => 61,  127 => 59,  124 => 58,  117 => 53,  103 => 45,  97 => 42,  93 => 41,  87 => 38,  82 => 36,  79 => 35,  75 => 34,  65 => 26,  57 => 19,  54 => 17,  51 => 16,  37 => 4,  34 => 3,  15 => 1,);
+        return array (  225 => 153,  199 => 128,  153 => 83,  142 => 73,  139 => 71,  136 => 70,  129 => 65,  115 => 57,  109 => 54,  105 => 53,  99 => 50,  94 => 48,  91 => 47,  87 => 46,  77 => 38,  69 => 31,  66 => 29,  63 => 28,  37 => 4,  34 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -213,7 +288,19 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
             top: 0;
             left: 0;
             position: absolute;
-            background: rgba(0,0,0,.6);
+            background: rgba(0, 0, 0, .6);
+        }
+        .container-race {
+            position: relative;
+            min-height: 65vh;
+        }
+        .home-race {
+            -webkit-transform: skewY(-5deg);
+            transform: skewY(-5deg);
+            position: absolute;
+        }
+        .home-race:hover {
+            z-index: 1;
         }
     </style>
 {% endblock %}
@@ -263,55 +350,117 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
 {% block main %}
     <main role=\"main\">
         {# Introduction #}
-        <section class=\"home--container-intro container\">
-            <div class=\"my-5\">
-                <div class=\"row\">
-                    <div class=\"col-lg-12\">
-                        <h1 class=\"font-weight-bold\">Introduction</h1>
-                    </div>
-                </div>
-                <div class=\"row\">
-                    {# Text #}
-                    <div class=\"col-lg-7 text-justify\">
-                        <p>
-                            Lande Noire est un <abbr title=\"Role Playing Game\">RPG</abbr>
-                            écriture basé sur un univers fictif
-                            <span lang=\"en\" translate=\"no\">Dark Fantasy / SteamPunk</span>,
-                            <strong>déconseillé aux moins de 18 ans</strong>.
-                            Plongez au sein d'intrigues politiques,
-                            d'explorations avant-gardistes et de conflits destructeurs.
-                        </p>
-                        <p>
-                            Voilà six semaines qu'un mystérieux obélisque est apparu au-dessus
-                            des landes de PériClave. Une brume opaque s'en est échappée dès les premiers jours,
-                            s'imiçant dans les rivières, les bois et les villages. Puis sont arrivées les
-                            disparitions, suivies du chaos et de la peur.
-                        </p>
-                        <p>
-                            Les tambours de guerre résonnent à nouveau.
-                            L'empire s'affaiblit et ses ennemis y voient profit.
-                            Vous êtes un natif des royaumes du Nord en quête de vous-même.<br>
-                            Mais quelque soit votre mission initiale, celle-ci dégénérera très vite.
-                            Dans ce Monde, les apparences sont trompeuses. Votre esprit sera mis à rude épreuve,
-                            ébranlé par l'appel insoutenable de l'Obélisque. Vous devrez côtoyer des forces
-                            dépassant l'entendement, mettre fin à des cultes engendrés du chaos,
-                            faire face aux intentions belliqueuses des pays voisins et combattre votre
-                            propre conscience.
-                        </p>
-                        <p>
-                            Ne faites confiance à personne, pas même à vos sens. Dans la pénombre de la folie,
-                            les créatures attendent leur heure.
-                        </p>
-                        <div class=\"text-center\">
-                            <a href=\"/codex/history\" class=\"btn\">
-                                Découvrir l'Histoire
-                            </a>
+        <section class=\"container-fluid border-bottom\">
+            <div class=\"container\">
+                <div class=\"my-5\">
+                    <div class=\"row\">
+                        <div class=\"col-lg-11 offset-1\">
+                            <h1 class=\"font-weight-bold\">Introduction</h1>
                         </div>
                     </div>
-                    {# Img #}
-                    <div class=\"col-lg-5 d-flex justify-content-center align-items-start my-3\">
-                        <img src=\"/web/img/background/home-quote.gif\" alt=\"Introduction Lande Noire\"
-                             class=\"img-fluid rounded-circle\" style=\"box-shadow: 0 0 1rem #000; width: 400px;height: 400px;\">
+                    <div class=\"row justify-content-center\">
+                        {# Text #}
+                        <div class=\"col-lg-10 text-justify\">
+                            <p>
+                                Lande Noire est un <abbr title=\"Role Playing Game\">RPG</abbr>
+                                écriture basé sur un univers fictif
+                                <span lang=\"en\" translate=\"no\">Dark Fantasy / SteamPunk</span>,
+                                <strong>déconseillé aux moins de 18 ans</strong>.
+                                Plongez au sein d'intrigues politiques,
+                                d'explorations avant-gardistes et de conflits destructeurs.
+                            </p>
+                            <p>
+                                Voilà six semaines qu'un mystérieux obélisque est apparu au-dessus
+                                des landes de PériClave. Une brume opaque s'en est échappée dès les premiers jours,
+                                s'immisçant dans les rivières, les bois et les villages. Puis sont arrivées les
+                                disparitions, suivies du chaos et de la peur.
+                            </p>
+                            <p>
+                                Les tambours de guerre résonnent à nouveau.
+                                L'empire s'affaiblit et ses ennemis y voient profit.
+                                Vous êtes un natif des royaumes du Nord en quête de vous-même.<br>
+                                Mais quelque soit votre mission initiale, celle-ci dégénérera très vite.
+                                Dans ce Monde, les apparences sont trompeuses.
+                                Votre esprit sera mis à rude épreuve,
+                                ébranlé par l'appel insoutenable de l'Obélisque. Vous devrez côtoyer des forces
+                                dépassant l'entendement, mettre fin à des cultes engendrés du chaos,
+                                faire face aux intentions belliqueuses des pays voisins et combattre votre
+                                propre conscience.
+                            </p>
+                            <p>
+                                Ne faites confiance à personne, pas même à vos sens. Dans la pénombre de la folie,
+                                les créatures attendent leur heure.
+                            </p>
+                            <div class=\"text-center mt-5\">
+                                <a href=\"/codex/history\" class=\"btn\">
+                                    Découvrir le contexte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style=\"background: url('/web/img/background/home-quote.gif') no-repeat fixed center;background-size: cover;height: 15vh;\"></div>
+
+        {# Races #}
+        <section class=\"container-fluid border-top\">
+            <div class=\"container\">
+                <div class=\"my-5\">
+                    <div class=\"row\">
+                        <div class=\"col-lg-12\">
+                            <h1 class=\"font-weight-bold\">Qui incarnerez-vous ?</h1>
+                        </div>
+                    </div>
+                    <div class=\"row\">
+                        <div class=\"col-lg-5 d-none d-lg-block container-race\">
+                            <img src=\"/web/img/background/race-ondin.jpg\" alt=\"Ondin\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"0\"
+                                 style=\"left: 0;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                            <img src=\"/web/img/background/race-automate.jpg\" alt=\"Automate\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"0.5s\"
+                                 style=\"left: 10vh;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                            <img src=\"/web/img/background/race-malemort.jpg\" alt=\"Malemort\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"1s\"
+                                 style=\"left: 18vh;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                            <img src=\"/web/img/background/race-human.jpg\" alt=\"Humains\"
+                                 class=\"home-race wow fadeInLeft\" data-wow-delay=\"1.5s\"
+                                 style=\"left: 28vh;bottom: 4rem;box-shadow: 0 .1rem 1rem #000;\">
+                        </div>
+
+                        {# Text #}
+                        <div class=\"col-lg-7 text-justify\">
+                            <p>
+                                Dans Lande Noire, vous avez la possibilité de choisir votre nation.
+                                Qui rallierez-vous ?
+                            </p>
+                            <p>
+                                <strong>Les mystérieux Ondins :</strong>
+                                ancienne civiliation conquérante qui a élu
+                                domicile dans la noirceur des abysses ?
+                            </p>
+                            <p>
+                                <strong>Les redoutables malemorts :</strong>
+                                autrefois humains, aujourd'hui corrompus par l'Arcane
+                                les empéchant de trouver le repos éternel ?
+                            </p>
+                            <p>
+                                <strong>Les automates impassibles :</strong>
+                                main-d'oeuvre infatigable dotée d'une conscience
+                                qui aspire à la liberté ?
+                            </p>
+                            <p>
+                                <strong>Les humains téméraires :</strong>
+                                survivants d'un cataclysme qui a pu imposer sa domination
+                                sur le Monde ?
+                            </p>
+                            <div class=\"text-center mt-5\">
+                                <a href=\"/codex/race\" class=\"btn\">
+                                    Découvrir les races
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

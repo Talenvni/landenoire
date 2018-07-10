@@ -1,0 +1,97 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        {% if sessionUser is not null %}
+            {# Info Tab #}
+            <section class="container--profil-info container my-5 py-5 rounded">
+                <div class="d-flex flex-lg-row flex-column">
+                    {# Avatar #}
+                    <div class="col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center">
+                        {% if article.img is not null %}
+                            <div class="row flex-column align-items-center">
+                                <img src="/web/img/store/{{ article.img }}"
+                                     alt="Article" class="img-fluid rounded" width="250px" height="400px">
+                            </div>
+                        {% else %}
+                            <div class="row flex-column align-items-center">
+                                <img src="/web/img/avatar/default.png"
+                                     alt="Avatar" class="img-fluid rounded">
+                            </div>
+                        {% endif %}
+                    </div>
+                    {# Info #}
+                    <div class="profil--info-list col-lg-6 p-4 rounded">
+                        <div class="container-fluid">
+                            <div class="container">
+                                <div class="row flex-column" style="min-height: 45vh;">
+                                    <div>
+                                        <h3>Description</h3>
+                                        {{ article.description|raw }}
+                                    </div>
+                                    <div class="mt-auto row text-center">
+                                        <div class="col-lg-6">
+                                            Type : <span style="color: {{ article.color }}">
+                                                {{ article.qualityName }}
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            Prix :
+                                            {{ coin.gold }} <span class="gold">or.</span>
+                                            {{ coin.silver }} <span class="silver">ar.</span>
+                                            {{ coin.copper }} <span class="copper">cu.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-around mt-5">
+                    <a href="/store" class="btn">Retour</a>
+                    <form method="post">
+                        <button class="btn" name="buy_store">Acheter</button>
+                    </form>
+                    <a href="/store/edit-{{ article.id }}" class="btn">Éditer</a>
+                </div>
+            </section>
+
+            {% if sessionUser.idGroup >= 2 %}
+                <section class="container--profil-info container my-5 py-5 rounded">
+                    <form method="post" class="form-group">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4">
+                                <label for="offert" class="form-control-label">
+                                    Utilisateur à offrir
+                                </label>
+                                <select name="offert" id="offert" class="form-control" size="5">
+                                    <optgroup label="Utilisateurs">
+                                        {% for user in offert %}
+                                            <option value="{{ user.id }}">{{ user.pseudo }}</option>
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        {% if sessionUser.idGroup >= 2 %}
+                            <div class="row justify-content-center mt-4">
+                                <button type="submit" class="btn" name="offert_submit">
+                                    Offrir
+                                </button>
+                            </div>
+                        {% endif %}
+                        <div class="row mt-4 justify-content-center">
+                            <h5 class="col-lg-3 text-center text-lg-right">Consigne :</h5>
+                            <ul class="col-lg-9 text-center text-lg-left list-unstyled">
+                                <li class="font-italic col-lg-10">
+                                    Offrir l'article si l'utilisateur l'a gagné uniquement.
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </section>
+            {% endif %}
+        {% endif %}
+    </main>
+{% endblock main %}

@@ -7456,29 +7456,25 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
     border-color: #dee2e6; } }
 @media screen {
   body {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column; }
     body hr {
       background: #7e7e69; }
     body nav {
       background: #2d3035; }
     body main {
+      -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
       flex-grow: 2; }
     body footer {
+      -ms-flex-negative: 0;
       flex-shrink: 0; }
-    body h1 {
-      font-family: Cinzel, Alice, sans-serif; }
-    body h2 {
-      font-family: Cinzel, Alice, sans-serif; }
-    body h3 {
-      font-family: Cinzel, Alice, sans-serif; }
-    body h4 {
-      font-family: Cinzel, Alice, sans-serif; }
-    body h5 {
-      font-family: Cinzel, Alice, sans-serif; }
-    body h6 {
-      font-family: Cinzel, Alice, sans-serif; }
 
   #scrollToTop {
     right: 3rem;
@@ -7489,7 +7485,11 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
     display: none;
     cursor: pointer;
     position: fixed;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center; }
 
   .decoration-top {
@@ -7521,10 +7521,13 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
     background: #2d3035;
     border: 0.1rem solid #7e7e69; }
     .container--news article:hover img {
+      -webkit-filter: none;
       filter: none; }
     .container--news article img {
+      -webkit-transition: .5s;
       transition: .5s;
       overflow: hidden;
+      -webkit-filter: sepia(50%);
       filter: sepia(50%);
       width: 750px !important;
       height: 250px !important; }
@@ -7566,19 +7569,22 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
         list-style: none; }
         .container--profil-info .profil--info-list li span {
           font-weight: bold; }
-        .container--profil-info .profil--info-list li .gold {
-          color: #ffb900;
-          font-weight: normal; }
-        .container--profil-info .profil--info-list li .silver {
-          color: silver;
-          font-weight: normal; }
-        .container--profil-info .profil--info-list li .copper {
-          color: sienna;
-          font-weight: normal; }
     .container--profil-info .profil--info-block div {
       min-height: 15vh;
       box-shadow: 0 0 0.1rem #000;
       background: rgba(129, 115, 84, 0.2); }
+
+  .gold {
+    color: #ffb900;
+    font-weight: normal; }
+
+  .silver {
+    color: silver;
+    font-weight: normal; }
+
+  .copper {
+    color: sienna;
+    font-weight: normal; }
 
   .legalmark {
     top: -.4em;
@@ -7619,17 +7625,26 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
   .block--category {
     width: 30vw;
     height: 30vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: end;
     box-sizing: content-box;
     border: 0.1rem solid #7e7e69;
+    -webkit-transition: .5s ease;
     transition: .5s ease;
     box-shadow: 0 0 1.5rem #000 inset; }
     .block--category a {
       text-decoration: none;
       color: #7e7e69; }
     .block--category:hover {
+      -webkit-transform: scale(1.01);
       transform: scale(1.01);
       box-shadow: 0 0 1.5rem #000; }
       .block--category:hover div:first-child {
@@ -7677,7 +7692,7 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
 
   .chatbox--container {
     height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     border: 0.1rem solid #7e7e69;
     border-top: none;
     box-shadow: 0 0 1.5rem black inset; }
@@ -7688,9 +7703,18 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
       min-height: 10vh !important; }
 
   .tavern--separator {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     height: 30vh; }
     .tavern--separator blockquote {
@@ -7704,6 +7728,7 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
 
   .btn {
     color: #7e7e69;
+    -webkit-transition: .5s ease;
     transition: .5s ease;
     background: #2d3035;
     text-transform: uppercase;

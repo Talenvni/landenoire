@@ -1,0 +1,107 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        {% if sessionUser is not null %}
+            {% if sessionUser.idGroup >= 2 %}
+                <section class="container--profil-info container my-5 py-5 rounded">
+                    <h2 class="text-center mb-5">Éditer {{ article.name }}</h2>
+                    <form method="post" class="form-group" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-group">
+                                    {% for error in edit %}
+                                        <li class="list-unstyled">
+                                            <span class="badge badge-warning">Erreur</span>
+                                            {{ error }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-lg-4">
+                                <label for="article-name" class="form-control-label">
+                                    Nom de l'Article
+                                </label>
+                                <input type="text" id="article-name" name="article_name" class="form-control"
+                                       placeholder="Nom" value="{{ article.name }}">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="article-coin" class="form-control-label">
+                                    Prix de l'Article (en cuivre)
+                                </label>
+                                <input type="text" id="article-coin" name="article_coin" class="form-control"
+                                       placeholder="Prix" value="{{ article.coin }}">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="article-img" class="form-control-label">
+                                    Image de l'Article
+                                </label>
+                                <input type="file" id="article-img" name="article_img" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-between my-5">
+                            <div class="col-lg-4">
+                                <label for="article-quality" class="form-control-label">
+                                    Qualité de l'article
+                                </label>
+                                <select name="article_quality" id="article-quality" class="form-control"
+                                        size="5">
+                                    <optgroup label="Qualités">
+                                        {% for quality in qualityAll %}
+                                            <option value="{{ quality.id }}"
+                                                    {% if quality.id == article.idQuality %}selected{% endif %}>{{ quality.name }}</option>
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label for="article-tab" class="form-control-label">
+                                    Onglet de l'article
+                                </label>
+                                <select name="article_tab" id="article-tab" class="form-control"
+                                        size="5">
+                                    <optgroup label="Onglets">
+                                        {% for tab in tabAll %}
+                                            <option value="{{ tab.id }}"
+                                                    {% if tab.id == article.idTab %}selected{% endif %}>
+                                                {{ tab.tab }}
+                                            </option>
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <label for="article-description" hidden></label>
+                                <textarea name="article_description" id="article-description"
+                                          cols="30"
+                                          rows="10" class="form-control">{{ article.description }}</textarea>
+                            </div>
+                        </div>
+                        {% if sessionUser.idGroup >= 2 %}
+                            <div class="row justify-content-center mt-4">
+                                <button type="submit" class="btn" name="edit_submit">
+                                    Éditer
+                                </button>
+                            </div>
+                        {% endif %}
+                        <div class="row mt-4 justify-content-center">
+                            <h5 class="col-lg-3 text-center text-lg-right">Consigne :</h5>
+                            <ul class="col-lg-9 text-center text-lg-left list-unstyled">
+                                <li class="font-italic col-lg-10">
+                                    Offrir l'article si l'utilisateur l'a gagné uniquement.
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </section>
+            {% endif %}
+        {% endif %}
+    </main>
+{% endblock main %}

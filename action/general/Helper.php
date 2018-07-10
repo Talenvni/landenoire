@@ -1,7 +1,5 @@
 <?php namespace action\general;
 
-use http\Exception;
-
 class Helper {
 	/**
 	 * Redirect after an action
@@ -97,8 +95,28 @@ class Helper {
 
 		try {
 			mail( $to, $subject, $message, $headers );
-		} catch ( Exception $e ) {
+		} catch ( \Exception $e ) {
 			die( 'ERROR FROM EMAIL : ' . $e->getMessage() );
 		}
+	}
+
+	public static function getcoin(int $coinValue) {
+
+
+		$copper_value = 1;
+		$silver_value = $copper_value * 100;
+		$gold_value = $copper_value * 1000;
+
+		$gold = floor($coinValue / $gold_value);
+		$coinValue = $coinValue % $gold_value;
+		$silver = floor($coinValue / $silver_value);
+		$coinValue = $coinValue % $silver_value;
+		$copper = $coinValue / $copper_value;
+
+		return [
+			'gold'      => $gold,
+			'silver'    => $silver,
+			'copper'    => $copper
+		];
 	}
 }

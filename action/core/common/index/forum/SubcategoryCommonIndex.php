@@ -12,6 +12,7 @@ class SubcategoryCommonIndex {
 		try {
 			echo TwigLabs::loadTwig()->render( '/forum/subcategoryCommonIndex.twig', [
 				'title'           => 'Forum',
+				'singleCategory'  => self::singleCategory(),
 				'showSubcategory' => self::showSubcategory(),
 				'lastMessage'     => self::LastMessage(),
 				'subcategoryTab'  => $_GET['subcategory_tab'] ?? null
@@ -23,6 +24,15 @@ class SubcategoryCommonIndex {
 		} catch ( \Twig_Error_Syntax $e ) {
 			die( 'ERROR SYNTAX TWIG : ' . $e->getMessage() );
 		}
+	}
+
+	private static function singleCategory() {
+		$category = Database::getQuery( '
+		SELECT name
+		FROM ln_forum_category c
+		WHERE slug = ? ', [ $_GET['subcategory_tab'] ] )->fetch( \PDO::FETCH_OBJ );
+
+		return $category;
 	}
 
 	private static function showSubcategory() {

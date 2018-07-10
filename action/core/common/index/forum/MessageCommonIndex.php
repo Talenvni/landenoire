@@ -91,13 +91,13 @@ class MessageCommonIndex {
 					);
 
 					$user = Database::getQuery( '
-					SELECT copper FROM ln_users_info WHERE idUser = ?',
+					SELECT coin, experience FROM ln_users_info WHERE idUser = ?',
 						[ $_SESSION['user']->id ] )->fetch( \PDO::FETCH_OBJ );
 
 					Database::getQuery( '
 					UPDATE ln_users_info 
-					SET copper = (? + ?)
-					WHERE idUser = ?', [ $user->copper, 1, $_SESSION['user']->id ] );
+					SET coin = (? + ?), experience = (? + ?)
+					WHERE idUser = ?', [ $user->coin, 25, $user->experience, 5, $_SESSION['user']->id ] );
 
 					MessageFlash::setFlash( 'success', 'Message crée' );
 					Helper::redirection( '/forum/' . $subcategory->slug . '/topics/' . $topic->id );

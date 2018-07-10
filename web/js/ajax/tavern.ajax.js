@@ -47,7 +47,7 @@ $('#chatForm').keypress(function (e) {
                     let resetMessage = $('.trumbowyg-editor');
                     resetMessage.html('');
                     resetMessage.focus();
-                    $('#chatSubmit').html('').append('Tavernier, un mot !').removeClass('text-warning')
+                    $('#chatbox--error').html('').removeClass('text-warning')
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log('[ERROR]' + xhr.status + ' ' + thrownError);
@@ -60,10 +60,10 @@ $('#chatForm').keypress(function (e) {
             });
         }
         if (chatMessage !== '' && chatMessage.length > 255) {
-            $('#chatSubmit').html('').append('Minimum 255 caractères.').addClass('text-warning');
+            $('#chatbox--error').html('').append('Minimum 255 caractères.').addClass('text-warning');
         }
         if (chatMessage === '') {
-            $('#chatSubmit').html('').append('Aucun message à envoyer.').addClass('text-warning');
+            $('#chatbox--error').html('').append('Aucun message à envoyer.').addClass('text-warning');
         }
     }
 }); // End Post chat
@@ -96,7 +96,7 @@ function TavernQuery() {
                     $('#chatbox')
                         .append($('<div class="chatbox--color py-3"></div>')
                             .append($('<div class="d-flex justify-content-between px-4"></div>')
-                                .append('<div class="chatbox--pseudo">' + response[i].pseudo + '</div>')
+                                .append('<div class="chatbox--pseudo"><a href="/account/character-' + response[i].idUser + '">' + response[i].pseudo + '</a></div>')
                                 .append('<div class="chatbox--date">' + response[i].datePub.substring(11, 16) + '</div>'))
                             .append('<div class="chatbox--message text-justify px-5">' + response[i].message + '</div>'));
                 }

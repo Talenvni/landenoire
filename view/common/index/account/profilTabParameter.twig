@@ -225,42 +225,42 @@
                                     <option value="automate" {% if showAccount.race == 'automate' %}selected
                                             {% endif %}>Automate
                                     </option>
-                                    <option value="inconnu" {% if showAccount.race == 'inconnu' %}selected
-                                            {% endif %}>Inconnu
+                                    <option value="malemort" {% if showAccount.race == 'malemort' %}selected
+                                            {% endif %}>Malemort
+                                    </option>
+                                    <option value="ondin" {% if showAccount.race == 'ondin' %}selected
+                                            {% endif %}>Ondin
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-lg-3">
-                                <label for="gold">Fortune en Or</label>
-                                <input name="gold" id="gold" type="number" class="form-control"
-                                       value="{{ showAccount.gold }}" placeholder="Montant en or">
+                            <div class="col-lg-4">
+                                <label for="coin">Monnaie de {{ showAccount.pseudo }}</label>
+                                <input name="coin" id="coin" type="number" class="form-control"
+                                       value="{{ showAccount.coin }}" placeholder="Monnaie">
                             </div>
-                            <div class="col-lg-3">
-                                <label for="silver">Fortune en Argent</label>
-                                <input name="silver" id="silver" type="number" class="form-control"
-                                       value="{{ showAccount.silver }}" placeholder="Montant en argent">
+                            <div class="col-lg-4">
+                                <label for="exp" class="form-control-label">
+                                    Expérience de {{ showAccount.pseudo }}
+                                </label>
+                                <input type="number" id="exp" name="exp" class="form-control"
+                                       value="{{ showAccount.experience }}">
                             </div>
-                            <div class="col-lg-3">
-                                <label for="copper"> Fortune en Cuivre</label>
-                                <input name="copper" id="copper" type="number" class="form-control"
-                                       value="{{ showAccount.copper }}" placeholder="Montant en cuivre">
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="reput">Réputation</label>
+                            <div class="col-lg-4">
+                                <label for="reput">Réputation de {{ showAccount.pseudo }}</label>
                                 <input name="reputation" id="reput" type="number" class="form-control"
                                        value="{{ showAccount.reputation }}" placeholder="Réputation">
                             </div>
                         </div>
-                            <div class="form-check mt-5">
-                                <input name="character_valide" id="validate" type="checkbox"
-                                       class="form-check-input"
-                                       {% if showAccount.characterValide == 1 %}checked{% endif %}>
-                                <label for="validate" class="form-check-label">
-                                    Valider la fiche de personnage
-                                </label>
-                            </div>
+                        <div class="form-check mt-5 mx-auto text-center">
+                            <input name="character_valide" id="validate" type="checkbox"
+                                   class="form-check-input"
+                                   {% if showAccount.characterValide == 1 %}checked{% endif %}>
+                            <label for="validate" class="form-check-label">
+                                Valider la fiche de personnage
+                            </label>
+                        </div>
                         {% if sessionUser.idGroup >= 2 %}
                             <div class="row justify-content-center mt-4">
                                 <button type="submit" class="btn" name="infoAdminSubmit">
@@ -317,3 +317,12 @@
         </form>
     </section>
 {% endif %}
+
+{% block script %}
+    <script>
+        $("#competence").select2(
+            {
+                maximumSelectionLength: 2
+            });
+    </script>
+{% endblock script %}

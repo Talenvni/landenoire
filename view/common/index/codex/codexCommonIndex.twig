@@ -1,19 +1,29 @@
 {% extends 'base.twig' %}
 
 {% block main %}
+    <main>
+        {% if codexTab == 'context' %}
+            {% include 'codex/context.twig' %}
+        {% endif %}
 
-    {% if codexTab == 'history' %}
-        {% include 'codex/history.twig' %}
-    {% endif %}
+        {# Race Page #}
+        {% if codexTab == 'race' %}
+            {% include 'codex/race.twig' %}
+        {% endif %}
 
-    {# Align Page #}
-    {% if codexTab == 'align' %}
-        {% include 'codex/align.twig' %}
-    {% endif %}
+        {# Align Page #}
+        {% if codexTab == 'align' %}
+            {% include 'codex/align.twig' %}
+        {% endif %}
 
-    {# FAQ Page #}
-    {% if codexTab == 'faq' %}
-        {% include 'codex/faq.twig' %}
-    {% endif %}
+        {# FAQ Page #}
+        {% if codexTab == 'faq' %}
+            {% include 'codex/faq.twig' %}
+        {% endif %}
 
+        {# Character Page #}
+        {% if codexTab == 'character' %}
+            {% include 'codex/character.twig' %}
+        {% endif %}
+    </main>
 {% endblock main %}

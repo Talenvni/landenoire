@@ -13,12 +13,16 @@ use action\core\admin\index\NewsAdminIndex;
 use action\core\common\edit\CloseTopicCommonEdit;
 use action\core\common\edit\EditMessageCommonEdit;
 use action\core\common\edit\EditTopicCommonEdit;
+use action\core\common\edit\NewArticleCommonEdit;
 use action\core\common\edit\NewsCommonEdit;
 use action\core\common\edit\NewTopicCommonEdit;
 use action\core\common\edit\ProfilCommonEdit;
 use action\core\common\index\CategoryCommonIndex;
 use action\core\common\index\CodexCommonIndex;
 use action\core\common\index\MessageCommonIndex;
+use action\core\common\index\SingleStoreCommonIndex;
+use action\core\common\edit\StoreCommonEdit;
+use action\core\common\index\StoreCommonIndex;
 use action\core\common\index\SubcategoryCommonIndex;
 use action\core\common\index\TavernCommonIndex;
 use action\core\common\index\TopicCommonIndex;
@@ -140,6 +144,44 @@ class AltoRoute {
 					Helper::redirection( '/sign-in', 307 );
 				endif;
 			} );
+			// ---------
+			// Get Store
+			// ---------
+			$router->map( 'GET|POST', '/store/[article-]?[i:store_id]?/[edit-]?[i:store_edit]?', function () {
+				if ( isset( $_SESSION['user'] ) ):
+					if ( ! $_GET ) :
+						StoreCommonIndex::catchTwig();
+					endif;
+					if ( isset( $_GET['new'] ) ):
+						if ( ! isset( $_GET['store_edit'], $_GET['store_id'] ) ):
+							NewArticleCommonEdit::catchTwig();
+						endif;
+					endif;
+					if ( isset( $_GET['store_id'] ) ):
+						if ( ! isset( $_GET['new'] ) ) :
+							if ( ! isset( $_GET['store_edit'] ) ):
+								SingleStoreCommonIndex::catchTwig();
+							endif;
+							if ( isset( $_GET['store_edit'] ) ):
+								StoreCommonEdit::catchTwig();
+							endif;
+						endif;
+					endif;
+				endif;
+				if ( ! isset( $_SESSION['user'] ) ):
+					MessageFlash::setFlash( 'warning', 'Connexion requise ' );
+					Helper::redirection( '/sign-in', 307 );
+				endif;
+			} );
+			$router->map( 'GET|POST', '/store/new-article', function () {
+				if ( isset( $_SESSION['user'] ) ):
+					NewArticleCommonEdit::catchTwig();
+				endif;
+				if ( ! isset( $_SESSION['user'] ) ):
+					MessageFlash::setFlash( 'warning', 'Connexion requise ' );
+					Helper::redirection( '/sign-in', 307 );
+				endif;
+			} );
 			// -----------
 			// Get Account
 			// -----------
@@ -147,8 +189,8 @@ class AltoRoute {
 				function () {
 					if ( isset( $_SESSION['user'] ) ):
 						ProfilCommonEdit::editInfo();
-						ProfilCommonEdit::editParagraph();
 						ProfilCommonEdit::editEmail();
+						ProfilCommonEdit::clearInventory();
 						ProfilCommonEdit::editPassword();
 						ProfilCommonEdit::editRelation();
 						ProfilCommonIndex::catchTwig();

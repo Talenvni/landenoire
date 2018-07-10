@@ -26,6 +26,7 @@
                 "action/core/common/index/sign",
                 "action/core/common/index/account",
                 "action/core/common/index/forum",
+                "action/core/common/index/store",
                 "action/core/common/index/tavern"
             ],
             "action\\core\\common\\edit\\": [
@@ -33,6 +34,7 @@
                 "action/core/common/edit/news",
                 "action/core/common/edit/sign",
                 "action/core/common/edit/account",
+                "action/core/common/edit/store",
                 "action/core/common/edit/forum"
             ],
             "action\\core\\admin\\index\\": [

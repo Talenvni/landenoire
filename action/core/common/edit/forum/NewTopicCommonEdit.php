@@ -62,13 +62,13 @@ class NewTopicCommonEdit {
 					);
 
 					$user = Database::getQuery( '
-					SELECT silver FROM ln_users_info WHERE idUser = ?',
+					SELECT coin FROM ln_users_info WHERE idUser = ?',
 						[ $_SESSION['user']->id ] )->fetch( \PDO::FETCH_OBJ );
 
 					Database::getQuery( '
 					UPDATE ln_users_info 
-					SET silver = (? + ?)
-					WHERE idUser = ?', [ $user->silver, 1, $_SESSION['user']->id ] );
+					SET coin = (? + ?)
+					WHERE idUser = ?', [ $user->coin, 100, $_SESSION['user']->id ] );
 
 					MessageFlash::setFlash( 'success', 'Sujet crée' );
 					Helper::redirection( '/forum/' . $subcategory->slug . '/topics/' . $last_id );

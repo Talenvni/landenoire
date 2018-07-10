@@ -33,7 +33,7 @@ class __TwigTemplate_c9e099e8fec48293d296d5d42a30baa54e4925321ffd62ee8e79174ac0a
     {
         // line 4
         echo "    <main>
-        <section class=\"container\">
+        <section class=\"container my-5\">
             ";
         // line 7
         echo "            ";
@@ -67,18 +67,16 @@ class __TwigTemplate_c9e099e8fec48293d296d5d42a30baa54e4925321ffd62ee8e79174ac0a
                     // line 16
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", array()), "html", null, true);
                     echo "</h5>
-                                    <p class=\"text-justify\">
-                                        ";
-                    // line 18
+                                    ";
+                    // line 17
                     echo twig_get_attribute($this->env, $this->source, $context["category"], "content", array());
                     echo "
-                                    </p>
                                 </a>
                             </div>
                             <div class=\"mt-auto\">
                                 <p class=\"px-3\">
                                     ";
-                    // line 24
+                    // line 22
                     echo twig_escape_filter($this->env, ($context["test"] ?? null), "html", null, true);
                     echo "
                                 </p>
@@ -90,14 +88,14 @@ class __TwigTemplate_c9e099e8fec48293d296d5d42a30baa54e4925321ffd62ee8e79174ac0a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 29
+            // line 27
             echo "                </div>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['heading'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 31
+        // line 29
         echo "        </section>
     </main>
 ";
@@ -115,7 +113,7 @@ class __TwigTemplate_c9e099e8fec48293d296d5d42a30baa54e4925321ffd62ee8e79174ac0a
 
     public function getDebugInfo()
     {
-        return array (  101 => 31,  94 => 29,  82 => 24,  73 => 18,  68 => 16,  64 => 15,  59 => 13,  56 => 12,  50 => 11,  44 => 8,  39 => 7,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  99 => 29,  92 => 27,  80 => 22,  72 => 17,  68 => 16,  64 => 15,  59 => 13,  56 => 12,  50 => 11,  44 => 8,  39 => 7,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -124,7 +122,7 @@ class __TwigTemplate_c9e099e8fec48293d296d5d42a30baa54e4925321ffd62ee8e79174ac0a
 
 {% block main %}
     <main>
-        <section class=\"container\">
+        <section class=\"container my-5\">
             {# Each Heading #}
             {% for heading in showHeading %}
                 <h1 class=\"text-ln-gold-ghost\">{{ heading.name }}</h1>
@@ -136,9 +134,7 @@ class __TwigTemplate_c9e099e8fec48293d296d5d42a30baa54e4925321ffd62ee8e79174ac0a
                             <div class=\"pt-3 px-3\">
                                 <a href=\"/forum/{{ category.slug }}\">
                                     <h5 class=\"text-center\">{{ category.name }}</h5>
-                                    <p class=\"text-justify\">
-                                        {{ category.content|raw }}
-                                    </p>
+                                    {{ category.content|raw }}
                                 </a>
                             </div>
                             <div class=\"mt-auto\">

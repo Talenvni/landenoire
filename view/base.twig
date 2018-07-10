@@ -32,7 +32,7 @@
     {# Style #}
     <link rel="stylesheet" href="/web/scss/vendor/trumbowyg/trumbowyg.css">
     <link rel="stylesheet" href="/web/scss/vendor/trumbowyg/trumbowyg.colors.css">
-    <link rel="stylesheet" href="/web/scss/style.min.css">
+    <link rel="stylesheet" href="/web/scss/style.css">
     {% block style %}{% endblock style %}
     {# Title #}
     <title>{{ title }} &bull; LN</title>
@@ -80,8 +80,12 @@
                     </a>
                     <div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
                         <a class="dropdown-header">L'Univers</a>
-                        <a class="dropdown-item" href="/codex/history">Histoire</a>
+                        <a class="dropdown-item" href="/codex/context">Contexte</a>
+                        <a class="dropdown-item" href="/codex/race">Races</a>
                         <a class="dropdown-item" href="/codex/align">Alignement</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-header">Guide du débutant</a>
+                        <a class="dropdown-item" href="/codex/character">Fiche de personnage</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-header">Généralités</a>
                         <a class="dropdown-item" href="/codex/faq">F.A.Q</a>
@@ -103,6 +107,11 @@
                     <li class="nav-item {% if title == 'Taverne' %}active{% endif %}">
                         <a id="view-link" class="nav-link" href="/tavern">
                             Taverne
+                        </a>
+                    </li>
+                    <li class="nav-item {% if title == 'Boutique' %}active{% endif %}">
+                        <a id="view-link" class="nav-link" href="/store">
+                            Boutique
                         </a>
                     </li>
                     <li class="nav-item {% if title == 'Profil' %}active{% endif %}">
@@ -173,7 +182,7 @@
 {# Cookie Accept #}
 <script type="text/javascript" id="cookiebanner"
         src="https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js"
-        data-effect="fade" data-mask="true" data-linkmsg="En savoir plus." data-expires="2629800"
+        data-effect="fade" data-mask="true" data-linkmsg="En savoir plus."
         data-message="Halte, voyageur ! En poursuivant sur ce site, vous acceptez l'utilisation des cookies."
         data-zindex="9999"></script>
 

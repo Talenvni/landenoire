@@ -115,6 +115,23 @@ class Validator {
 	}
 
 	/**
+	 * @param string|int $field
+	 * @param string|int $field2
+	 * @param $fail_msg
+	 *
+	 * @return bool Check equal ou plus
+	 */
+	public function isPlusOrEqual( $field, $field2, $fail_msg ) {
+		if ( $this->getField( $field ) >= $this->getField( $field2 ) ) :
+			$this->fail[ $field ] = $fail_msg;
+
+			return false;
+		endif;
+
+		return true;
+	}
+
+	/**
 	 * @return mixed Catch errors
 	 */
 	public function getFail() {

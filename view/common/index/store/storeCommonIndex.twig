@@ -1,0 +1,55 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        {% if sessionUser is not null %}
+            <section class="my-5">
+                <div class="container">
+                    <div class="row text-center">
+                        <ul class="chatbox--title nav nav-tabs nav-justified col-lg-12">
+                            {% for tab in tabStore %}
+                                <li class="col-lg-4">
+                                    <a href="#{{ tab.slug }}" aria-controls="{{ tab.slug }}" role="tab"
+                                       data-toggle="tab">
+                                        {{ tab.tab }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="box--message chatbox--container container">
+                    <div class="tab-content my-3">
+                        {% for tab in tabStore %}
+                            <div id="{{ tab.slug }}" class="tab-pane" role="tabpanel">
+                                {% for article in articleStore if article.slug == tab.slug %}
+                                    <div class="text-center my-3">
+                                        <div class="row justify-content-between align-items-center">
+                                            <h5 class="col-lg-4 m-0">{{ article.name }}</h5>
+                                            <span class="col-lg-4" style="color: {{ article.color }}">
+                                                    {{ article.qualityName }}
+                                                </span>
+                                            <span class="col-lg-4">
+                                                <a href="/store/article-{{ article.id }}" class="m-0">
+                                                    Voir l'article
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if sessionUser.idGroup >= 2 %}
+                    <div class="container my-4">
+                        <div class="row justify-content-center">
+                            <a href="/store/new-article" class="btn">Nouvel article</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </section>
+        {% endif %}
+    </main>
+{% endblock main %}

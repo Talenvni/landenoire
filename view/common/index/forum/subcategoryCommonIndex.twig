@@ -3,6 +3,7 @@
 {% block main %}
     <main>
         <section class="container">
+            <h1 class="text-ln-gold-ghost">{{ singleCategory.name }}</h1>
             <div class="row justify-content-around align-items-center">
                 {# Each subcategory #}
                 {% for subcategory in showSubcategory if subcategory.slugCategory == subcategoryTab %}
@@ -11,9 +12,7 @@
                         <div class="pt-3 px-3">
                             <a href="/forum/{{ subcategory.slug }}/topics">
                                 <h5 class="text-center">{{ subcategory.name }}</h5>
-                                <p class="text-justify">
-                                    {{ subcategory.content|raw }}
-                                </p>
+                                {{ subcategory.content|raw }}
                             </a>
                         </div>
                         <div class="mt-auto">

@@ -4,11 +4,21 @@
         {# Avatar #}
         <div class="col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center">
             {% if showAccount.avatar is not null %}
-                <img src="/web/img/avatar/{{ showAccount.avatar }}"
-                     alt="Avatar" class="img-fluid rounded" width="250px" height="400px">
+                <div class="row flex-column align-items-center">
+                    <img src="/web/img/avatar/{{ showAccount.avatar }}"
+                         alt="Avatar" class="img-fluid rounded" width="250px" height="400px">
+                    <div class="d-flex justify-content-center bg-ln-gold rounded" style="width: 250px;">
+                        <span class="text-ln-coal">Niveau {{ showAccount.level }}</span>
+                    </div>
+                </div>
             {% else %}
-                <img src="/web/img/avatar/default.png"
-                     alt="Avatar" class="img-fluid rounded">
+                <div class="row flex-column align-items-center">
+                    <img src="/web/img/avatar/default.png"
+                         alt="Avatar" class="img-fluid rounded">
+                    <div class="d-flex justify-content-center bg-ln-gold rounded" style="width: 250px;">
+                        <span class="text-ln-coal">Niveau {{ showAccount.level }}</span>
+                    </div>
+                </div>
             {% endif %}
         </div>
         {# Character sheet #}
@@ -27,11 +37,9 @@
                     <ul class="col-lg-6">
                         <li>
                             <span>Richesse :</span>
-                            {% if showCoin %}
-                                {{ showAccount.gold }} <span class="gold">or.</span>
-                                {{ showAccount.silver }} <span class="silver">ar.</span>
-                                {{ showAccount.copper }} <span class="copper">cu.</span>
-                            {% endif %}
+                                {{ coin.gold }} <span class="gold">or.</span>
+                                {{ coin.silver }} <span class="silver">ar.</span>
+                                {{ coin.copper }} <span class="copper">cu.</span>
                         </li>
                         <li><span>Réputation :</span>
                             <span style="font-weight: normal;
@@ -57,7 +65,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <p class="text-justify">{{ showAccount.alignText|raw }}</p>
+                    {{ showAccount.alignText|raw }}
                 </div>
             </div>
         </div>
@@ -69,17 +77,34 @@
             <h3>{{ heading.name }}</h3>
             <hr class="mb-4">
             {% for paragraph in showParagraph if paragraph.idHeading == heading.id %}
-                {% if paragraph.idUser == showAccount.id and paragraph.showContent == 1 %}
+                {% if paragraph.idUser == showAccount.id %}
                     <div class="p-3">
                         {{ paragraph.content|raw }}
                     </div>
                 {% endif %}
-                {% if paragraph.idUser == showAccount.id and paragraph.showContent == 0 %}
-                    <p>{{ showAccount.pseudo }} ne souhaite pas partager ce contenu.</p>
-                {% endif %}
             {% endfor %}
         </div>
     {% endfor %}
+
+    {# Relation #}
+    <div class="profil--info-block container my-5">
+        <h3>Inventaire</h3>
+        <hr class="mb-4">
+        <div class="bg-transparent d-lg-flex justify-content-lg-between" style="box-shadow: none;">
+            <div class="col-lg-5" style="background: none; box-shadow: none;">
+                <div class="p-3" style="overflow-y: auto;">
+                    {% for inventory in showInventory %}
+                        <span style="color: {{ inventory.color }}">
+                            {{ inventory.name }}
+                        </span> x {{ inventory.number }}
+                        {% if not loop.last %}
+                        ,
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
     {# Relation #}
     <div class="profil--info-block container my-5">
@@ -118,13 +143,13 @@
             <form method="post" class="d-flex flex-column flex-lg-row justify-content-around align-items-center">
                 <button name="ennemi" type="submit" class="btn mt-4"
                         {% if selectVote.idPoster == sessionUser.id and selectVote.disliked == 1 %}
-                            disabled
+                disabled
                         {% endif %}>
                     Je déprécie {{ showAccount.pseudo }}
                 </button>
                 <button name="friend" type="submit" class="btn mt-4"
                         {% if selectVote.idPoster == sessionUser.id and selectVote.liked == 1 %}
-                            disabled
+                disabled
                         {% endif %}>
                     J'apprécie {{ showAccount.pseudo }}
                 </button>

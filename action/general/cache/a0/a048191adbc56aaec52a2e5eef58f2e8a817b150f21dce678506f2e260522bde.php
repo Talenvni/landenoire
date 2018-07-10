@@ -66,7 +66,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
         // line 33
         echo "    <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.css\">
     <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.colors.css\">
-    <link rel=\"stylesheet\" href=\"/web/scss/style.min.css\">
+    <link rel=\"stylesheet\" href=\"/web/scss/style.css\">
     ";
         // line 36
         $this->displayBlock('style', $context, $blocks);
@@ -111,37 +111,37 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 ";
         // line 62
         $this->displayBlock('nav', $context, $blocks);
-        // line 121
+        // line 130
         echo "
 <div class=\"decoration-top\"></div>
 
 ";
-        // line 125
+        // line 134
         $this->displayBlock('main', $context, $blocks);
-        // line 127
+        // line 136
         echo "
 ";
-        // line 129
+        // line 138
         echo "<span id=\"scrollToTop\" class=\"text-center\" aria-hidden=\"true\">
     <i class=\"fas fa-angle-up fa-2x\"></i>
 </span>
 
 ";
-        // line 134
+        // line 143
         $this->displayBlock('footer', $context, $blocks);
-        // line 156
+        // line 165
         echo "
 ";
-        // line 158
+        // line 167
         echo "<script src=\"/web/js/jQuery.min.js\"></script>
 
 ";
-        // line 161
+        // line 170
         echo "<script src=\"/web/js/vendor/popper/popper.min.js\"></script>
 <script src=\"/web/js/vendor/bootstrap/bootstrap.min.js\"></script>
 
 ";
-        // line 165
+        // line 174
         echo "<script src=\"/web/js/vendor/wowAnimate/wow.min.js\"></script>
 <script src=\"/web/js/vendor/rellaxParallax/rellax.min.js\"></script>
 <script src=\"/web/js/vendor/trumbowyg/trumbowyg.min.js\"></script>
@@ -151,19 +151,19 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 <script src=\"/web/js/pagination.js\"></script>
 
 ";
-        // line 174
+        // line 183
         echo "<script type=\"text/javascript\" id=\"cookiebanner\"
         src=\"https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js\"
-        data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\" data-expires=\"2629800\"
+        data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\"
         data-message=\"Halte, voyageur ! En poursuivant sur ce site, vous acceptez l'utilisation des cookies.\"
         data-zindex=\"9999\"></script>
 
 ";
-        // line 181
+        // line 190
         echo "<script src=\"/web/js/ajax/tavern.ajax.js\"></script>
 
 ";
-        // line 184
+        // line 193
         echo "<script defer
         src=\"https://use.fontawesome.com/releases/v5.0.8/js/solid.js\"
         integrity=\"sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l\"
@@ -174,7 +174,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
         crossorigin=\"anonymous\"></script>
 
 ";
-        // line 194
+        // line 203
         echo "<script>
     // ------------
     // WOW animated
@@ -232,9 +232,9 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
     })(); // End Trumbowyg area
 </script>
 ";
-        // line 250
+        // line 259
         $this->displayBlock('script', $context, $blocks);
-        // line 251
+        // line 260
         echo "</body>
 </html>
 ";
@@ -286,15 +286,19 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                     </a>
                     <div class=\"dropdown-menu text-lg-left text-center\" aria-labelledby=\"navbarDropdown\">
                         <a class=\"dropdown-header\">L'Univers</a>
-                        <a class=\"dropdown-item\" href=\"/codex/history\">Histoire</a>
+                        <a class=\"dropdown-item\" href=\"/codex/context\">Contexte</a>
+                        <a class=\"dropdown-item\" href=\"/codex/race\">Races</a>
                         <a class=\"dropdown-item\" href=\"/codex/align\">Alignement</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <a class=\"dropdown-header\">Guide du débutant</a>
+                        <a class=\"dropdown-item\" href=\"/codex/character\">Fiche de personnage</a>
                         <div class=\"dropdown-divider\"></div>
                         <a class=\"dropdown-header\">Généralités</a>
                         <a class=\"dropdown-item\" href=\"/codex/faq\">F.A.Q</a>
                     </div>
                 </li>
                 <li class=\"nav-item ";
-        // line 90
+        // line 94
         if (((($context["title"] ?? null) == "Actualités") || array_key_exists("singleNews", $context))) {
             echo "active";
         }
@@ -302,7 +306,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                     <a class=\"nav-link\" href=\"/news\">Actualités</a>
                 </li>
                 <li class=\"nav-item ";
-        // line 93
+        // line 97
         if ((($context["title"] ?? null) == "Forum")) {
             echo "active";
         }
@@ -311,9 +315,9 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                 </li>
                 <span class=\"nav-link disabled d-md-block d-none\" style=\"pointer-events: none;\">—</span>
                 ";
-        // line 97
+        // line 101
         if (twig_test_empty(($context["sessionUser"] ?? null))) {
-            // line 98
+            // line 102
             echo "                    <li class=\"nav-item ";
             if ((($context["title"] ?? null) == "Connexion")) {
                 echo "active";
@@ -323,10 +327,10 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                     </li>
                 ";
         }
-        // line 102
+        // line 106
         echo "                ";
         if ( !twig_test_empty(($context["sessionUser"] ?? null))) {
-            // line 103
+            // line 107
             echo "                    <li class=\"nav-item ";
             if ((($context["title"] ?? null) == "Taverne")) {
                 echo "active";
@@ -337,23 +341,33 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                         </a>
                     </li>
                     <li class=\"nav-item ";
-            // line 108
+            // line 112
+            if ((($context["title"] ?? null) == "Boutique")) {
+                echo "active";
+            }
+            echo "\">
+                        <a id=\"view-link\" class=\"nav-link\" href=\"/store\">
+                            Boutique
+                        </a>
+                    </li>
+                    <li class=\"nav-item ";
+            // line 117
             if ((($context["title"] ?? null) == "Profil")) {
                 echo "active";
             }
             echo "\">
                         <a class=\"nav-link text-ln-gold\" href=\"/account/character-";
-            // line 109
+            // line 118
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array()), "html", null, true);
             echo "\">
                             ";
-            // line 110
+            // line 119
             echo twig_escape_filter($this->env, twig_truncate_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "pseudo", array()), 1, true, ""), "html", null, true);
             echo "
                         </a>
                     </li>
                     <li class=\"nav-item ";
-            // line 113
+            // line 122
             if ((($context["title"] ?? null) == "Connexion")) {
                 echo "active";
             }
@@ -362,22 +376,22 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                     </li>
                 ";
         }
-        // line 117
+        // line 126
         echo "            </ul>
         </div>
     </nav>
 ";
     }
 
-    // line 125
+    // line 134
     public function block_main($context, array $blocks = array())
     {
     }
 
-    // line 134
+    // line 143
     public function block_footer($context, array $blocks = array())
     {
-        // line 135
+        // line 144
         echo "    <footer role=\"contentinfo\" class=\"container-fluid bg-ln-coal py-3\">
         <div class=\"row my-3\">
             <div class=\"col-lg-12 text-center text-muted\">
@@ -401,7 +415,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 ";
     }
 
-    // line 250
+    // line 259
     public function block_script($context, array $blocks = array())
     {
     }
@@ -418,7 +432,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 
     public function getDebugInfo()
     {
-        return array (  405 => 250,  381 => 135,  378 => 134,  373 => 125,  366 => 117,  357 => 113,  351 => 110,  347 => 109,  341 => 108,  330 => 103,  327 => 102,  317 => 98,  315 => 97,  306 => 93,  298 => 90,  279 => 76,  271 => 73,  267 => 71,  260 => 65,  257 => 63,  254 => 62,  249 => 59,  244 => 36,  238 => 251,  236 => 250,  178 => 194,  167 => 184,  163 => 181,  155 => 174,  145 => 165,  140 => 161,  136 => 158,  133 => 156,  131 => 134,  125 => 129,  122 => 127,  120 => 125,  115 => 121,  113 => 62,  110 => 60,  108 => 59,  105 => 57,  96 => 51,  89 => 46,  87 => 45,  81 => 40,  76 => 38,  74 => 37,  72 => 36,  67 => 33,  64 => 31,  61 => 29,  58 => 27,  47 => 17,  34 => 5,  29 => 1,);
+        return array (  419 => 259,  395 => 144,  392 => 143,  387 => 134,  380 => 126,  371 => 122,  365 => 119,  361 => 118,  355 => 117,  345 => 112,  334 => 107,  331 => 106,  321 => 102,  319 => 101,  310 => 97,  302 => 94,  279 => 76,  271 => 73,  267 => 71,  260 => 65,  257 => 63,  254 => 62,  249 => 59,  244 => 36,  238 => 260,  236 => 259,  178 => 203,  167 => 193,  163 => 190,  155 => 183,  145 => 174,  140 => 170,  136 => 167,  133 => 165,  131 => 143,  125 => 138,  122 => 136,  120 => 134,  115 => 130,  113 => 62,  110 => 60,  108 => 59,  105 => 57,  96 => 51,  89 => 46,  87 => 45,  81 => 40,  76 => 38,  74 => 37,  72 => 36,  67 => 33,  64 => 31,  61 => 29,  58 => 27,  47 => 17,  34 => 5,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -457,7 +471,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
     {# Style #}
     <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.css\">
     <link rel=\"stylesheet\" href=\"/web/scss/vendor/trumbowyg/trumbowyg.colors.css\">
-    <link rel=\"stylesheet\" href=\"/web/scss/style.min.css\">
+    <link rel=\"stylesheet\" href=\"/web/scss/style.css\">
     {% block style %}{% endblock style %}
     {# Title #}
     <title>{{ title }} &bull; LN</title>
@@ -505,8 +519,12 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                     </a>
                     <div class=\"dropdown-menu text-lg-left text-center\" aria-labelledby=\"navbarDropdown\">
                         <a class=\"dropdown-header\">L'Univers</a>
-                        <a class=\"dropdown-item\" href=\"/codex/history\">Histoire</a>
+                        <a class=\"dropdown-item\" href=\"/codex/context\">Contexte</a>
+                        <a class=\"dropdown-item\" href=\"/codex/race\">Races</a>
                         <a class=\"dropdown-item\" href=\"/codex/align\">Alignement</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <a class=\"dropdown-header\">Guide du débutant</a>
+                        <a class=\"dropdown-item\" href=\"/codex/character\">Fiche de personnage</a>
                         <div class=\"dropdown-divider\"></div>
                         <a class=\"dropdown-header\">Généralités</a>
                         <a class=\"dropdown-item\" href=\"/codex/faq\">F.A.Q</a>
@@ -528,6 +546,11 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
                     <li class=\"nav-item {% if title == 'Taverne' %}active{% endif %}\">
                         <a id=\"view-link\" class=\"nav-link\" href=\"/tavern\">
                             Taverne
+                        </a>
+                    </li>
+                    <li class=\"nav-item {% if title == 'Boutique' %}active{% endif %}\">
+                        <a id=\"view-link\" class=\"nav-link\" href=\"/store\">
+                            Boutique
                         </a>
                     </li>
                     <li class=\"nav-item {% if title == 'Profil' %}active{% endif %}\">
@@ -598,7 +621,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 {# Cookie Accept #}
 <script type=\"text/javascript\" id=\"cookiebanner\"
         src=\"https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js\"
-        data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\" data-expires=\"2629800\"
+        data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\"
         data-message=\"Halte, voyageur ! En poursuivant sur ce site, vous acceptez l'utilisation des cookies.\"
         data-zindex=\"9999\"></script>
 
