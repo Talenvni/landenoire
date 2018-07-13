@@ -7,6 +7,7 @@ use action\core\admin\edit\HeadingAdminEdit;
 use action\core\admin\edit\HomeAdminEdit;
 use action\core\admin\edit\NewsAdminEdit;
 use action\core\admin\edit\SubcategoryAdminEdit;
+use action\core\common\index\ContactCommonIndex;
 use action\core\admin\index\ForumAdminIndex;
 use action\core\admin\index\HomeAdminIndex;
 use action\core\admin\index\NewsAdminIndex;
@@ -110,6 +111,12 @@ class AltoRoute {
 			$router->map( 'GET', '/home', function () {
 				HomeCommonIndex::catchTwig();
 			} );
+			// -----------
+			// Get Contact
+			// -----------
+			$router->map( 'GET|POST', '/contact', function () {
+				ContactCommonIndex::catchTwig();
+			} );
 			// ---------
 			// Get Codex
 			// ---------
@@ -192,7 +199,7 @@ class AltoRoute {
 						ProfilCommonEdit::editEmail();
 						ProfilCommonEdit::clearInventory();
 						ProfilCommonEdit::editPassword();
-						ProfilCommonEdit::editRelation();
+						ProfilCommonEdit::preferenceSheet();
 						ProfilCommonIndex::catchTwig();
 					endif;
 					if ( ! isset( $_SESSION['user'] ) ):

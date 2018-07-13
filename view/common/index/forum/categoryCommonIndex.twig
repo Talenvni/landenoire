@@ -9,17 +9,27 @@
                 <div class="row justify-content-around align-items-center">
                     {# Each Category #}
                     {% for category in showCategory if category.idHeading == heading.id %}
-                        <div class="block--category rounded col-lg-5 col-11 my-2 p-0"
-                             style="background: url('/web/img/category/{{ category.img }}') no-repeat center;background-size: cover;max-height: 25vh;">
-                            <div class="pt-3 px-3">
+                        <div class="block--category rounded col-lg-5 col-11 my-3 p-0"
+                             style="background: url('/web/img/category/{{ category.img }}') no-repeat center;background-size: cover;height: 25vh;">
+                            <div>
                                 <a href="/forum/{{ category.slug }}">
                                     <h5 class="text-center">{{ category.name }}</h5>
-                                    {{ category.content|raw }}
                                 </a>
+                            </div>
+                            <div class="pt-3 px-3 content-category">
+                                {{ category.content|raw }}
                             </div>
                             <div class="mt-auto">
                                 <p class="px-3">
-                                    {{ test }}
+                                    {% for last in lastMessage if last.id == category.id %}
+                                        {% if last.datePub %}
+                                            <i class="fa fa-clock fa-xs"
+                                               title="Dernier message par {{ last.pseudo }}"></i>
+                                            <a href="/forum/{{ last.slug }}/topics/{{ last.idTopic }}">
+                                                {{ last.subject }} – il y a {{ last.datePub|time_diff }}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
                                 </p>
                             </div>
                         </div>

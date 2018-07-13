@@ -14,7 +14,8 @@ class TopicCommonIndex {
 				'title'             => 'Forum',
 				'singleSubcategory' => self::singleSubcategory(),
 				'showTopic'         => self::showTopic(),
-				'valideAccount'     => self::valideAccount()
+				'valideAccount'     => self::valideAccount(),
+				'lastMessage'       => self::lastMessage()
 			] );
 		} catch ( \Twig_Error_Loader $e ) {
 			die( 'ERROR LOADER TWIG : ' . $e->getMessage() );
@@ -39,7 +40,7 @@ class TopicCommonIndex {
 
 	private static function showTopic() {
 		$forum_topic = Database::getQuery( '
-		SELECT t.id, t.idUser, idSubcategory, slug, name, subject, t.datePub, is_closed, pseudo, COUNT(m.id) AS message
+		SELECT t.id, t.idUser, idSubcategory, slug, name, subject, t.datePub, is_closed, pseudo, COUNT(m.id) AS message, view
 		FROM ln_forum_topic t
 		LEFT JOIN ln_users u ON t.idUser = u.id
 		LEFT JOIN ln_forum_message m on t.id = m.idTopic
@@ -70,5 +71,19 @@ class TopicCommonIndex {
 		endif;
 
 		return null;
+	}
+
+	private static function lastMessage() {
+		$slast_message = Database::getQuery( '
+			SELECT t.id, MAX(m.datePub) AS datePub, m.idTopic, pseudo, m.idUser
+			FROM ln_forum_message m
+			LEFT JOIN ln_users u on m.idUser = u.id
+			LEFT JOIN ln_forum_topic t on m.idTopic = t.id
+			LEFT JOIN ln_forum_subcategory s on t.idSubcategory = s.id
+			GROUP BY t.id
+		' )->fetchAll( \PDO::FETCH_OBJ );
+
+		return $slast_message;
+
 	}
 }

@@ -12,28 +12,49 @@
                              style="box-shadow: 0 0 .5rem black inset;overflow: hidden;">
                         {% for topic in showTopic %}
                             <div class="content-pagination">
-                                <div class="row text-center text-lg-left p-4"
+                                <div class="row align-items-center p-3"
                                      style="{% if loop.index % 2 %}background: rgba(129, 115, 84, .1)
                                  {% endif %}">
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-4">
                                         <a class="card-link"
-                                           href="/forum/{{ singleSubcategory.slug }}/topics/{{ topic.id }}">{{ topic.subject }}
+                                           href="/forum/{{ singleSubcategory.slug }}/topics/{{ topic.id }}">
+                                            {{ topic.subject }}
                                         </a>
                                         {% if topic.is_closed == 1 %}
-                                            <i class="fas fa-lock"></i>
+                                            <i class="fas fa-lock fa-xs"></i>
+                                        {% endif %}
+                                        <br>
+                                        <small>
+                                            <em>par
+                                                <a href="/account/character-{{ topic.idUser }}">
+                                                    {{ topic.pseudo }}
+                                                </a>
+                                            </em>
+                                        </small>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <i class="fas fa-comment fa-xs"></i>
+                                        {% if topic.message > 1 %}
+                                            {{ topic.message }} missives
+                                        {% else %}
+                                            {{ topic.message }} missive
                                         {% endif %}
                                     </div>
                                     <div class="col-lg-2">
-                                        <i class="fas fa-comment"></i> {{ topic.message }}
+                                        <i class="fas fa-eye fa-xs"></i>
+                                        {% if topic.view > 1 %}
+                                            {{ topic.view }} visites
+                                        {% else %}
+                                            {{ topic.view }} visite
+                                        {% endif %}
                                     </div>
-                                    <div class="col-lg-3">
-                                    <span>par <a href="/account/character-{{ topic.idUser }}">
-                                            {{ topic.pseudo }}
-                                        </a>
-                                    </span>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        {{ topic.datePub|localizeddate('medium', 'short') }}
+                                    <div class="col-lg-4">
+                                        {% for last in lastMessage if last.id == topic.id %}
+                                            Dernier message il y a {{ last.datePub|time_diff }}<br> par
+                                            <a href="/account/character-{{ last.idUser }}">
+                                                {{ last.pseudo }}
+                                            </a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>

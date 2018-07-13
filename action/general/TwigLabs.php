@@ -3,6 +3,7 @@
 use Twig_Environment;
 use Twig_Error_Loader;
 use Twig_Extension_Debug;
+use Twig_Function;
 use Twig_Loader_Filesystem;
 use Twig_Extensions_Extension_Date;
 use Twig_Extensions_Extension_I18n;
@@ -65,6 +66,11 @@ class TwigLabs {
 		$twig->addExtension( new Twig_Extensions_Extension_I18n() );
 		$twig->addGlobal( 'sessionUser', $_SESSION['user'] = $_SESSION['user'] ?? null );
 		$twig->addGlobal( 'flashMessage', MessageFlash::getFlash() );
+		$coin = new Twig_Function('coinTransform', function (int $coin) {
+			$transfom = Helper::getcoin( $coin );
+			return $transfom;
+		});
+		$twig->addFunction($coin);
 
 		return $twig;
 	}

@@ -28,6 +28,9 @@
       -ms-flex-negative: 0;
       flex-shrink: 0;
     }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel Decoration', Cinzel, Alice, Robot, sans-serif;
+    }
   }
 
   // ------
@@ -234,28 +237,32 @@
       text-decoration: none;
       color: $ln-gold;
     }
+    h5 {
+      line-height: 5vh;
+      text-shadow: 0 0 $ln-gold;
+    }
 
     &:hover {
-      -webkit-transform: scale(1.01);
-      transform: scale(1.01);
-      box-shadow: 0 0 1.5rem $black;
-      div:first-child {
-        display: block;
+      .content-category {
+        opacity: 1;
       }
     }
 
-    div:first-child {
+    .content-category {
       overflow-y: auto;
       background: rgba(12, 10, 16, .7);
       height: 25vh;
-      display: none;
+      opacity: 0;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
 
       p {
         line-height: 1.5rem;
       }
     }
-    div:last-child {
+    div:last-child, div:first-child {
       background: rgba(12, 10, 16, .7);
+      line-height: 5vh;
       height: 5vh;
       width: 100%;
 
@@ -286,6 +293,28 @@
       margin: 1rem 0 0 0;
       letter-spacing: .1rem;
       box-sizing: border-box;
+    }
+  }
+  .avatar--message {
+    position: relative;
+
+    &:hover {
+      .avatar-info--message {
+        opacity: 1;
+      }
+    }
+
+    .avatar-info--message {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      padding: .5rem;
+      background: $ln-coal-ghost;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
     }
   }
   .chatbox--title {

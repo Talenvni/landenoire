@@ -1,0 +1,78 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main class="d-flex justify-content-center align-items-center">
+        <section class="container my-5">
+
+            <form method="post">
+                <fieldset>
+                    <legend class="h1">Contact</legend>
+                    <div class="tab-content">
+                        <div id="fr" class="tab-pane active" role="tabpanel">
+
+                            <div class="text-center">
+                                <p>
+                                    Utilisez ce formulaire pour rentrer en contact avec l'administration.
+                                </p>
+                            </div>
+
+                            {# Error #}
+                            <div class="form-group">
+                                <ul class="list-group">
+                                    {% for error in contact if error is not null %}
+                                        <li class="list-unstyled">
+                                            <span class="badge badge-warning">Erreur</span>
+                                            {{ error }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="row justify-content-between">
+                                {# Email #}
+                                <div class="form-group col-lg-6">
+                                    <label for="contact-email" class="w-100">
+                                        Email
+                                        <span class="text-danger">*</span>
+                                        <input id="contact-email" placeholder="missive@domaine.ex"
+                                               type="email"
+                                               name="contact_email" class="form-control" required>
+                                    </label>
+                                </div>
+                                {# Nom #}
+                                <div class="form-group col-lg-6">
+                                    <label for="contact-subject" class="w-100">
+                                        Sujet
+                                        <span class="text-danger">*</span>
+                                        <input id="contact-subject" placeholder="Votre Sujet" type="text"
+                                               name="contact_subject" class="form-control" required>
+                                    </label>
+                                </div>
+                            </div>
+                            {# Nom #}
+                            <div class="form-group">
+                                <label for="contact-message" class="w-100">
+                                    Message
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <textarea name="contact_message" id="contact-message" cols="30"
+                                          rows="10"
+                                          placeholder="Votre message"></textarea>
+                            </div>
+                            {# Captcha #}
+                            <div class="d-flex justify-content-center">
+                                <div class="g-recaptcha form-group"
+                                     data-sitekey="6Lc_aUwUAAAAANbh1215itunfHXiXjzuKH_kQspw"></div>
+                            </div>
+                            <hr>
+                            <div class="form-group text-center">
+                                <button type="submit" name="contact_submit" class="btn btn-lg">
+                                    Envoyer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+{% endblock main %}

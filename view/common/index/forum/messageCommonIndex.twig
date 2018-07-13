@@ -8,7 +8,7 @@
                 <div class="row align-items-center justify-content-between mt-5">
                     <h3 class="topic--title">{{ singleTopic.subject }}</h3>
                     {% if singleTopic.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
-                        <a class="link--edit" title="Éditer le titre du sujet"
+                        <a title="Éditer le titre du sujet"
                            href="/forum/{{ singleTopic.slug }}/topics/{{ singleTopic.id }}/subject/{{ singleTopic.id }}">
                             <i class="fas fa-edit"></i>
                         </a>
@@ -17,9 +17,65 @@
                 <hr class="row">
                 {% for message in showMessage %}
                     <div class="content-pagination row align-items-start justify-content-between my-5">
-                        <div class="d-none d-lg-block">
+                        <div class="avatar--message d-none d-lg-block">
                             <img src="/web/img/avatar/{{ message.avatar }}" alt="" class="rounded border"
                                  style="box-shadow: 0 0 .5rem black;width: 250px;height: 400px;">
+                            <div class="avatar-info--message rounded border">
+                                <h5 class="text-center text-ln-gold">Infos</h5>
+                                <span class="text-ln-gold d-block">Âge :</span> {{ message.age }} ans
+                                <span class="text-ln-gold d-block">Sexe :</span> {{ message.sexe }}
+                                <span class="text-ln-gold d-block">Race :</span> {{ message.race }}
+                                <hr>
+                                <span class="text-ln-gold d-block">Richesse :</span>
+                                {% set coin = coinTransform(message.coin) %}
+                                {{ coin.gold }} <span class="gold">or.</span>
+                                {{ coin.silver }} <span class="silver">ar.</span>
+                                {{ coin.copper }} <span class="copper">cu.</span>
+                                <span class="text-ln-gold d-block">Réputation :</span>
+                                {% set reput = (message.reputation + voteLike) - voteDislike %}
+                                <span style="font-weight: normal;
+                                        {% if reput < 0 %}color: #DA3B01;
+                                {% elseif reput >= 0 %}color: #647C64;
+                                                {% endif %}">
+
+                                {# Positif #}
+                                {% if reput >= 0 and reput < 100 %}
+                                {% set grade = 'anodin' %}
+                                {% endif %}
+                                {% if reput >= 100 and reput < 200 %}
+                                {% set grade = 'familier' %}
+                                {% endif %}
+                                {% if reput >= 200 and reput < 300 %}
+                                {% set grade = 'célèbre' %}
+                                {% endif %}
+                                {% if reput >= 300 and reput < 400 %}
+                                {% set grade = 'héroïque' %}
+                                {% endif %}
+                                {% if reput >= 400 %}
+                                {% set grade = 'légendaire' %}
+                                {% endif %}
+
+                                {# Negatif #}
+                                {% if reput < 0 and reput > -100 %}
+                                {% set grade = 'méprisable' %}
+                                {% endif %}
+                                {% if reput <= -100 and reput > -200 %}
+                                {% set grade = 'exécrable' %}
+                                {% endif %}
+                                {% if reput <= -200 and reput > -300 %}
+                                {% set grade = 'effrayant' %}
+                                {% endif %}
+                                {% if reput <= -300 and reput > -400 %}
+                                {% set grade = 'monstrueux' %}
+                                {% endif %}
+                                {% if reput <= -400 %}
+                                {% set grade = 'démoniaque' %}
+                                {% endif %}
+
+                                {{ grade }}
+                            </span>
+                                <span class="text-ln-gold d-block">Alignement :</span> {{ message.alignement }}
+                            </div>
                         </div>
                         <section class="container--topic col-lg-9 {% if not loop.index % 2 %}order-first{% endif %}"
                                  style="{% if not loop.index % 2 %}border-radius: 1rem 0 1rem 1rem;{% else %}border-radius: 0 1rem 1rem 1rem;{% endif %}">
@@ -44,17 +100,50 @@
                                 {{ message.content|raw }}
                             </div>
 
-                            {% if message.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
-                                <div class="container my-3">
-                                    <div class="row justify-content-end">
-                                        <a class="link--edit" data-toggle="tooltip" data-placement="top"
+                            {# Options #}
+                            <div class="container my-3">
+                                <div class="row justify-content-end">
+                                    {% if sessionUser and message.idUser != sessionUser.id %}
+                                        <form method="post" class="wow fadeIn">
+                                            <input type="hidden" name="vote_author"
+                                                   value="{{ message.idUser }}">
+                                            <input type="hidden" name="vote_message"
+                                                   value="{{ message.id }}">
+                                            <button class="btn py-1" name="button_like"
+                                                    title="Apprécier le message de {{ message.pseudo }}"
+                                                    {% for vote in showUpvote
+                                                        if vote.idMessage == message.id %}
+                                                {% if vote.is_liked and vote.idPoster == sessionUser.id %}
+                                                    disabled
+                                                {% endif %}
+                                                    {% endfor %}>
+                                                <i class="fa fa-thumbs-up fa-xs"></i>
+                                            </button>
+                                            <button class="btn py-1" name="button_dislike"
+                                                    title="Déprécier le message de {{ message.pseudo }}"
+                                                    {% for vote in showUpvote
+                                                        if vote.idMessage == message.id %}
+                                                {% if vote.is_disliked and vote.idPoster == sessionUser.id %}
+                                                    disabled
+                                                {% endif %}
+                                                    {% endfor %}>
+                                                <i class="fa fa-thumbs-down fa-xs"></i>
+                                            </button>
+                                        </form>
+                                    {% endif %}
+
+
+                                    {% if message.idUser == sessionUser.id or sessionUser.idGroup >= 2 %}
+                                        <a class="btn mx-1 py-1 wow fadeIn" data-toggle="tooltip"
+                                           data-placement="top"
                                            title="Éditer"
                                            href="/forum/{{ singleTopic.slug }}/topics/{{ singleTopic.id }}/edit/{{ message.id }}">
-                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-edit fa-xs"></i>
                                         </a>
-                                    </div>
+                                    {% endif %}
                                 </div>
-                            {% endif %}
+                            </div>
+
                         </section>
                     </div>
                 {% endfor %}

@@ -128,10 +128,13 @@ class SignupCommonIndex {
 					[ $_GET['last_id'] ] );
 
 				Database::getQuery( '
-                    INSERT INTO ln_users_info (idUser, coin, avatar, reputation, alignement,
-                     alignText)
-                    VALUES (?, 0, \'default.png\', 0, \'Neutre\', \'Votre descriptif ici.\')',
+                    INSERT INTO ln_users_info (idUser, coin, avatar, reputation, alignement)
+                    VALUES (?, 0, \'default.png\', 0, \'Neutre\')',
 					[ $_GET['last_id'] ] );
+
+				Database::getQuery( '
+				INSERT INTO ln_users_traits (idUser)
+				VALUES (?)', [ $_GET['last_id'] ] );
 
 				$heading = Database::getQuery( '
 					SELECT COUNT(*) AS nbrHead FROM `ln_users_heading`' )->fetch( \PDO::FETCH_OBJ );
@@ -146,7 +149,7 @@ class SignupCommonIndex {
 				MessageFlash::setFlash( 'success', 'Compte validé' );
 				Helper::redirection( '/sign-in' );
 			else :
-				$last_id = $_GET['last_id'];
+				$last_id      = $_GET['last_id'];
 				$signup_token = Helper::randomString( 'alphanumeric', 60 );
 
 				$signup_reload = Database::getQuery( '
@@ -162,7 +165,7 @@ class SignupCommonIndex {
 				WHERE id = ?', [
 					$_GET['last_id'],
 					$signup_token
-				]);
+				] );
 
 				Helper::createEmail(
 					$signup_reload->email,

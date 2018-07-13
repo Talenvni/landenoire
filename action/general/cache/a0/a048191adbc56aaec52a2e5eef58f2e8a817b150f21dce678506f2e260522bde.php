@@ -129,19 +129,19 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 ";
         // line 143
         $this->displayBlock('footer', $context, $blocks);
-        // line 165
+        // line 172
         echo "
 ";
-        // line 167
+        // line 174
         echo "<script src=\"/web/js/jQuery.min.js\"></script>
 
 ";
-        // line 170
+        // line 177
         echo "<script src=\"/web/js/vendor/popper/popper.min.js\"></script>
 <script src=\"/web/js/vendor/bootstrap/bootstrap.min.js\"></script>
 
 ";
-        // line 174
+        // line 181
         echo "<script src=\"/web/js/vendor/wowAnimate/wow.min.js\"></script>
 <script src=\"/web/js/vendor/rellaxParallax/rellax.min.js\"></script>
 <script src=\"/web/js/vendor/trumbowyg/trumbowyg.min.js\"></script>
@@ -151,7 +151,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 <script src=\"/web/js/pagination.js\"></script>
 
 ";
-        // line 183
+        // line 190
         echo "<script type=\"text/javascript\" id=\"cookiebanner\"
         src=\"https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js\"
         data-effect=\"fade\" data-mask=\"true\" data-linkmsg=\"En savoir plus.\"
@@ -159,11 +159,11 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
         data-zindex=\"9999\"></script>
 
 ";
-        // line 190
+        // line 197
         echo "<script src=\"/web/js/ajax/tavern.ajax.js\"></script>
 
 ";
-        // line 193
+        // line 200
         echo "<script defer
         src=\"https://use.fontawesome.com/releases/v5.0.8/js/solid.js\"
         integrity=\"sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l\"
@@ -174,7 +174,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
         crossorigin=\"anonymous\"></script>
 
 ";
-        // line 203
+        // line 210
         echo "<script>
     // ------------
     // WOW animated
@@ -232,9 +232,9 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
     })(); // End Trumbowyg area
 </script>
 ";
-        // line 259
+        // line 266
         $this->displayBlock('script', $context, $blocks);
-        // line 260
+        // line 267
         echo "</body>
 </html>
 ";
@@ -392,7 +392,14 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
     public function block_footer($context, array $blocks = array())
     {
         // line 144
-        echo "    <footer role=\"contentinfo\" class=\"container-fluid bg-ln-coal py-3\">
+        echo "    <footer role=\"contentinfo\" class=\"container-fluid bg-ln-coal py-3 border-top\">
+        <div class=\"row my-3\">
+            <div class=\"col-lg-12 text-center\">
+                <span>
+                    <a href=\"/contact\" class=\"text-uppercase h5\">Contact</a>
+                </span>
+            </div>
+        </div>
         <div class=\"row my-3\">
             <div class=\"col-lg-12 text-center text-muted\">
                 <span>
@@ -415,7 +422,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 ";
     }
 
-    // line 259
+    // line 266
     public function block_script($context, array $blocks = array())
     {
     }
@@ -432,7 +439,7 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 
     public function getDebugInfo()
     {
-        return array (  419 => 259,  395 => 144,  392 => 143,  387 => 134,  380 => 126,  371 => 122,  365 => 119,  361 => 118,  355 => 117,  345 => 112,  334 => 107,  331 => 106,  321 => 102,  319 => 101,  310 => 97,  302 => 94,  279 => 76,  271 => 73,  267 => 71,  260 => 65,  257 => 63,  254 => 62,  249 => 59,  244 => 36,  238 => 260,  236 => 259,  178 => 203,  167 => 193,  163 => 190,  155 => 183,  145 => 174,  140 => 170,  136 => 167,  133 => 165,  131 => 143,  125 => 138,  122 => 136,  120 => 134,  115 => 130,  113 => 62,  110 => 60,  108 => 59,  105 => 57,  96 => 51,  89 => 46,  87 => 45,  81 => 40,  76 => 38,  74 => 37,  72 => 36,  67 => 33,  64 => 31,  61 => 29,  58 => 27,  47 => 17,  34 => 5,  29 => 1,);
+        return array (  426 => 266,  395 => 144,  392 => 143,  387 => 134,  380 => 126,  371 => 122,  365 => 119,  361 => 118,  355 => 117,  345 => 112,  334 => 107,  331 => 106,  321 => 102,  319 => 101,  310 => 97,  302 => 94,  279 => 76,  271 => 73,  267 => 71,  260 => 65,  257 => 63,  254 => 62,  249 => 59,  244 => 36,  238 => 267,  236 => 266,  178 => 210,  167 => 200,  163 => 197,  155 => 190,  145 => 181,  140 => 177,  136 => 174,  133 => 172,  131 => 143,  125 => 138,  122 => 136,  120 => 134,  115 => 130,  113 => 62,  110 => 60,  108 => 59,  105 => 57,  96 => 51,  89 => 46,  87 => 45,  81 => 40,  76 => 38,  74 => 37,  72 => 36,  67 => 33,  64 => 31,  61 => 29,  58 => 27,  47 => 17,  34 => 5,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -580,7 +587,14 @@ class __TwigTemplate_c2b8abe5849fa4a3b14d9ed9eefb69754d86f32a6bcac10bb37fcd70105
 
 {# Footer #}
 {% block footer %}
-    <footer role=\"contentinfo\" class=\"container-fluid bg-ln-coal py-3\">
+    <footer role=\"contentinfo\" class=\"container-fluid bg-ln-coal py-3 border-top\">
+        <div class=\"row my-3\">
+            <div class=\"col-lg-12 text-center\">
+                <span>
+                    <a href=\"/contact\" class=\"text-uppercase h5\">Contact</a>
+                </span>
+            </div>
+        </div>
         <div class=\"row my-3\">
             <div class=\"col-lg-12 text-center text-muted\">
                 <span>

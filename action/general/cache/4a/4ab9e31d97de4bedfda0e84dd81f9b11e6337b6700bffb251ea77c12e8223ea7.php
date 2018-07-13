@@ -50,7 +50,7 @@ class __TwigTemplate_4c3f3849586e2ee01263fa7e0ff84d3ee30e1589569661792bdf8e0622d
                     </div>
                 </div>
             </section>
-            <form id=\"chatForm\" method=\"post\" action=\"/action/ajax/TavernInsert.php\"
+            <form id=\"chatForm\" method=\"post\" action=\"/action/ajax/tavern/TavernInsert.php\"
                   class=\"chatForm container form-group mb-5\">
                 <div class=\"row justify-content-around align-items-center\">
                     ";
@@ -131,7 +131,7 @@ class __TwigTemplate_4c3f3849586e2ee01263fa7e0ff84d3ee30e1589569661792bdf8e0622d
                     </div>
                 </div>
             </section>
-            <form id=\"chatForm\" method=\"post\" action=\"/action/ajax/TavernInsert.php\"
+            <form id=\"chatForm\" method=\"post\" action=\"/action/ajax/tavern/TavernInsert.php\"
                   class=\"chatForm container form-group mb-5\">
                 <div class=\"row justify-content-around align-items-center\">
                     {% if userBan.isBanned == 0 %}

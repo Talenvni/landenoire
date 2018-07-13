@@ -47,7 +47,11 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
             $context['_seq'] = twig_ensure_traversable(($context["tabStore"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["tab"]) {
                 // line 11
-                echo "                                <li class=\"col-lg-4\">
+                echo "                                <li class=\"col-lg-4 ";
+                if ((twig_get_attribute($this->env, $this->source, $context["tab"], "slug", array()) == "general")) {
+                    echo "active";
+                }
+                echo "\">
                                     <a href=\"#";
                 // line 12
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "slug", array()), "html", null, true);
@@ -73,39 +77,59 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
                 <div class=\"box--message chatbox--container container\">
                     <div class=\"tab-content my-3\">
                         ";
-            // line 23
+            // line 24
+            echo "                        <div class=\"text-center my-3\">
+                            <div class=\"row pb-4\">
+                                <h4 class=\"col-lg-4 m-0\">Article <i class=\"fa fa-arrow-down fa-xs\"></i></h4>
+                                <h4 class=\"col-lg-4\">Qualité <i class=\"fa fa-arrow-down fa-xs\"></i></h4>
+                                <h4 class=\"col-lg-4\">
+                                    Voir l'article <i class=\"fa fa-arrow-down fa-xs\"></i>
+                                </h4>
+                            </div>
+                        </div>
+                        ";
+            // line 33
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["tabStore"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["tab"]) {
-                // line 24
+                // line 34
                 echo "                            <div id=\"";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "slug", array()), "html", null, true);
-                echo "\" class=\"tab-pane\" role=\"tabpanel\">
+                echo "\"
+                                 class=\"tab-pane fade ";
+                // line 35
+                if ((twig_get_attribute($this->env, $this->source, $context["tab"], "slug", array()) == "general")) {
+                    echo "show active";
+                }
+                echo "\"
+                                 role=\"tabpanel\">
                                 ";
-                // line 25
+                // line 37
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable(($context["articleStore"] ?? null));
                 foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+                    // line 38
+                    echo "                                    ";
                     if ((twig_get_attribute($this->env, $this->source, $context["article"], "slug", array()) == twig_get_attribute($this->env, $this->source, $context["tab"], "slug", array()))) {
-                        // line 26
+                        // line 39
                         echo "                                    <div class=\"text-center my-3\">
-                                        <div class=\"row justify-content-between align-items-center\">
-                                            <h5 class=\"col-lg-4 m-0\">";
-                        // line 28
+                                        <div class=\"row border-bottom pb-3\">
+                                            <span class=\"h5 col-lg-4 m-0\">";
+                        // line 41
                         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "name", array()), "html", null, true);
-                        echo "</h5>
+                        echo "</span>
                                             <span class=\"col-lg-4\" style=\"color: ";
-                        // line 29
+                        // line 42
                         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "color", array()), "html", null, true);
                         echo "\">
                                                     ";
-                        // line 30
+                        // line 43
                         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "qualityName", array()), "html", null, true);
                         echo "
                                                 </span>
                                             <span class=\"col-lg-4\">
                                                 <a href=\"/store/article-";
-                        // line 33
+                        // line 46
                         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", array()), "html", null, true);
                         echo "\" class=\"m-0\">
                                                     Voir l'article
@@ -113,27 +137,28 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
                                             </span>
                                         </div>
                                     </div>
-                                    <hr>
-                                ";
+                                    ";
                     }
+                    // line 53
+                    echo "                                ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 41
+                // line 54
                 echo "                            </div>
                         ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tab'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 43
+            // line 56
             echo "                    </div>
                 </div>
                 ";
-            // line 45
+            // line 58
             if ((twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2)) {
-                // line 46
+                // line 59
                 echo "                    <div class=\"container my-4\">
                         <div class=\"row justify-content-center\">
                             <a href=\"/store/new-article\" class=\"btn\">Nouvel article</a>
@@ -141,11 +166,11 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
                     </div>
                 ";
             }
-            // line 52
+            // line 65
             echo "            </section>
         ";
         }
-        // line 54
+        // line 67
         echo "    </main>
 ";
     }
@@ -162,7 +187,7 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
 
     public function getDebugInfo()
     {
-        return array (  149 => 54,  145 => 52,  137 => 46,  135 => 45,  131 => 43,  124 => 41,  109 => 33,  103 => 30,  99 => 29,  95 => 28,  91 => 26,  86 => 25,  81 => 24,  77 => 23,  70 => 18,  60 => 14,  53 => 12,  50 => 11,  46 => 10,  40 => 6,  38 => 5,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  174 => 67,  170 => 65,  162 => 59,  160 => 58,  156 => 56,  149 => 54,  143 => 53,  133 => 46,  127 => 43,  123 => 42,  119 => 41,  115 => 39,  112 => 38,  108 => 37,  101 => 35,  96 => 34,  92 => 33,  81 => 24,  74 => 18,  64 => 14,  57 => 12,  50 => 11,  46 => 10,  40 => 6,  38 => 5,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -177,7 +202,7 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
                     <div class=\"row text-center\">
                         <ul class=\"chatbox--title nav nav-tabs nav-justified col-lg-12\">
                             {% for tab in tabStore %}
-                                <li class=\"col-lg-4\">
+                                <li class=\"col-lg-4 {% if tab.slug == 'general' %}active{% endif %}\">
                                     <a href=\"#{{ tab.slug }}\" aria-controls=\"{{ tab.slug }}\" role=\"tab\"
                                        data-toggle=\"tab\">
                                         {{ tab.tab }}
@@ -189,12 +214,25 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
                 </div>
                 <div class=\"box--message chatbox--container container\">
                     <div class=\"tab-content my-3\">
+                        {# Title #}
+                        <div class=\"text-center my-3\">
+                            <div class=\"row pb-4\">
+                                <h4 class=\"col-lg-4 m-0\">Article <i class=\"fa fa-arrow-down fa-xs\"></i></h4>
+                                <h4 class=\"col-lg-4\">Qualité <i class=\"fa fa-arrow-down fa-xs\"></i></h4>
+                                <h4 class=\"col-lg-4\">
+                                    Voir l'article <i class=\"fa fa-arrow-down fa-xs\"></i>
+                                </h4>
+                            </div>
+                        </div>
                         {% for tab in tabStore %}
-                            <div id=\"{{ tab.slug }}\" class=\"tab-pane\" role=\"tabpanel\">
-                                {% for article in articleStore if article.slug == tab.slug %}
+                            <div id=\"{{ tab.slug }}\"
+                                 class=\"tab-pane fade {% if tab.slug == 'general' %}show active{% endif %}\"
+                                 role=\"tabpanel\">
+                                {% for article in articleStore %}
+                                    {% if article.slug == tab.slug %}
                                     <div class=\"text-center my-3\">
-                                        <div class=\"row justify-content-between align-items-center\">
-                                            <h5 class=\"col-lg-4 m-0\">{{ article.name }}</h5>
+                                        <div class=\"row border-bottom pb-3\">
+                                            <span class=\"h5 col-lg-4 m-0\">{{ article.name }}</span>
                                             <span class=\"col-lg-4\" style=\"color: {{ article.color }}\">
                                                     {{ article.qualityName }}
                                                 </span>
@@ -205,7 +243,7 @@ class __TwigTemplate_59940fef0c351b07d2f2b8598c73a321c0d6486596f8e2ed7526c12cf80
                                             </span>
                                         </div>
                                     </div>
-                                    <hr>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         {% endfor %}

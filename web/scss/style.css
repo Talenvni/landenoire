@@ -7475,6 +7475,8 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
     body footer {
       -ms-flex-negative: 0;
       flex-shrink: 0; }
+    body h1, body h2, body h3, body h4, body h5, body h6 {
+      font-family: 'Cinzel Decoration', Cinzel, Alice, Robot, sans-serif; }
 
   #scrollToTop {
     right: 3rem;
@@ -7643,24 +7645,26 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
     .block--category a {
       text-decoration: none;
       color: #7e7e69; }
-    .block--category:hover {
-      -webkit-transform: scale(1.01);
-      transform: scale(1.01);
-      box-shadow: 0 0 1.5rem #000; }
-      .block--category:hover div:first-child {
-        display: block; }
-    .block--category div:first-child {
+    .block--category h5 {
+      line-height: 5vh;
+      text-shadow: 0 0 #7e7e69; }
+    .block--category:hover .content-category {
+      opacity: 1; }
+    .block--category .content-category {
       overflow-y: auto;
       background: rgba(12, 10, 16, 0.7);
       height: 25vh;
-      display: none; }
-      .block--category div:first-child p {
+      opacity: 0;
+      -webkit-transition: .5s ease;
+      transition: .5s ease; }
+      .block--category .content-category p {
         line-height: 1.5rem; }
-    .block--category div:last-child {
+    .block--category div:last-child, .block--category div:first-child {
       background: rgba(12, 10, 16, 0.7);
+      line-height: 5vh;
       height: 5vh;
       width: 100%; }
-      .block--category div:last-child p {
+      .block--category div:last-child p, .block--category div:first-child p {
         line-height: 5vh; }
 
   .title--subcategory, .title--topic {
@@ -7680,6 +7684,22 @@ a.text-ln-coal-ghost:hover, a.text-ln-coal-ghost:focus {
       margin: 1rem 0 0 0;
       letter-spacing: .1rem;
       box-sizing: border-box; }
+
+  .avatar--message {
+    position: relative; }
+    .avatar--message:hover .avatar-info--message {
+      opacity: 1; }
+    .avatar--message .avatar-info--message {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      padding: .5rem;
+      background: rgba(45, 48, 53, 0.7);
+      -webkit-transition: .5s ease;
+      transition: .5s ease; }
 
   .chatbox--title {
     border-top-left-radius: 1rem;

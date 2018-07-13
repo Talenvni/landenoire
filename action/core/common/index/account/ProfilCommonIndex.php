@@ -18,9 +18,10 @@ class ProfilCommonIndex {
 				'showParagraph' => self::showParagraph(),
 				'showInventory' => self::showInventory(),
 				'showQuality'   => self::showQuality(),
-				'showVote'      => self::showVote(),
-				'selectVote'    => self::selectVote(),
 				'coin'          => self::coinTransform(),
+				'voteLike'      => self::voteLike(),
+				'voteDislike'   => self::voteDislike(),
+				'competence'    => self::competence(),
 				'profilTab'     => $_GET['profil_tab'] ?? 'info'
 			] );
 		} catch ( \Twig_Error_Loader $e ) {
@@ -37,7 +38,7 @@ class ProfilCommonIndex {
 	 */
 	private static function showAccount() {
 		$account = Database::getQuery( '
-    	SELECT DISTINCT u.id, groupName, pseudo, age as birthday, (TIMESTAMPDIFF(YEAR, age, NOW()) - 815) as age, sexe, race, avatar, creditAvatar, coin, reputation, alignement, alignText, characterValide, isBanned, experience, floor((25 + sqrt(625 + 100 * experience)) / 50) AS level
+    	SELECT DISTINCT u.id, groupName, pseudo, age as birthday, (TIMESTAMPDIFF(YEAR, age, NOW()) - 815) as age, sexe, race, avatar, creditAvatar, coin, reputation, alignement, characterValide, isBanned, experience, floor((25 + sqrt(625 + 100 * experience)) / 50) AS level, has_edit
     	FROM ln_users u
     	LEFT JOIN ln_users_group g ON u.idGroup = g.id
     	LEFT JOIN ln_users_info i ON u.id = i.idUser
@@ -120,14 +121,13 @@ class ProfilCommonIndex {
 	}
 
 	/**
-	 * @return array Show vote
+	 * @return mixed
 	 */
-	private static function showVote() {
+	private static function voteLike() {
 		$vote = Database::getQuery( '
-		SELECT DISTINCT idUser, idPoster, liked, disliked, pseudo
-		FROM ln_users_vote v
-		LEFT JOIN ln_users u on v.idPoster = u.id
-		WHERE idUser = ?', [ $_GET['account_id'] ] )->fetchAll( \PDO::FETCH_OBJ );
+		SELECT is_liked 
+		FROM ln_forum_vote v 
+		WHERE idAuthor = ? AND is_liked = 1 ', [ $_GET['account_id'] ] )->rowCount();
 
 		return $vote;
 	}
@@ -135,12 +135,21 @@ class ProfilCommonIndex {
 	/**
 	 * @return mixed
 	 */
-	private static function selectVote() {
+	private static function voteDislike() {
 		$vote = Database::getQuery( '
-		SELECT idUser, idPoster, liked, disliked
-		FROM ln_users_vote
-		WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] )->fetch( \PDO::FETCH_OBJ );
+		SELECT is_disliked 
+		FROM ln_forum_vote v 
+		WHERE idAuthor = ? AND is_disliked = 1 ', [ $_GET['account_id'] ] )->rowCount();
 
 		return $vote;
+	}
+
+	private static function competence() {
+		$competence = Database::getQuery( '
+		SELECT idUser, physique, dexterite, social, intellect, artisanat
+		FROM ln_users_traits t 
+		WHERE idUser = ? ', [ $_GET['account_id'] ] )->fetch( \PDO::FETCH_OBJ );
+
+		return $competence;
 	}
 }

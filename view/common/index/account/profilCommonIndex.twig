@@ -56,3 +56,22 @@
         {% endif %}
     </main>
 {% endblock main %}
+
+{% block script %}
+    <script>
+
+        $('#traits').on('change', function () {
+            let total =
+                parseInt($('#intellect').val()) +
+                parseInt($('#social').val()) +
+                parseInt($('#physique').val()) +
+                parseInt($('#dexterite').val()) +
+                parseInt($('#artisanat').val());
+            let traits = $('#total-traits');
+            if (total > 40 || total < 0) {
+                traits.addClass('text-warning')
+            }
+            traits.html(total);
+        });
+    </script>
+{% endblock script %}

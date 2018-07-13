@@ -27,7 +27,8 @@
                 "action/core/common/index/account",
                 "action/core/common/index/forum",
                 "action/core/common/index/store",
-                "action/core/common/index/tavern"
+                "action/core/common/index/tavern",
+                "action/core/common/index/contact"
             ],
             "action\\core\\common\\edit\\": [
                 "action/core/common/edit/home",

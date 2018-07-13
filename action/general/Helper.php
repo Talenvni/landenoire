@@ -72,7 +72,7 @@ class Helper {
 	 * @param $linkSubject
 	 */
 	public static function createEmail( $to, $subject, $instruction, $link, $linkSubject ) {
-		$headers = "From: admin@landenoire \r\n" .
+		$headers = "From: admin@lande-noire.online \r\n" .
 		           'content-type: text/html; charset=utf8' . "\r\n" .
 		           'X-Mailer: PHP/' . phpversion();
 		$message = '<table width="700px">

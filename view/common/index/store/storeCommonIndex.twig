@@ -8,7 +8,7 @@
                     <div class="row text-center">
                         <ul class="chatbox--title nav nav-tabs nav-justified col-lg-12">
                             {% for tab in tabStore %}
-                                <li class="col-lg-4">
+                                <li class="col-lg-4 {% if tab.slug == 'general' %}active{% endif %}">
                                     <a href="#{{ tab.slug }}" aria-controls="{{ tab.slug }}" role="tab"
                                        data-toggle="tab">
                                         {{ tab.tab }}
@@ -20,12 +20,25 @@
                 </div>
                 <div class="box--message chatbox--container container">
                     <div class="tab-content my-3">
+                        {# Title #}
+                        <div class="text-center my-3">
+                            <div class="row pb-4">
+                                <h4 class="col-lg-4 m-0">Article <i class="fa fa-arrow-down fa-xs"></i></h4>
+                                <h4 class="col-lg-4">Qualité <i class="fa fa-arrow-down fa-xs"></i></h4>
+                                <h4 class="col-lg-4">
+                                    Voir l'article <i class="fa fa-arrow-down fa-xs"></i>
+                                </h4>
+                            </div>
+                        </div>
                         {% for tab in tabStore %}
-                            <div id="{{ tab.slug }}" class="tab-pane" role="tabpanel">
-                                {% for article in articleStore if article.slug == tab.slug %}
+                            <div id="{{ tab.slug }}"
+                                 class="tab-pane fade {% if tab.slug == 'general' %}show active{% endif %}"
+                                 role="tabpanel">
+                                {% for article in articleStore %}
+                                    {% if article.slug == tab.slug %}
                                     <div class="text-center my-3">
-                                        <div class="row justify-content-between align-items-center">
-                                            <h5 class="col-lg-4 m-0">{{ article.name }}</h5>
+                                        <div class="row border-bottom pb-3">
+                                            <span class="h5 col-lg-4 m-0">{{ article.name }}</span>
                                             <span class="col-lg-4" style="color: {{ article.color }}">
                                                     {{ article.qualityName }}
                                                 </span>
@@ -36,7 +49,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <hr>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         {% endfor %}

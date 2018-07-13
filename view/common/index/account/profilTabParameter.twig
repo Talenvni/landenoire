@@ -81,7 +81,7 @@
                     </ul>
                 </div>
                 <form method="post" class="form-group">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <div class="col-lg-3">
                             <label for="align" class="form-control-label">
                                 Alignement de {{ showAccount.pseudo }}
@@ -142,17 +142,6 @@
                                 </optgroup>
                             </select>
                         </div>
-                        <div class="col-lg-9">
-                            <div class="row">
-                                <label for="alignText" class="form-control-label col-sm-6">
-                                    Descriptif d'alignement
-                                </label>
-                                <div id="count" class="d-flex justify-content-end col-sm-6"></div>
-                            </div>
-                            <textarea name="alignText" id="alignText" cols="30" rows="10"
-                                      placeholder="Votre description d'alignement"
-                                      class="form-control">{{ showAccount.alignText }}</textarea>
-                        </div>
                     </div>
                     {% if showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
                         <div class="row justify-content-center mt-4">
@@ -168,10 +157,6 @@
                                 L'alignement de votre personnage détermine sa philosophie.
                                 Pour en apprendre davantage sur les alignements, consultez la
                                 <a href="/codex/align">page des alignements</a>.
-                            </li>
-                            <li class="font-italic col-lg-10">
-                                Le champ d'alignement est un bref descriptif de la philosophie propre
-                                à votre personnage. <span>Maximum 255 caractères !</span>
                             </li>
                         </ul>
                     </div>
@@ -218,7 +203,7 @@
                                 <label for="race" class="form-control-label">
                                     Race de {{ showAccount.pseudo }}
                                 </label>
-                                <select name="race" id="sexe" class="form-control">
+                                <select name="race" id="race" class="form-control">
                                     <option value="humain" {% if showAccount.race == 'humain' %}selected
                                             {% endif %}>Humain
                                     </option>
@@ -310,19 +295,17 @@
                 </div>
             {% endif %}
             <div class="container text-center mt-4">
-                <a href="/codex/faq">
-                    Pourquoi ne puis-je pas modifier tous les champs ? (F.A.Q.)
-                </a>
+                <div class="display-info text-ln-gold">
+                    <span>Pourquoi ne puis-je pas modifier tous les champs ?</span>
+                    <small class="content-info text-center">
+                        Certains champs comme la race, le sexe, l'âge ou encore la réputation et la richesse
+                        ne peuvent être modifiés par l'utilisateur pour des raisons d'abus et de tricherie.
+                        <br>
+                        Si vous rencontrez des problèmes avec ces informations, merci de contacter la
+                        modération.
+                    </small>
+                </div>
             </div>
         </form>
     </section>
 {% endif %}
-
-{% block script %}
-    <script>
-        $("#competence").select2(
-            {
-                maximumSelectionLength: 2
-            });
-    </script>
-{% endblock script %}

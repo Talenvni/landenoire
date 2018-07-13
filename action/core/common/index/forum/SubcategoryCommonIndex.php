@@ -45,19 +45,31 @@ class SubcategoryCommonIndex {
 	}
 
 	private static function lastMessage() {
-		$last_message = Database::getQuery( '
-		SELECT DISTINCT max(m.datePub) AS datePub, m.subject, s.id, m.idTopic
-		FROM ln_forum_subcategory s 
-		LEFT JOIN ln_forum_topic t on s.id = t.idSubcategory
-		LEFT JOIN (
-		SELECT max(m2.datePub) as datePub, idTopic, max(subject) as subject
-		FROM ln_forum_message m2
-		LEFT JOIN ln_forum_topic t2 on m2.idTopic = t2.id
-		GROUP BY idTopic ORDER BY datePub DESC
-		) m ON m.idTopic = t.id
-		GROUP BY s.id
-		ORDER BY m.datePub DESC' )->fetchALL( \PDO::FETCH_OBJ );
+		$subcategory = Database::getQuery( '
+		SELECT s2.id, last_message_date as datePub, t2.id as idTopic, pseudo, s2.slug, subject
+		FROM (
+  			SELECT s.id, MAX(m.datePub) as last_message_date
+  			FROM ln_forum_subcategory s 
+    		INNER JOIN ln_forum_topic t 
+      			ON t.idSubcategory = s.id
+    		INNER JOIN ln_forum_message m 
+      			ON m.idTopic = t.id
+            INNER JOIN ln_users u 
+            	ON m.idUser = u.id
+  			GROUP BY s.id
+		) as temp
+        INNER JOIN ln_forum_message m2 
+    		ON m2.datePub = temp.last_message_date
+  		INNER JOIN ln_forum_topic t2 
+    		ON m2.idTopic = t2.id
+    	INNER JOIN ln_users u2 
+    		ON m2.idUser = u2.id
+  		INNER JOIN ln_forum_subcategory s2 
+    		ON t2.idSubcategory = s2.id AND temp.id = s2.id
+  		INNER JOIN ln_forum_category c 
+    		ON c.id = s2.idCategory' )->fetchAll( \PDO::FETCH_OBJ );
 
-		return $last_message;
+		return $subcategory;
+
 	}
 }

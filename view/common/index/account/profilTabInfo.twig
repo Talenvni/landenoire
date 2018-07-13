@@ -5,8 +5,10 @@
         <div class="col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center">
             {% if showAccount.avatar is not null %}
                 <div class="row flex-column align-items-center">
-                    <img src="/web/img/avatar/{{ showAccount.avatar }}"
-                         alt="Avatar" class="img-fluid rounded" width="250px" height="400px">
+                    <a href="{{ showAccount.creditAvatar }}" target="_blank" title="Accéder à l'auteur">
+                        <img src="/web/img/avatar/{{ showAccount.avatar }}"
+                             alt="Avatar" class="img-fluid rounded" width="250px" height="400px">
+                    </a>
                     <div class="d-flex justify-content-center bg-ln-gold rounded" style="width: 250px;">
                         <span class="text-ln-coal">Niveau {{ showAccount.level }}</span>
                     </div>
@@ -24,6 +26,11 @@
         {# Character sheet #}
         <div class="profil--info-list col-lg-6 p-4 rounded">
             <div class="container">
+                <div>
+                    <h3>Informations</h3>
+                </div>
+            </div>
+            <div class="container">
                 <div class="row">
                     <ul class="col-lg-6">
                         <li><span>Âge :</span>
@@ -37,35 +44,139 @@
                     <ul class="col-lg-6">
                         <li>
                             <span>Richesse :</span>
-                                {{ coin.gold }} <span class="gold">or.</span>
-                                {{ coin.silver }} <span class="silver">ar.</span>
-                                {{ coin.copper }} <span class="copper">cu.</span>
+                            {{ coin.gold }} <span class="gold">or.</span>
+                            {{ coin.silver }} <span class="silver">ar.</span>
+                            {{ coin.copper }} <span class="copper">cu.</span>
                         </li>
                         <li><span>Réputation :</span>
+                            {% set reput = (showAccount.reputation + voteLike) - voteDislike %}
                             <span style="font-weight: normal;
-                                    {% if showAccount.reputation < 0 %}color: crimson;
-                            {% elseif showAccount.reputation > 0 %}color: forestgreen;
+                                    {% if reput < 0 %}color: #DA3B01;
+                            {% elseif reput >= 0 %}color: #647C64;
                                                 {% endif %}">
-                                {{ showAccount.reputation }}
+
+                                {# Positif #}
+                                {% if reput >= 0 and reput < 100 %}
+                                    {% set grade = 'anodin' %}
+                                {% endif %}
+                                {% if reput >= 100 and reput < 200 %}
+                                    {% set grade = 'familier' %}
+                                {% endif %}
+                                {% if reput >= 200 and reput < 300 %}
+                                    {% set grade = 'célèbre' %}
+                                {% endif %}
+                                {% if reput >= 300 and reput < 400 %}
+                                    {% set grade = 'héroïque' %}
+                                {% endif %}
+                                {% if reput >= 400 %}
+                                    {% set grade = 'légendaire' %}
+                                {% endif %}
+
+                                {# Negatif #}
+                                {% if reput < 0 and reput > -100 %}
+                                    {% set grade = 'méprisable' %}
+                                {% endif %}
+                                {% if reput <= -100 and reput > -200 %}
+                                    {% set grade = 'exécrable' %}
+                                {% endif %}
+                                {% if reput <= -200 and reput > -300 %}
+                                    {% set grade = 'effrayant' %}
+                                {% endif %}
+                                {% if reput <= -300 and reput > -400 %}
+                                    {% set grade = 'monstrueux' %}
+                                {% endif %}
+                                {% if reput <= -400 %}
+                                    {% set grade = 'démoniaque' %}
+                                {% endif %}
+
+                                {{ grade }}
                             </span>
                         </li>
-                        <li><span>Crédit Avatar :</span>
-                            <a href="{{ showAccount.creditAvatar }}" target="_blank">
-                                Lien direct
-                            </a>
-                        </li>
+                        <li><span>Alignement :</span> {{ showAccount.alignement }}</li>
                     </ul>
                 </div>
                 <hr>
                 <div class="container row">
-                    <div class="d-block">
-                        <a href="/codex/align" target="_blank" class="h3">Alignement</a>
-                        <span class="h3">-</span>
-                        <span class="h3">{{ showAccount.alignement }}</span>
+                    <div>
+                        <h3>Caractéristiques</h3>
                     </div>
                 </div>
                 <div class="container">
-                    {{ showAccount.alignText|raw }}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {% set bonusLevel = showAccount.level - 1 %}
+                            <div><span class="font-weight-bold">Intellect :</span>
+                                {% if showAccount.race == 'ondin' %}
+                                    {{ competence.intellect + bonusLevel + 10 }}%
+                                {% elseif showAccount.race == 'malemort' %}
+                                    {{ competence.intellect + bonusLevel + 5 }}%
+                                {% else %}
+                                    {{ competence.intellect + bonusLevel }}%
+                                {% endif %}
+                            </div>
+                            <div><span class="font-weight-bold">Physique :</span>
+                                {% if showAccount.race == 'automate' %}
+                                    {{ competence.physique + bonusLevel + 10 }}%
+                                {% elseif showAccount.race == 'humain' %}
+                                    {{ competence.physique + bonusLevel + 5 }}%
+                                {% else %}
+                                    {{ competence.physique + bonusLevel }}%
+                                {% endif %}
+                            </div>
+                            <div><span class="font-weight-bold">Dextérité :</span>
+                                {% if showAccount.race == 'malemort' %}
+                                    {{ competence.dexterite + bonusLevel + 10 }}%
+                                {% else %}
+                                    {{ competence.dexterite + bonusLevel }}%
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div><span class="font-weight-bold">Social :</span>
+                                {% if showAccount.race == 'ondin' %}
+                                    {{ competence.social + bonusLevel + 5 }}%
+                                {% elseif showAccount.race == 'humain' %}
+                                    {{ competence.social + bonusLevel + 10 }}%
+                                {% else %}
+                                    {{ competence.social + bonusLevel }}%
+                                {% endif %}
+                            </div>
+                            <div><span class="font-weight-bold">Artisanat :</span>
+                                {% if showAccount.race == 'automate' %}
+                                    {{ competence.artisanat + bonusLevel + 5 }}%
+                                {% else %}
+                                    {{ competence.artisanat + bonusLevel }}%
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if showAccount.has_edit == 0 and sessionUser.id == showAccount.id %}
+                        <div class="row justify-content-end">
+                            <a href="/account/character-{{ showAccount.id }}/preference">
+                                Modifier sa fiche de personnage
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Inventaire #}
+    <div class="profil--info-block container my-5">
+        <h3 class="text-center">Inventaire</h3>
+        <hr class="mb-4" style="width: 25%">
+        <div class="bg-transparent row justify-content-center" style="box-shadow: none;">
+            <div class="col-lg-5" style="background: none; box-shadow: none;">
+                <div class="p-3" style="overflow-y: auto;">
+                    {% for inventory in showInventory %}
+                        <span style="color: {{ inventory.color }}">
+                            {{ inventory.name }}
+                        </span> x {{ inventory.number }}
+                        {% if not loop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -85,77 +196,6 @@
             {% endfor %}
         </div>
     {% endfor %}
-
-    {# Relation #}
-    <div class="profil--info-block container my-5">
-        <h3>Inventaire</h3>
-        <hr class="mb-4">
-        <div class="bg-transparent d-lg-flex justify-content-lg-between" style="box-shadow: none;">
-            <div class="col-lg-5" style="background: none; box-shadow: none;">
-                <div class="p-3" style="overflow-y: auto;">
-                    {% for inventory in showInventory %}
-                        <span style="color: {{ inventory.color }}">
-                            {{ inventory.name }}
-                        </span> x {{ inventory.number }}
-                        {% if not loop.last %}
-                        ,
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {# Relation #}
-    <div class="profil--info-block container my-5">
-        <h3>Relation</h3>
-        <hr class="mb-4">
-        <div class="bg-transparent d-lg-flex justify-content-lg-between" style="box-shadow: none;">
-            <div class="col-lg-5" style="background: none; box-shadow: none;">
-                <h5>Ennemi&middot;s</h5>
-                <div class="p-3" style="overflow-y: auto;">
-                    {% for vote in showVote %}
-                        {% if vote.disliked == 1 %}
-                            <span class="text-danger">
-                                {% if not loop.last %}
-                                    {{ vote.pseudo }},
-                                {% endif %}
-                                {% if loop.last %}
-                                    {{ vote.pseudo }}.
-                                {% endif %}
-                            </span>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col-lg-5" style="background: none; box-shadow: none;">
-                <h5>Ami&middot;s</h5>
-                <div class="p-3" style="overflow-y: auto;">
-                    {% for vote in showVote %}
-                        {% if vote.liked == 1 %}
-                            <span class="text-success">{{ vote.pseudo }}.&nbsp;</span>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        {% if showAccount.id != sessionUser.id and sessionUser is not null %}
-            <form method="post" class="d-flex flex-column flex-lg-row justify-content-around align-items-center">
-                <button name="ennemi" type="submit" class="btn mt-4"
-                        {% if selectVote.idPoster == sessionUser.id and selectVote.disliked == 1 %}
-                disabled
-                        {% endif %}>
-                    Je déprécie {{ showAccount.pseudo }}
-                </button>
-                <button name="friend" type="submit" class="btn mt-4"
-                        {% if selectVote.idPoster == sessionUser.id and selectVote.liked == 1 %}
-                disabled
-                        {% endif %}>
-                    J'apprécie {{ showAccount.pseudo }}
-                </button>
-            </form>
-        {% endif %}
-    </div>
 
     {% if showAccount.id == sessionUser.id or sessionUser.idGroup >= 2 %}
         <div class="text-center">

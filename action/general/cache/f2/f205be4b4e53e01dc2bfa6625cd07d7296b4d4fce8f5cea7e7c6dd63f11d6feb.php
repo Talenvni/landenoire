@@ -40,34 +40,38 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
             echo "            ";
             // line 7
             echo "            <section class=\"container--profil-info container my-5 py-5 rounded\">
+                <h1 class=\"text-center mb-5 text-ln-gold\">";
+            // line 8
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "name", array()), "html", null, true);
+            echo "</h1>
                 <div class=\"d-flex flex-lg-row flex-column\">
                     ";
-            // line 10
+            // line 11
             echo "                    <div class=\"col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center\">
                         ";
-            // line 11
+            // line 12
             if ( !(null === twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "img", array()))) {
-                // line 12
+                // line 13
                 echo "                            <div class=\"row flex-column align-items-center\">
                                 <img src=\"/web/img/store/";
-                // line 13
+                // line 14
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "img", array()), "html", null, true);
                 echo "\"
                                      alt=\"Article\" class=\"img-fluid rounded\" width=\"250px\" height=\"400px\">
                             </div>
                         ";
             } else {
-                // line 17
+                // line 18
                 echo "                            <div class=\"row flex-column align-items-center\">
                                 <img src=\"/web/img/avatar/default.png\"
                                      alt=\"Avatar\" class=\"img-fluid rounded\">
                             </div>
                         ";
             }
-            // line 22
+            // line 23
             echo "                    </div>
                     ";
-            // line 24
+            // line 25
             echo "                    <div class=\"profil--info-list col-lg-6 p-4 rounded\">
                         <div class=\"container-fluid\">
                             <div class=\"container\">
@@ -75,18 +79,18 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                                     <div>
                                         <h3>Description</h3>
                                         ";
-            // line 30
+            // line 31
             echo twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "description", array());
             echo "
                                     </div>
                                     <div class=\"mt-auto row text-center\">
                                         <div class=\"col-lg-6\">
                                             Type : <span style=\"color: ";
-            // line 34
+            // line 35
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "color", array()), "html", null, true);
             echo "\">
                                                 ";
-            // line 35
+            // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "qualityName", array()), "html", null, true);
             echo "
                                             </span>
@@ -94,15 +98,15 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                                         <div class=\"col-lg-6\">
                                             Prix :
                                             ";
-            // line 40
+            // line 41
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["coin"] ?? null), "gold", array()), "html", null, true);
             echo " <span class=\"gold\">or.</span>
                                             ";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["coin"] ?? null), "silver", array()), "html", null, true);
             echo " <span class=\"silver\">ar.</span>
                                             ";
-            // line 42
+            // line 43
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["coin"] ?? null), "copper", array()), "html", null, true);
             echo " <span class=\"copper\">cu.</span>
                                         </div>
@@ -119,17 +123,18 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                         <button class=\"btn\" name=\"buy_store\">Acheter</button>
                     </form>
                     <a href=\"/store/edit-";
-            // line 56
+            // line 57
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "id", array()), "html", null, true);
             echo "\" class=\"btn\">Éditer</a>
                 </div>
             </section>
 
             ";
-            // line 60
+            // line 61
             if ((twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2)) {
-                // line 61
+                // line 62
                 echo "                <section class=\"container--profil-info container my-5 py-5 rounded\">
+                    <h1 class=\"text-center mb-4 text-ln-gold\">Offrir l'objet</h1>
                     <form method=\"post\" class=\"form-group\">
                         <div class=\"row justify-content-center\">
                             <div class=\"col-lg-4\">
@@ -139,11 +144,11 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                                 <select name=\"offert\" id=\"offert\" class=\"form-control\" size=\"5\">
                                     <optgroup label=\"Utilisateurs\">
                                         ";
-                // line 70
+                // line 72
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable(($context["offert"] ?? null));
                 foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
-                    // line 71
+                    // line 73
                     echo "                                            <option value=\"";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", array()), "html", null, true);
                     echo "\">";
@@ -154,15 +159,15 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 73
+                // line 75
                 echo "                                    </optgroup>
                                 </select>
                             </div>
                         </div>
                         ";
-                // line 77
+                // line 79
                 if ((twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2)) {
-                    // line 78
+                    // line 80
                     echo "                            <div class=\"row justify-content-center mt-4\">
                                 <button type=\"submit\" class=\"btn\" name=\"offert_submit\">
                                     Offrir
@@ -170,7 +175,7 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                             </div>
                         ";
                 }
-                // line 84
+                // line 86
                 echo "                        <div class=\"row mt-4 justify-content-center\">
                             <h5 class=\"col-lg-3 text-center text-lg-right\">Consigne :</h5>
                             <ul class=\"col-lg-9 text-center text-lg-left list-unstyled\">
@@ -183,10 +188,10 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
                 </section>
             ";
             }
-            // line 95
+            // line 97
             echo "        ";
         }
-        // line 96
+        // line 98
         echo "    </main>
 ";
     }
@@ -203,7 +208,7 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
 
     public function getDebugInfo()
     {
-        return array (  190 => 96,  187 => 95,  174 => 84,  166 => 78,  164 => 77,  158 => 73,  147 => 71,  143 => 70,  132 => 61,  130 => 60,  123 => 56,  106 => 42,  102 => 41,  98 => 40,  90 => 35,  86 => 34,  79 => 30,  71 => 24,  68 => 22,  61 => 17,  54 => 13,  51 => 12,  49 => 11,  46 => 10,  42 => 7,  40 => 6,  38 => 5,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  195 => 98,  192 => 97,  179 => 86,  171 => 80,  169 => 79,  163 => 75,  152 => 73,  148 => 72,  136 => 62,  134 => 61,  127 => 57,  110 => 43,  106 => 42,  102 => 41,  94 => 36,  90 => 35,  83 => 31,  75 => 25,  72 => 23,  65 => 18,  58 => 14,  55 => 13,  53 => 12,  50 => 11,  45 => 8,  42 => 7,  40 => 6,  38 => 5,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -215,6 +220,7 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
         {% if sessionUser is not null %}
             {# Info Tab #}
             <section class=\"container--profil-info container my-5 py-5 rounded\">
+                <h1 class=\"text-center mb-5 text-ln-gold\">{{ article.name }}</h1>
                 <div class=\"d-flex flex-lg-row flex-column\">
                     {# Avatar #}
                     <div class=\"col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center\">
@@ -269,6 +275,7 @@ class __TwigTemplate_47a503d6382c98170a085f9bb4680e59ab1cfb5d5b040df61c90afefd15
 
             {% if sessionUser.idGroup >= 2 %}
                 <section class=\"container--profil-info container my-5 py-5 rounded\">
+                    <h1 class=\"text-center mb-4 text-ln-gold\">Offrir l'objet</h1>
                     <form method=\"post\" class=\"form-group\">
                         <div class=\"row justify-content-center\">
                             <div class=\"col-lg-4\">

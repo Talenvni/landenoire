@@ -4,7 +4,7 @@ namespace action\ajax;
 
 session_start();
 
-require_once '../general/Database.php';
+require_once '../../general/Database.php';
 
 use action\general\Database;
 use PDO;

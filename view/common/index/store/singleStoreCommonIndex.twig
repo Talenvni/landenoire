@@ -5,6 +5,7 @@
         {% if sessionUser is not null %}
             {# Info Tab #}
             <section class="container--profil-info container my-5 py-5 rounded">
+                <h1 class="text-center mb-5 text-ln-gold">{{ article.name }}</h1>
                 <div class="d-flex flex-lg-row flex-column">
                     {# Avatar #}
                     <div class="col-lg-4 offset-lg-1 mb-3 mb-lg-0 text-center">
@@ -59,6 +60,7 @@
 
             {% if sessionUser.idGroup >= 2 %}
                 <section class="container--profil-info container my-5 py-5 rounded">
+                    <h1 class="text-center mb-4 text-ln-gold">Offrir l'objet</h1>
                     <form method="post" class="form-group">
                         <div class="row justify-content-center">
                             <div class="col-lg-4">

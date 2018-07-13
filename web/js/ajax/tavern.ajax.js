@@ -10,7 +10,7 @@ setTimeout(function () {
 // Add from chat when enter the site
 function connect () {
     $.ajax({
-        url: '/action/ajax/TavernTimeOut.php',
+        url: '/action/ajax/tavern/TavernTimeOut.php',
         method: 'POST',
         data: {connect : true},
         error: function (xhr, ajaxOptions, thrownError) {
@@ -22,7 +22,7 @@ function connect () {
 // Remove from chat when quit the site
 function disconnect () {
     $.ajax({
-        url: '/action/ajax/TavernTimeOut.php',
+        url: '/action/ajax/tavern/TavernTimeOut.php',
         method: 'POST',
         data: {disconnect : true},
         error: function (xhr, ajaxOptions, thrownError) {
@@ -40,7 +40,7 @@ $('#chatForm').keypress(function (e) {
 
         if (chatMessage !== '' && chatMessage.length < 255) {
             $.ajax({
-                url: '/action/ajax/TavernInsert.php',
+                url: '/action/ajax/tavern/TavernInsert.php',
                 type: 'POST',
                 data: {chatMessage: chatMessage},
                 success: function () {
@@ -73,7 +73,7 @@ $('#chatRefresh').on('click', function (e) {
     e.preventDefault();
 
     $.ajax({
-        url: '/action/ajax/TavernDelete.php',
+        url: '/action/ajax/tavern/TavernDelete.php',
         success: function () {
             TavernQuery();
         },
@@ -87,7 +87,7 @@ $('#chatRefresh').on('click', function (e) {
 function TavernQuery() {
     $('#chatbox').empty();
     $.ajax({
-        url: '/action/ajax/TavernQuery.php',
+        url: '/action/ajax/tavern/TavernQuery.php',
         dataType: 'json',
         success: function (response) {
             for (let i in response.reverse()) {
@@ -118,7 +118,7 @@ function TavernQuery() {
 function TavernUsers() {
     $('#chatbox--users').html('');
     $.ajax({
-        url: '/action/ajax/TavernUsers.php',
+        url: '/action/ajax/tavern/TavernUsers.php',
         dataType: 'json',
         success: function (response) {
             for (let i in response) {

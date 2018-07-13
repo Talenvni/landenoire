@@ -44,5 +44,3 @@
             .addClass('slideOutDown');
     }, 3000);
 })(); // End Message flash
-
-

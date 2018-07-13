@@ -6,6 +6,9 @@ use action\general\MessageFlash;
 use action\general\Validator;
 
 class ProfilCommonEdit {
+	/**
+	 * @return null
+	 */
 	public static function clearInventory() {
 		if ( isset( $_POST['inventory_submit'] ) ) :
 			$user = Database::getQuery( '
@@ -216,30 +219,20 @@ class ProfilCommonEdit {
 
 		// Alignement edit
 		if ( isset( $_POST['alignSubmit'] ) ) :
-			$verification = strlen( $_POST['alignText'] );
-			$_POST['255'] = 255;
 
-			$align = new Validator();
-			$align->isMinusOrEqual( 255, $verification, 'Le descriptif doit faire entre 1-255 caractères' );
+			$_POST['alignText'] = ucfirst( $_POST['alignText'] );
+			$_POST['align']     = ucfirst( $_POST['align'] );
 
-			if ( empty( $align->getFail() ) ) :
-				$_POST['alignText'] = ucfirst( $_POST['alignText'] );
-				$_POST['align']     = ucfirst( $_POST['align'] );
+			Database::getQuery( '
+				UPDATE ln_users_info
+				SET alignement = ?
+				WHERE idUser = ?', [
+				$_POST['align'],
+				$_GET['account_id']
+			] );
 
-				Database::getQuery( '
-					UPDATE ln_users_info
-					SET alignement = ?, alignText = ?
-					WHERE idUser = ?', [
-					$_POST['align'],
-					$_POST['alignText'],
-					$_GET['account_id']
-				] );
-
-				MessageFlash::setFlash( 'success', 'Alignement mis à jour' );
-				Helper::redirection( '/account/character-' . $_GET['account_id'] );
-			else:
-				return $align->getFail();
-			endif;
+			MessageFlash::setFlash( 'success', 'Alignement mis à jour' );
+			Helper::redirection( '/account/character-' . $_GET['account_id'] );
 		endif;
 
 		// Admin edit
@@ -289,7 +282,7 @@ class ProfilCommonEdit {
 						Helper::redirection( '/account/character-' . $_GET['account_id'] . '/parameter' );
 					endif;
 				else :
-					MessageFlash::setFlash( 'warning', 'Date de naissance entre l\'an 903 et l\'an 1203' );
+					MessageFlash::setFlash( 'warning', 'Date de naissance entre le ' . date_format( $minDate, 'd-m-Y' ) . ' et le ' . date_format( $maxDate, 'd-m-Y' ) );
 					Helper::redirection( '/account/character-' . $_GET['account_id'] . '/parameter' );
 				endif;
 			else:
@@ -331,154 +324,77 @@ class ProfilCommonEdit {
 		return null;
 	}
 
-	/**
-	 * @return null Edit relation
-	 */
-	public static function editRelation() {
-		if ( isset( $_POST['friend'] ) ) :
-			$user = Database::getQuery( '
-			SELECT id
-			FROM ln_users
-			WHERE id = ?', [ $_GET['account_id'] ] )->rowCount();
+	public static function preferenceSheet() {
+		if ( isset( $_POST['sheet_submit'] ) ) :
+			$intel     = $_POST['intellect'];
+			$physique  = $_POST['physique'];
+			$dext      = $_POST['dexterite'];
+			$social    = $_POST['social'];
+			$artisanat = $_POST['artisanat'];
 
-			if ( $user > 0 ) :
-				$vote = Database::getQuery( '
-					SELECT idUser, idPoster
-					FROM ln_users_vote
-					WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] )->rowCount();
+			// if numeric
+			if ( is_numeric( $artisanat ) && is_numeric( $social ) && is_numeric( $physique ) && is_numeric( $dext ) && is_numeric( $intel ) ) :
 
-				if ( $vote > 0 ) :
-					$friend = Database::getQuery( '
-					SELECT liked, disliked
-					FROM ln_users_vote
-					WHERE idUser = ? AND idPoster = ?', [
-						$_GET['account_id'],
-						$_SESSION['user']->id
-					] )->fetch( \PDO::FETCH_OBJ );
+				// if positif
+				if ( $artisanat >= 0 && $social >= 0 && $physique >= 0 && $dext >= 0 && $intel >= 0 ) :
 
-					if ( $friend->liked == 1 ) :
-						MessageFlash::setFlash( 'warning', 'Vous êtes déjà amical avec cette personne' );
-						Helper::redirection( '/account/character-' . $_GET['account_id'] );
-					endif;
+					// if < 40
+					if ( $intel + $physique + $dext + $social + $artisanat <= 40 ):
 
-					if ( $friend->liked == 0 && $friend->disliked == 0 ) :
-						Database::getQuery( '
-						UPDATE ln_users_vote
-						SET liked = 1
-						WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] );
+						$minDate = date_create();
+						date_sub( $minDate, date_interval_create_from_date_string( '1115 years' ) );
+						$conditionMinDate = date_format( $minDate, 'Y-m-d' );
 
-						Database::getQuery( '
+						$maxDate = date_create();
+						date_sub( $maxDate, date_interval_create_from_date_string( '815 years' ) );
+						$conditionMaxDate = date_format( $maxDate, 'Y-m-d' );
+
+						if ( $_POST['age'] > $conditionMinDate && $_POST['age'] < $conditionMaxDate ) :
+
+							Database::getQuery( '
+						UPDATE ln_users_traits
+						SET physique = ?, intellect = ?, dexterite = ?, social = ?, artisanat = ?
+						WHERE idUser = ?', [
+								$physique,
+								$intel,
+								$dext,
+								$social,
+								$artisanat,
+								$_GET['account_id']
+							] );
+
+							Database::getQuery( '
 						UPDATE ln_users_info
-						SET reputation = reputation + 1
-						WHERE idUser = ?', [ $_GET['account_id'] ] );
+						SET age = ?, sexe = ?, race = ?, has_edit = 1
+						WHERE idUser = ?', [
+								$_POST['age'],
+								$_POST['sexe'],
+								$_POST['race'],
+								$_GET['account_id']
+							] );
 
-						MessageFlash::setFlash( 'success', 'Vous êtes amical avec cette personne' );
-						Helper::redirection( '/account/character-' . $_GET['account_id'] );
-					endif;
+							MessageFlash::setFlash( 'success', 'Fiche de personnage mise à jour' );
+							Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
 
-					if ( $friend->liked == 0 && $friend->disliked == 1 ) :
-						Database::getQuery( '
-						UPDATE ln_users_vote
-						SET liked = 1, disliked = 0
-						WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] );
+						else :
+							MessageFlash::setFlash( 'warning', 'Date de naissance entre le ' . date_format( $minDate, 'd-m-Y' ) . ' et le ' . date_format( $maxDate, 'd-m-Y' ) );
+							Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
+						endif;
 
-						Database::getQuery( '
-						UPDATE ln_users_info
-						SET reputation = reputation + 2
-						WHERE idUser = ?', [ $_GET['account_id'] ] );
+					else:
+						MessageFlash::setFlash( 'warning', 'Maximum 40 points dans les caractéristiques' );
+						Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
+					endif; // if < 40
 
-						MessageFlash::setFlash( 'success', 'Vous êtes amical avec cette personne' );
-						Helper::redirection( '/account/character-' . $_GET['account_id'] );
-					endif;
-				endif;
+				else:
+					MessageFlash::setFlash( 'warning', 'Veuillez choisir des nombres positifs' );
+					Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
+				endif; // if positif
 
-				if ( $vote == 0 ) :
-					Database::getQuery( '
-					INSERT INTO ln_users_vote (idUser, idPoster, liked)
-					VALUES (?, ?, 1)', [ $_GET['account_id'], $_SESSION['user']->id ] );
-
-					Database::getQuery( '
-						UPDATE ln_users_info
-						SET reputation = reputation + 1
-						WHERE idUser = ?', [ $_GET['account_id'] ] );
-
-					MessageFlash::setFlash( 'success', 'Vous êtes amical avec cette personne' );
-					Helper::redirection( '/account/character-' . $_GET['account_id'] );
-				endif;
-			endif;
-		endif;
-
-		if ( isset( $_POST['ennemi'] ) ) :
-			$user = Database::getQuery( '
-			SELECT id
-			FROM ln_users
-			WHERE id = ?', [ $_GET['account_id'] ] )->rowCount();
-
-			if ( $user > 0 ) :
-				$vote = Database::getQuery( '
-					SELECT idUser, idPoster
-					FROM ln_users_vote
-					WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] )->rowCount();
-
-				if ( $vote > 0 ) :
-					$friend = Database::getQuery( '
-					SELECT liked, disliked
-					FROM ln_users_vote
-					WHERE idUser = ? AND idPoster = ?', [
-						$_GET['account_id'],
-						$_SESSION['user']->id
-					] )->fetch( \PDO::FETCH_OBJ );
-
-					if ( $friend->disliked == 1 ) :
-						MessageFlash::setFlash( 'warning', 'Vous êtes déjà hostile avec cette personne' );
-						Helper::redirection( '/account/character-' . $_GET['account_id'] );
-					endif;
-
-					if ( $friend->liked == 0 && $friend->disliked == 0 ) :
-						Database::getQuery( '
-						UPDATE ln_users_vote
-						SET disliked = 1
-						WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] );
-
-						Database::getQuery( '
-						UPDATE ln_users_info
-						SET reputation = reputation - 1
-						WHERE idUser = ?', [ $_GET['account_id'] ] );
-
-						MessageFlash::setFlash( 'danger', 'Vous êtes hostile avec cette personne' );
-						Helper::redirection( '/account/character-' . $_GET['account_id'] );
-					endif;
-
-					if ( $friend->liked == 1 && $friend->disliked == 0 ) :
-						Database::getQuery( '
-						UPDATE ln_users_vote
-						SET liked = 0, disliked = 1
-						WHERE idUser = ? AND idPoster = ?', [ $_GET['account_id'], $_SESSION['user']->id ] );
-
-						Database::getQuery( '
-						UPDATE ln_users_info
-						SET reputation = reputation - 2
-						WHERE idUser = ?', [ $_GET['account_id'] ] );
-
-						MessageFlash::setFlash( 'danger', 'Vous êtes hostile avec cette personne' );
-						Helper::redirection( '/account/character-' . $_GET['account_id'] );
-					endif;
-				endif;
-
-				if ( $vote == 0 ) :
-					Database::getQuery( '
-					INSERT INTO ln_users_vote (idUser, idPoster, disliked)
-					VALUES (?, ?, 1)', [ $_GET['account_id'], $_SESSION['user']->id ] );
-
-					Database::getQuery( '
-						UPDATE ln_users_info
-						SET reputation = reputation - 1
-						WHERE idUser = ?', [ $_GET['account_id'] ] );
-
-					MessageFlash::setFlash( 'danger', 'Vous êtes hostile avec cette personne' );
-					Helper::redirection( '/account/character-' . $_GET['account_id'] );
-				endif;
-			endif;
+			else:
+				MessageFlash::setFlash( 'warning', 'Veuillez entrer des valeurs numériques' );
+				Helper::redirection( '/account/character-' . $_GET['account_id'] . '/preference' );
+			endif; // if numeric
 		endif;
 
 		return null;

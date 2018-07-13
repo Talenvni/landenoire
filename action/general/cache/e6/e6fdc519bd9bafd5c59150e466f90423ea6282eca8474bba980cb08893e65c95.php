@@ -15,6 +15,7 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
         $this->parent = $this->loadTemplate("base.twig", "/account/profilCommonIndex.twig", 1);
         $this->blocks = array(
             'main' => array($this, 'block_main'),
+            'script' => array($this, 'block_script'),
         );
     }
 
@@ -141,6 +142,29 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
 ";
     }
 
+    // line 60
+    public function block_script($context, array $blocks = array())
+    {
+        // line 61
+        echo "    <script>
+
+        \$('#traits').on('change', function () {
+            let total =
+                parseInt(\$('#intellect').val()) +
+                parseInt(\$('#social').val()) +
+                parseInt(\$('#physique').val()) +
+                parseInt(\$('#dexterite').val()) +
+                parseInt(\$('#artisanat').val());
+            let traits = \$('#total-traits');
+            if (total > 40 || total < 0) {
+                traits.addClass('text-warning')
+            }
+            traits.html(total);
+        });
+    </script>
+";
+    }
+
     public function getTemplateName()
     {
         return "/account/profilCommonIndex.twig";
@@ -153,7 +177,7 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
 
     public function getDebugInfo()
     {
-        return array (  140 => 57,  137 => 56,  134 => 55,  131 => 54,  128 => 53,  125 => 52,  122 => 51,  119 => 50,  116 => 49,  113 => 48,  110 => 47,  107 => 46,  104 => 45,  102 => 44,  96 => 40,  87 => 34,  78 => 28,  75 => 27,  73 => 26,  65 => 21,  59 => 17,  51 => 11,  47 => 10,  42 => 7,  40 => 6,  38 => 5,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  149 => 61,  146 => 60,  141 => 57,  138 => 56,  135 => 55,  132 => 54,  129 => 53,  126 => 52,  123 => 51,  120 => 50,  117 => 49,  114 => 48,  111 => 47,  108 => 46,  105 => 45,  103 => 44,  97 => 40,  88 => 34,  79 => 28,  76 => 27,  74 => 26,  66 => 21,  60 => 17,  52 => 11,  48 => 10,  43 => 7,  41 => 6,  39 => 5,  36 => 4,  33 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -215,6 +239,25 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
             {% endif %}
         {% endif %}
     </main>
-{% endblock main %}", "/account/profilCommonIndex.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\account\\profilCommonIndex.twig");
+{% endblock main %}
+
+{% block script %}
+    <script>
+
+        \$('#traits').on('change', function () {
+            let total =
+                parseInt(\$('#intellect').val()) +
+                parseInt(\$('#social').val()) +
+                parseInt(\$('#physique').val()) +
+                parseInt(\$('#dexterite').val()) +
+                parseInt(\$('#artisanat').val());
+            let traits = \$('#total-traits');
+            if (total > 40 || total < 0) {
+                traits.addClass('text-warning')
+            }
+            traits.html(total);
+        });
+    </script>
+{% endblock script %}", "/account/profilCommonIndex.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\account\\profilCommonIndex.twig");
     }
 }

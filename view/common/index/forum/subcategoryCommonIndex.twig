@@ -7,21 +7,25 @@
             <div class="row justify-content-around align-items-center">
                 {# Each subcategory #}
                 {% for subcategory in showSubcategory if subcategory.slugCategory == subcategoryTab %}
-                    <div class="block--category rounded col-lg-5 col-11 my-2 p-0"
+                    <div class="block--category rounded col-lg-5 col-11 my-3 p-0"
                          style="background: url('/web/img/subcategory/{{ subcategory.img }}') no-repeat center;background-size: cover;max-height: 25vh;">
-                        <div class="pt-3 px-3">
+                        <div>
                             <a href="/forum/{{ subcategory.slug }}/topics">
                                 <h5 class="text-center">{{ subcategory.name }}</h5>
-                                {{ subcategory.content|raw }}
                             </a>
+                        </div>
+                        <div class="pt-3 px-3 content-category">
+                            {{ subcategory.content|raw }}
                         </div>
                         <div class="mt-auto">
                             <p class="px-3">
                                 {% for last in lastMessage if last.id == subcategory.id %}
                                     {% if last.datePub is not null %}
-                                        Dernier message il y a {{ last.datePub|time_diff }}
-                                    {% else %}
-                                        Aucun message récent
+                                        <i class="fa fa-clock fa-xs"
+                                           title="Dernier message par {{ last.pseudo }}"></i>
+                                        <a href="/forum/{{ last.slug }}/topics/{{ last.idTopic }}">
+                                            {{ last.subject }} – il y a {{ last.datePub|time_diff }}
+                                        </a>
                                     {% endif %}
                                 {% endfor %}
                             </p>
