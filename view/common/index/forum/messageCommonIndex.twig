@@ -22,7 +22,12 @@
                                  style="box-shadow: 0 0 .5rem black;width: 250px;height: 400px;">
                             <div class="avatar-info--message rounded border">
                                 <h5 class="text-center text-ln-gold">Infos</h5>
-                                <span class="text-ln-gold d-block">Âge :</span> {{ message.age }} ans
+                                <span class="text-ln-gold d-block">Âge :</span>
+                                {% if message.age > 1 %}
+                                    {{ message.age }} ans
+                                {% else %}
+                                    {{ message.age }} an
+                                {% endif %}
                                 <span class="text-ln-gold d-block">Sexe :</span> {{ message.sexe }}
                                 <span class="text-ln-gold d-block">Race :</span> {{ message.race }}
                                 <hr>
@@ -39,40 +44,40 @@
                                                 {% endif %}">
 
                                 {# Positif #}
-                                {% if reput >= 0 and reput < 100 %}
-                                {% set grade = 'anodin' %}
-                                {% endif %}
-                                {% if reput >= 100 and reput < 200 %}
-                                {% set grade = 'familier' %}
-                                {% endif %}
-                                {% if reput >= 200 and reput < 300 %}
-                                {% set grade = 'célèbre' %}
-                                {% endif %}
-                                {% if reput >= 300 and reput < 400 %}
-                                {% set grade = 'héroïque' %}
-                                {% endif %}
-                                {% if reput >= 400 %}
-                                {% set grade = 'légendaire' %}
-                                {% endif %}
+                                    {% if reput >= 0 and reput < 100 %}
+                                        {% set grade = 'anodin' %}
+                                    {% endif %}
+                                    {% if reput >= 100 and reput < 200 %}
+                                        {% set grade = 'familier' %}
+                                    {% endif %}
+                                    {% if reput >= 200 and reput < 300 %}
+                                        {% set grade = 'célèbre' %}
+                                    {% endif %}
+                                    {% if reput >= 300 and reput < 400 %}
+                                        {% set grade = 'héroïque' %}
+                                    {% endif %}
+                                    {% if reput >= 400 %}
+                                        {% set grade = 'légendaire' %}
+                                    {% endif %}
 
-                                {# Negatif #}
-                                {% if reput < 0 and reput > -100 %}
-                                {% set grade = 'méprisable' %}
-                                {% endif %}
-                                {% if reput <= -100 and reput > -200 %}
-                                {% set grade = 'exécrable' %}
-                                {% endif %}
-                                {% if reput <= -200 and reput > -300 %}
-                                {% set grade = 'effrayant' %}
-                                {% endif %}
-                                {% if reput <= -300 and reput > -400 %}
-                                {% set grade = 'monstrueux' %}
-                                {% endif %}
-                                {% if reput <= -400 %}
-                                {% set grade = 'démoniaque' %}
-                                {% endif %}
+                                    {# Negatif #}
+                                    {% if reput < 0 and reput > -100 %}
+                                        {% set grade = 'méprisable' %}
+                                    {% endif %}
+                                    {% if reput <= -100 and reput > -200 %}
+                                        {% set grade = 'exécrable' %}
+                                    {% endif %}
+                                    {% if reput <= -200 and reput > -300 %}
+                                        {% set grade = 'effrayant' %}
+                                    {% endif %}
+                                    {% if reput <= -300 and reput > -400 %}
+                                        {% set grade = 'monstrueux' %}
+                                    {% endif %}
+                                    {% if reput <= -400 %}
+                                        {% set grade = 'démoniaque' %}
+                                    {% endif %}
 
-                                {{ grade }}
+                                    {{ grade }}
                             </span>
                                 <span class="text-ln-gold d-block">Alignement :</span> {{ message.alignement }}
                             </div>

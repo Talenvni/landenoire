@@ -1,5 +1,6 @@
 <?php namespace action\general;
 
+use action\core\common\index\MessengerCommonIndex;
 use Twig_Environment;
 use Twig_Error_Loader;
 use Twig_Extension_Debug;
@@ -66,6 +67,7 @@ class TwigLabs {
 		$twig->addExtension( new Twig_Extensions_Extension_I18n() );
 		$twig->addGlobal( 'sessionUser', $_SESSION['user'] = $_SESSION['user'] ?? null );
 		$twig->addGlobal( 'flashMessage', MessageFlash::getFlash() );
+		$twig->addGlobal( 'alertMessenger', MessengerCommonIndex::alertHome() );
 		$coin = new Twig_Function('coinTransform', function (int $coin) {
 			$transfom = Helper::getcoin( $coin );
 			return $transfom;

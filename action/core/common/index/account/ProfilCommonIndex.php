@@ -19,6 +19,7 @@ class ProfilCommonIndex {
 				'showInventory' => self::showInventory(),
 				'showQuality'   => self::showQuality(),
 				'coin'          => self::coinTransform(),
+				'doubleAccount' => self::doubleAccount(),
 				'voteLike'      => self::voteLike(),
 				'voteDislike'   => self::voteDislike(),
 				'competence'    => self::competence(),
@@ -51,6 +52,22 @@ class ProfilCommonIndex {
 		Helper::redirection( '/home', 307 );
 
 		return null;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	private static function doubleAccount() {
+		$account = Database::getQuery( '
+		SELECT doubleAccount as checked, u2.pseudo, u2.id
+		FROM ln_users u
+		LEFT JOIN (
+			SELECT id, pseudo, email
+			FROM ln_users 
+		) u2 on u2.email = u.parentEmail
+		WHERE u.id = ?', [ $_GET['account_id'] ] )->fetch( \PDO::FETCH_OBJ );
+
+		return $account;
 	}
 
 	/**

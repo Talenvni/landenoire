@@ -51,18 +51,36 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
             // line 11
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "groupName", array()), "html", null, true);
             echo "</h5>
-                    </div>
+                        ";
+            // line 12
+            if ((twig_get_attribute($this->env, $this->source, ($context["doubleAccount"] ?? null), "checked", array()) == 1)) {
+                // line 13
+                echo "                            <h6 class=\"m-0\">
+                                Compte secondaire de <a href=\"/account/character-";
+                // line 14
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["doubleAccount"] ?? null), "id", array()), "html", null, true);
+                echo "\">
+                                    ";
+                // line 15
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["doubleAccount"] ?? null), "pseudo", array()), "html", null, true);
+                echo "
+                                </a>
+                            </h6>
+                        ";
+            }
+            // line 19
+            echo "                    </div>
                 </div>
             </section>
 
             ";
-            // line 17
+            // line 24
             echo "            <section class=\"container-fluid\">
                 <nav class=\"row justify-content-center align-items-center\">
                     <ul class=\"nav navbar\">
                         <li class=\"nav-item\">
                             <a href=\"/account/character-";
-            // line 21
+            // line 28
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()), "html", null, true);
             echo "/info\"
                                class=\"nav-link text-white\">
@@ -70,12 +88,12 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
                             </a>
                         </li>
                         ";
-            // line 26
+            // line 33
             if ((twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array()))) {
-                // line 27
+                // line 34
                 echo "                            <li class=\"nav-item mx-lg-5\">
                                 <a href=\"/account/character-";
-                // line 28
+                // line 35
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()), "html", null, true);
                 echo "/preference\"
                                    class=\"nav-link text-white\"><i class=\"fas fa-tasks d-none d-lg-inline\"></i>
@@ -84,7 +102,7 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
                             </li>
                             <li class=\"nav-item\">
                                 <a href=\"/account/character-";
-                // line 34
+                // line 41
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()), "html", null, true);
                 echo "/security\"
                                    class=\"nav-link text-white\"><i class=\"fas fa-lock d-none d-lg-inline\"></i>
@@ -93,59 +111,59 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
                             </li>
                         ";
             }
-            // line 40
+            // line 47
             echo "                    </ul>
                 </nav>
             </section>
 
             ";
-            // line 44
+            // line 51
             if ((($context["profilTab"] ?? null) == "info")) {
-                // line 45
+                // line 52
                 echo "                ";
-                $this->loadTemplate("/account/profilTabInfo.twig", "/account/profilCommonIndex.twig", 45)->display($context);
-                // line 46
+                $this->loadTemplate("/account/profilTabInfo.twig", "/account/profilCommonIndex.twig", 52)->display($context);
+                // line 53
                 echo "            ";
             }
-            // line 47
+            // line 54
             echo "            ";
             if (((($context["profilTab"] ?? null) == "preference") && (twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())))) {
-                // line 48
+                // line 55
                 echo "                ";
-                $this->loadTemplate("/account/profilTabPreference.twig", "/account/profilCommonIndex.twig", 48)->display($context);
-                // line 49
+                $this->loadTemplate("/account/profilTabPreference.twig", "/account/profilCommonIndex.twig", 55)->display($context);
+                // line 56
                 echo "            ";
             }
-            // line 50
+            // line 57
             echo "            ";
             if (((($context["profilTab"] ?? null) == "security") && (twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())))) {
-                // line 51
+                // line 58
                 echo "                ";
-                $this->loadTemplate("/account/profilTabSecurity.twig", "/account/profilCommonIndex.twig", 51)->display($context);
-                // line 52
+                $this->loadTemplate("/account/profilTabSecurity.twig", "/account/profilCommonIndex.twig", 58)->display($context);
+                // line 59
                 echo "            ";
             }
-            // line 53
+            // line 60
             echo "            ";
             if ((((($context["profilTab"] ?? null) == "parameter") && (twig_get_attribute($this->env, $this->source, ($context["showAccount"] ?? null), "id", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array()))) || (twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2))) {
-                // line 54
+                // line 61
                 echo "                ";
-                $this->loadTemplate("/account/profilTabParameter.twig", "/account/profilCommonIndex.twig", 54)->display($context);
-                // line 55
+                $this->loadTemplate("/account/profilTabParameter.twig", "/account/profilCommonIndex.twig", 61)->display($context);
+                // line 62
                 echo "            ";
             }
-            // line 56
+            // line 63
             echo "        ";
         }
-        // line 57
+        // line 64
         echo "    </main>
 ";
     }
 
-    // line 60
+    // line 67
     public function block_script($context, array $blocks = array())
     {
-        // line 61
+        // line 68
         echo "    <script>
 
         \$('#traits').on('change', function () {
@@ -177,7 +195,7 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
 
     public function getDebugInfo()
     {
-        return array (  149 => 61,  146 => 60,  141 => 57,  138 => 56,  135 => 55,  132 => 54,  129 => 53,  126 => 52,  123 => 51,  120 => 50,  117 => 49,  114 => 48,  111 => 47,  108 => 46,  105 => 45,  103 => 44,  97 => 40,  88 => 34,  79 => 28,  76 => 27,  74 => 26,  66 => 21,  60 => 17,  52 => 11,  48 => 10,  43 => 7,  41 => 6,  39 => 5,  36 => 4,  33 => 3,  15 => 1,);
+        return array (  167 => 68,  164 => 67,  159 => 64,  156 => 63,  153 => 62,  150 => 61,  147 => 60,  144 => 59,  141 => 58,  138 => 57,  135 => 56,  132 => 55,  129 => 54,  126 => 53,  123 => 52,  121 => 51,  115 => 47,  106 => 41,  97 => 35,  94 => 34,  92 => 33,  84 => 28,  78 => 24,  72 => 19,  65 => 15,  61 => 14,  58 => 13,  56 => 12,  52 => 11,  48 => 10,  43 => 7,  41 => 6,  39 => 5,  36 => 4,  33 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -193,6 +211,13 @@ class __TwigTemplate_3132631933814709a1e2e77f12a7d4b49b910b0943c89fce8cab8f41545
                     <div class=\"col-lg-12 text-center\">
                         <h1 class=\"m-0\">{{ showAccount.pseudo }}</h1>
                         <h5 class=\"m-0\">{{ showAccount.groupName }}</h5>
+                        {% if doubleAccount.checked == 1 %}
+                            <h6 class=\"m-0\">
+                                Compte secondaire de <a href=\"/account/character-{{ doubleAccount.id }}\">
+                                    {{ doubleAccount.pseudo }}
+                                </a>
+                            </h6>
+                        {% endif %}
                     </div>
                 </div>
             </section>

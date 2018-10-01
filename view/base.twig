@@ -35,7 +35,10 @@
     <link rel="stylesheet" href="/web/scss/style.css">
     {% block style %}{% endblock style %}
     {# Title #}
-    <title>{{ title }} &bull; LN</title>
+    <title>{{ title }}
+        {% if alertMessenger > 0 %}
+            ({{ alertMessenger }})
+        {% endif %} &bull; LN</title>
     {# Captcha #}
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
@@ -80,15 +83,17 @@
                     </a>
                     <div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
                         <a class="dropdown-header">L'Univers</a>
-                        <a class="dropdown-item" href="/codex/context">Contexte</a>
-                        <a class="dropdown-item" href="/codex/race">Races</a>
-                        <a class="dropdown-item" href="/codex/align">Alignement</a>
+                        <a class="dropdown-item" href="/codex/guide">Guide du débutant</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-header">Guide du débutant</a>
+                        <a class="dropdown-header">Personnages</a>
+                        <a class="dropdown-item" href="/codex/align">Alignement</a>
                         <a class="dropdown-item" href="/codex/character">Fiche de personnage</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-header">Généralités</a>
                         <a class="dropdown-item" href="/codex/faq">F.A.Q</a>
+                        <a class="dropdown-item" href="/codex/reglement-general">
+                            Règlement général
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item {% if title == 'Actualités' or singleNews is defined %}active{% endif %}">
@@ -117,6 +122,14 @@
                     <li class="nav-item {% if title == 'Profil' %}active{% endif %}">
                         <a class="nav-link text-ln-gold" href="/account/character-{{ sessionUser.id }}">
                             {{ sessionUser.pseudo|truncate(1, true, '') }}
+                        </a>
+                    </li>
+                    <li class="nav-item {% if title == 'Missive privées' %}active{% endif %}">
+                        <a class="nav-link" href="/messenger">
+                            Missives
+                            {% if alertMessenger > 0 %}
+                                <small class="badge-pill bg-ln-gold-ghost">{{ alertMessenger }}</small>
+                            {% endif %}
                         </a>
                     </li>
                     <li class="nav-item {% if title == 'Connexion' %}active{% endif %}">

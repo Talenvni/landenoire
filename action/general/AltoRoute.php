@@ -21,6 +21,7 @@ use action\core\common\edit\ProfilCommonEdit;
 use action\core\common\index\CategoryCommonIndex;
 use action\core\common\index\CodexCommonIndex;
 use action\core\common\index\MessageCommonIndex;
+use action\core\common\index\MessengerCommonIndex;
 use action\core\common\index\SingleStoreCommonIndex;
 use action\core\common\edit\StoreCommonEdit;
 use action\core\common\index\StoreCommonIndex;
@@ -45,6 +46,7 @@ class AltoRoute {
 	 */
 	public static function loadRouter() {
 		$router = new AltoRouter();
+		$router->addMatchTypes( [ 'u' => '[\w\D][^0-9]+' ] ); // Slug users
 		$router->addMatchTypes( [ 's' => '[a-z0-9\-]++' ] ); // Slug pattern
 		$router->addMatchTypes( [ 't' => '(topics)' ] ); // Slug topics
 		$router->addMatchTypes( [ 'e' => '(edit)' ] ); // Slug edit
@@ -117,10 +119,16 @@ class AltoRoute {
 			$router->map( 'GET|POST', '/contact', function () {
 				ContactCommonIndex::catchTwig();
 			} );
+			// --------------
+			// Get Messagerie
+			// --------------
+			$router->map( 'GET|POST', '/messenger/[u:receiver]?', function () {
+				MessengerCommonIndex::catchTwig();
+			} );
 			// ---------
 			// Get Codex
 			// ---------
-			$router->map( 'GET|POST', '/codex/[a:codex]?', function () {
+			$router->map( 'GET|POST', '/codex/[s:codex]?/[s:subcodex]?', function () {
 				CodexCommonIndex::catchTwig();
 			} );
 			// --------

@@ -24,7 +24,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
     <h2 class=\"text-lg-left text-center\">Races jouables</h2>
     <p class=\"text-justify mt-3 clearfix\">
         <em>
-            Dans Lande Noire, vous serez amené à choisir votre peuple. Pour cela, plusieurs races sont à votre
+            Dans Lande Noire, vous serez amené à choisir votre peuple. Pour cela, plusieurs race sont à votre
             disposition. Chacune d'entre elles dispose de compétences et de contextes variés.
             <br>
             Si vous êtes libre de façonner votre héros, vous devrez suivre ces règles afin de ne pas dénaturer
@@ -48,12 +48,13 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     conquérant ou corruptible ne la met pas en péril.
                 </p>
                 <p>
-                    Originaire d'une autre planète, l'humanité fut la première à utiliser l'Arcane lors
+                    Originaire d'une autre planète, l'humanité fut la première à utiliser l'Arcane
+                    de manière belliqueuse lors
                     de l'avènement du grand Schisme. Apparues sur Création il y a à peu près deux millénaires,
                     les victimes de cet évènement vécurent en clan sectaire jusqu'à leur union sous une seule
                     et même bannière. Désormais, leur règne a changé à jamais la face du Monde.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Commun à un grand nombre de régions, les humains ont une apparence aussi définie que
                     variée. Ils mesurent moins de deux mètres, ont un poids variable au-dessus de cinquante kilos
@@ -74,9 +75,15 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Propriétaire :
+                            Adaptation :
                         </strong>
-                        les humains peuvent avoir un automate comme compagnon.
+                        les humains reçoivent un bonus de +5 en physique.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Communauté :
+                        </strong>
+                        les humains reçoivent un bonus de +10 en social.
                     </li>
                 </ul>
             </div>
@@ -107,7 +114,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     jusqu'à leur désactivation. Les robots sans demeure finissent au mieux dans une reconversion
                     par l'État, au pire à la casse.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Conçus en fer pour la majorité d'entre eux, les automates anthropomorphes mesurent moins de deux
                     mètres, pour raisons pratiques. Leur poids varie dans les cent trente kilos et leur garantie
@@ -127,13 +134,19 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                 <p>
                     L'automate est considéré comme une machine jusqu'à sa mort. Il parle le commun.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Compétences</h3>
+                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Machine de guerre :
+                            Ouvrier :
                         </strong>
-                        les automates sont insensibles aux altérations physiques.
+                        les automates reçoivent un bonus de +5 en artisanat.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Machine :
+                        </strong>
+                        les automates reçoivent un bonus de +10 en physique.
                     </li>
                 </ul>
             </div>
@@ -153,7 +166,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                 <h3 class=\"text-ln-gold-ghost\">Description</h3>
                 <p>
                     Goules immortelles, les malemorts sont des humains transformés le jour de leur mort,
-                    contaminés par l'Arcane qui les empêche de trouver le repos éternel. Répugnés par leur
+                    contaminés par l'Arcane qui les empêche de trouver le repos éternel. Rejetés par leur
                     ancienne nation, ces créatures cadavériques vivent tels des monstres dans des endroits cachés.
                     La densité de leur population reste inconnue.
                 </p>
@@ -163,11 +176,12 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     matérialisent respectivement au niveau des yeux par une lueur chaude et une lueur froide, trahissant
                     leur véritable nature.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Anciens humains, ils conservent leur taille d'origine mais perdent considérablement en poids. Bien
                     qu'immortelle, les goules sont obligées de consommer régulièrement de la viande fraîche pour
-                    remplacer leurs tissus décomposés et conserver une apparence humaine.
+                    remplacer leurs tissus décomposés et conserver une apparence humaine. Sans quoi ils
+                    finiraient à l'aspect cadavérique puis en poussière.
                 </p>
                 <h3 class=\"text-ln-gold-ghost\">Mondanités</h3>
                 <p>
@@ -179,16 +193,22 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     Ils ne vouent un culte qu'à la Mort sous toutes ses formes.
                 </p>
                 <p>
-                    Les malemorts sont considérés comme majeur par ses pairs dès son décès, même s'il était enfant.
+                    Les malemorts sont considérés comme majeur par leurs pairs dès leur décès, même s'ils étaient enfant.
                     Ils parlent le commun et la langue-noire.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Compétences</h3>
+                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Cannibalisme :
+                            Manipulateur :
                         </strong>
-                        les malemorts peuvent dévorer des êtres vivants pour restaurer leur apparence.
+                        les malemorts reçoivent un bonus de +5 en intellect.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Osseux :
+                        </strong>
+                        les malemorts reçoivent un bonus de +10 en dextérité.
                     </li>
                 </ul>
             </div>
@@ -222,7 +242,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     leur vieille rancune envers l'humanité pour faire commerce. Bien que considérablement réduite par la
                     guerre, la population des Ondins reste encore conséquente.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Créatures à l'aspect visqueux, leur forme est confuse et indéfinie, selon l'action que l'Arcane a eu
                     sur
@@ -241,13 +261,19 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     Les Ondins sont considérés comme majeur à quatre-vingts ans.
                     Ils parlent l'ondar.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Compétences</h3>
+                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Faveur de Shybu'rath :
+                            Savant :
                         </strong>
-                        les Ondins peuvent respirer sous l'eau.
+                        les Ondins reçoivent un bonus de +5 en intellect.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Commerçant :
+                        </strong>
+                        les Ondins reçoivent un bonus de +10 en social.
                     </li>
                 </ul>
             </div>
@@ -273,7 +299,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
     <h2 class=\"text-lg-left text-center\">Races jouables</h2>
     <p class=\"text-justify mt-3 clearfix\">
         <em>
-            Dans Lande Noire, vous serez amené à choisir votre peuple. Pour cela, plusieurs races sont à votre
+            Dans Lande Noire, vous serez amené à choisir votre peuple. Pour cela, plusieurs race sont à votre
             disposition. Chacune d'entre elles dispose de compétences et de contextes variés.
             <br>
             Si vous êtes libre de façonner votre héros, vous devrez suivre ces règles afin de ne pas dénaturer
@@ -297,12 +323,13 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     conquérant ou corruptible ne la met pas en péril.
                 </p>
                 <p>
-                    Originaire d'une autre planète, l'humanité fut la première à utiliser l'Arcane lors
+                    Originaire d'une autre planète, l'humanité fut la première à utiliser l'Arcane
+                    de manière belliqueuse lors
                     de l'avènement du grand Schisme. Apparues sur Création il y a à peu près deux millénaires,
                     les victimes de cet évènement vécurent en clan sectaire jusqu'à leur union sous une seule
                     et même bannière. Désormais, leur règne a changé à jamais la face du Monde.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Commun à un grand nombre de régions, les humains ont une apparence aussi définie que
                     variée. Ils mesurent moins de deux mètres, ont un poids variable au-dessus de cinquante kilos
@@ -323,9 +350,15 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Propriétaire :
+                            Adaptation :
                         </strong>
-                        les humains peuvent avoir un automate comme compagnon.
+                        les humains reçoivent un bonus de +5 en physique.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Communauté :
+                        </strong>
+                        les humains reçoivent un bonus de +10 en social.
                     </li>
                 </ul>
             </div>
@@ -356,7 +389,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     jusqu'à leur désactivation. Les robots sans demeure finissent au mieux dans une reconversion
                     par l'État, au pire à la casse.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Conçus en fer pour la majorité d'entre eux, les automates anthropomorphes mesurent moins de deux
                     mètres, pour raisons pratiques. Leur poids varie dans les cent trente kilos et leur garantie
@@ -376,13 +409,19 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                 <p>
                     L'automate est considéré comme une machine jusqu'à sa mort. Il parle le commun.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Compétences</h3>
+                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Machine de guerre :
+                            Ouvrier :
                         </strong>
-                        les automates sont insensibles aux altérations physiques.
+                        les automates reçoivent un bonus de +5 en artisanat.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Machine :
+                        </strong>
+                        les automates reçoivent un bonus de +10 en physique.
                     </li>
                 </ul>
             </div>
@@ -402,7 +441,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                 <h3 class=\"text-ln-gold-ghost\">Description</h3>
                 <p>
                     Goules immortelles, les malemorts sont des humains transformés le jour de leur mort,
-                    contaminés par l'Arcane qui les empêche de trouver le repos éternel. Répugnés par leur
+                    contaminés par l'Arcane qui les empêche de trouver le repos éternel. Rejetés par leur
                     ancienne nation, ces créatures cadavériques vivent tels des monstres dans des endroits cachés.
                     La densité de leur population reste inconnue.
                 </p>
@@ -412,11 +451,12 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     matérialisent respectivement au niveau des yeux par une lueur chaude et une lueur froide, trahissant
                     leur véritable nature.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Anciens humains, ils conservent leur taille d'origine mais perdent considérablement en poids. Bien
                     qu'immortelle, les goules sont obligées de consommer régulièrement de la viande fraîche pour
-                    remplacer leurs tissus décomposés et conserver une apparence humaine.
+                    remplacer leurs tissus décomposés et conserver une apparence humaine. Sans quoi ils
+                    finiraient à l'aspect cadavérique puis en poussière.
                 </p>
                 <h3 class=\"text-ln-gold-ghost\">Mondanités</h3>
                 <p>
@@ -428,16 +468,22 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     Ils ne vouent un culte qu'à la Mort sous toutes ses formes.
                 </p>
                 <p>
-                    Les malemorts sont considérés comme majeur par ses pairs dès son décès, même s'il était enfant.
+                    Les malemorts sont considérés comme majeur par leurs pairs dès leur décès, même s'ils étaient enfant.
                     Ils parlent le commun et la langue-noire.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Compétences</h3>
+                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Cannibalisme :
+                            Manipulateur :
                         </strong>
-                        les malemorts peuvent dévorer des êtres vivants pour restaurer leur apparence.
+                        les malemorts reçoivent un bonus de +5 en intellect.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Osseux :
+                        </strong>
+                        les malemorts reçoivent un bonus de +10 en dextérité.
                     </li>
                 </ul>
             </div>
@@ -471,7 +517,7 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     leur vieille rancune envers l'humanité pour faire commerce. Bien que considérablement réduite par la
                     guerre, la population des Ondins reste encore conséquente.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
+                <h3 class=\"text-ln-gold-ghost\">Apparence</h3>
                 <p>
                     Créatures à l'aspect visqueux, leur forme est confuse et indéfinie, selon l'action que l'Arcane a eu
                     sur
@@ -490,13 +536,19 @@ class __TwigTemplate_96ca8fd533d7e63cef70e868fa60d01f3df70548ec9789bd8e74b1cfac9
                     Les Ondins sont considérés comme majeur à quatre-vingts ans.
                     Ils parlent l'ondar.
                 </p>
-                <h3 class=\"text-ln-gold-ghost\">Compétences</h3>
+                <h3 class=\"text-ln-gold-ghost\">Caractéristiques</h3>
                 <ul>
                     <li>
                         <strong class=\"text-uppercase\">
-                            Faveur de Shybu'rath :
+                            Savant :
                         </strong>
-                        les Ondins peuvent respirer sous l'eau.
+                        les Ondins reçoivent un bonus de +5 en intellect.
+                    </li>
+                    <li>
+                        <strong class=\"text-uppercase\">
+                            Commerçant :
+                        </strong>
+                        les Ondins reçoivent un bonus de +10 en social.
                     </li>
                 </ul>
             </div>

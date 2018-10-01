@@ -92,169 +92,181 @@ class __TwigTemplate_71135a2e26e524172d5569acc5992a20d7a5e7945ff2f6668b9aa86f994
                                  style=\"box-shadow: 0 0 .5rem black;width: 250px;height: 400px;\">
                             <div class=\"avatar-info--message rounded border\">
                                 <h5 class=\"text-center text-ln-gold\">Infos</h5>
-                                <span class=\"text-ln-gold d-block\">Âge :</span> ";
-                // line 25
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "age", array()), "html", null, true);
-                echo " ans
-                                <span class=\"text-ln-gold d-block\">Sexe :</span> ";
+                                <span class=\"text-ln-gold d-block\">Âge :</span>
+                                ";
                 // line 26
+                if ((twig_get_attribute($this->env, $this->source, $context["message"], "age", array()) > 1)) {
+                    // line 27
+                    echo "                                    ";
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "age", array()), "html", null, true);
+                    echo " ans
+                                ";
+                } else {
+                    // line 29
+                    echo "                                    ";
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "age", array()), "html", null, true);
+                    echo " an
+                                ";
+                }
+                // line 31
+                echo "                                <span class=\"text-ln-gold d-block\">Sexe :</span> ";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "sexe", array()), "html", null, true);
                 echo "
                                 <span class=\"text-ln-gold d-block\">Race :</span> ";
-                // line 27
+                // line 32
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "race", array()), "html", null, true);
                 echo "
                                 <hr>
                                 <span class=\"text-ln-gold d-block\">Richesse :</span>
                                 ";
-                // line 30
+                // line 35
                 $context["coin"] = call_user_func_array($this->env->getFunction('coinTransform')->getCallable(), array(twig_get_attribute($this->env, $this->source, $context["message"], "coin", array())));
-                // line 31
+                // line 36
                 echo "                                ";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["coin"] ?? null), "gold", array()), "html", null, true);
                 echo " <span class=\"gold\">or.</span>
                                 ";
-                // line 32
+                // line 37
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["coin"] ?? null), "silver", array()), "html", null, true);
                 echo " <span class=\"silver\">ar.</span>
                                 ";
-                // line 33
+                // line 38
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["coin"] ?? null), "copper", array()), "html", null, true);
                 echo " <span class=\"copper\">cu.</span>
                                 <span class=\"text-ln-gold d-block\">Réputation :</span>
                                 ";
-                // line 35
+                // line 40
                 $context["reput"] = ((twig_get_attribute($this->env, $this->source, $context["message"], "reputation", array()) + ($context["voteLike"] ?? null)) - ($context["voteDislike"] ?? null));
-                // line 36
+                // line 41
                 echo "                                <span style=\"font-weight: normal;
                                         ";
-                // line 37
+                // line 42
                 if ((($context["reput"] ?? null) < 0)) {
                     echo "color: #DA3B01;
                                 ";
-                } elseif ((                // line 38
+                } elseif ((                // line 43
 ($context["reput"] ?? null) >= 0)) {
                     echo "color: #647C64;
                                                 ";
                 }
-                // line 39
+                // line 44
                 echo "\">
 
                                 ";
-                // line 42
-                echo "                                ";
+                // line 47
+                echo "                                    ";
                 if (((($context["reput"] ?? null) >= 0) && (($context["reput"] ?? null) < 100))) {
-                    // line 43
-                    echo "                                ";
+                    // line 48
+                    echo "                                        ";
                     $context["grade"] = "anodin";
-                    // line 44
-                    echo "                                ";
-                }
-                // line 45
-                echo "                                ";
-                if (((($context["reput"] ?? null) >= 100) && (($context["reput"] ?? null) < 200))) {
-                    // line 46
-                    echo "                                ";
-                    $context["grade"] = "familier";
-                    // line 47
-                    echo "                                ";
-                }
-                // line 48
-                echo "                                ";
-                if (((($context["reput"] ?? null) >= 200) && (($context["reput"] ?? null) < 300))) {
                     // line 49
-                    echo "                                ";
-                    $context["grade"] = "célèbre";
-                    // line 50
-                    echo "                                ";
+                    echo "                                    ";
                 }
-                // line 51
-                echo "                                ";
-                if (((($context["reput"] ?? null) >= 300) && (($context["reput"] ?? null) < 400))) {
+                // line 50
+                echo "                                    ";
+                if (((($context["reput"] ?? null) >= 100) && (($context["reput"] ?? null) < 200))) {
+                    // line 51
+                    echo "                                        ";
+                    $context["grade"] = "familier";
                     // line 52
-                    echo "                                ";
-                    $context["grade"] = "héroïque";
-                    // line 53
-                    echo "                                ";
+                    echo "                                    ";
                 }
-                // line 54
-                echo "                                ";
-                if ((($context["reput"] ?? null) >= 400)) {
+                // line 53
+                echo "                                    ";
+                if (((($context["reput"] ?? null) >= 200) && (($context["reput"] ?? null) < 300))) {
+                    // line 54
+                    echo "                                        ";
+                    $context["grade"] = "célèbre";
                     // line 55
-                    echo "                                ";
-                    $context["grade"] = "légendaire";
-                    // line 56
-                    echo "                                ";
+                    echo "                                    ";
                 }
-                // line 57
-                echo "
-                                ";
+                // line 56
+                echo "                                    ";
+                if (((($context["reput"] ?? null) >= 300) && (($context["reput"] ?? null) < 400))) {
+                    // line 57
+                    echo "                                        ";
+                    $context["grade"] = "héroïque";
+                    // line 58
+                    echo "                                    ";
+                }
                 // line 59
-                echo "                                ";
-                if (((($context["reput"] ?? null) < 0) && (($context["reput"] ?? null) >  -100))) {
+                echo "                                    ";
+                if ((($context["reput"] ?? null) >= 400)) {
                     // line 60
-                    echo "                                ";
-                    $context["grade"] = "méprisable";
+                    echo "                                        ";
+                    $context["grade"] = "légendaire";
                     // line 61
-                    echo "                                ";
+                    echo "                                    ";
                 }
                 // line 62
-                echo "                                ";
-                if (((($context["reput"] ?? null) <=  -100) && (($context["reput"] ?? null) >  -200))) {
-                    // line 63
-                    echo "                                ";
-                    $context["grade"] = "exécrable";
-                    // line 64
-                    echo "                                ";
-                }
-                // line 65
-                echo "                                ";
-                if (((($context["reput"] ?? null) <=  -200) && (($context["reput"] ?? null) >  -300))) {
-                    // line 66
-                    echo "                                ";
-                    $context["grade"] = "effrayant";
-                    // line 67
-                    echo "                                ";
-                }
-                // line 68
-                echo "                                ";
-                if (((($context["reput"] ?? null) <=  -300) && (($context["reput"] ?? null) >  -400))) {
-                    // line 69
-                    echo "                                ";
-                    $context["grade"] = "monstrueux";
-                    // line 70
-                    echo "                                ";
-                }
-                // line 71
-                echo "                                ";
-                if ((($context["reput"] ?? null) <=  -400)) {
-                    // line 72
-                    echo "                                ";
-                    $context["grade"] = "démoniaque";
-                    // line 73
-                    echo "                                ";
-                }
-                // line 74
                 echo "
-                                ";
-                // line 75
+                                    ";
+                // line 64
+                echo "                                    ";
+                if (((($context["reput"] ?? null) < 0) && (($context["reput"] ?? null) >  -100))) {
+                    // line 65
+                    echo "                                        ";
+                    $context["grade"] = "méprisable";
+                    // line 66
+                    echo "                                    ";
+                }
+                // line 67
+                echo "                                    ";
+                if (((($context["reput"] ?? null) <=  -100) && (($context["reput"] ?? null) >  -200))) {
+                    // line 68
+                    echo "                                        ";
+                    $context["grade"] = "exécrable";
+                    // line 69
+                    echo "                                    ";
+                }
+                // line 70
+                echo "                                    ";
+                if (((($context["reput"] ?? null) <=  -200) && (($context["reput"] ?? null) >  -300))) {
+                    // line 71
+                    echo "                                        ";
+                    $context["grade"] = "effrayant";
+                    // line 72
+                    echo "                                    ";
+                }
+                // line 73
+                echo "                                    ";
+                if (((($context["reput"] ?? null) <=  -300) && (($context["reput"] ?? null) >  -400))) {
+                    // line 74
+                    echo "                                        ";
+                    $context["grade"] = "monstrueux";
+                    // line 75
+                    echo "                                    ";
+                }
+                // line 76
+                echo "                                    ";
+                if ((($context["reput"] ?? null) <=  -400)) {
+                    // line 77
+                    echo "                                        ";
+                    $context["grade"] = "démoniaque";
+                    // line 78
+                    echo "                                    ";
+                }
+                // line 79
+                echo "
+                                    ";
+                // line 80
                 echo twig_escape_filter($this->env, ($context["grade"] ?? null), "html", null, true);
                 echo "
                             </span>
                                 <span class=\"text-ln-gold d-block\">Alignement :</span> ";
-                // line 77
+                // line 82
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "alignement", array()), "html", null, true);
                 echo "
                             </div>
                         </div>
                         <section class=\"container--topic col-lg-9 ";
-                // line 80
+                // line 85
                 if ( !(twig_get_attribute($this->env, $this->source, $context["loop"], "index", array()) % 2)) {
                     echo "order-first";
                 }
                 echo "\"
                                  style=\"";
-                // line 81
+                // line 86
                 if ( !(twig_get_attribute($this->env, $this->source, $context["loop"], "index", array()) % 2)) {
                     echo "border-radius: 1rem 0 1rem 1rem;";
                 } else {
@@ -263,7 +275,7 @@ class __TwigTemplate_71135a2e26e524172d5569acc5992a20d7a5e7945ff2f6668b9aa86f994
                 echo "\">
                             <div class=\"container\">
                                 <div class=\"row ";
-                // line 83
+                // line 88
                 if ( !(twig_get_attribute($this->env, $this->source, $context["loop"], "index", array()) % 2)) {
                     echo "justify-content-end";
                 } else {
@@ -272,11 +284,11 @@ class __TwigTemplate_71135a2e26e524172d5569acc5992a20d7a5e7945ff2f6668b9aa86f994
                 echo "\">
                                 <span style=\"font-size: 1.3rem;\">
                                     <a class=\"card-link\" href=\"/account/character-";
-                // line 85
+                // line 90
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "idUser", array()), "html", null, true);
                 echo "\">
                                         ";
-                // line 86
+                // line 91
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "pseudo", array()), "html", null, true);
                 echo "
                                     </a>
@@ -286,7 +298,7 @@ class __TwigTemplate_71135a2e26e524172d5569acc5992a20d7a5e7945ff2f6668b9aa86f994
                             <hr class=\"m-0\">
                             <div class=\"container\">
                                 <div class=\"row ";
-                // line 93
+                // line 98
                 if ( !(twig_get_attribute($this->env, $this->source, $context["loop"], "index", array()) % 2)) {
                     echo "justify-content-start";
                 } else {
@@ -295,7 +307,7 @@ class __TwigTemplate_71135a2e26e524172d5569acc5992a20d7a5e7945ff2f6668b9aa86f994
                 echo "\">
                                     <p>
                                         ";
-                // line 95
+                // line 100
                 echo twig_escape_filter($this->env, twig_localized_date_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "datePub", array()), "medium", "short"), "html", null, true);
                 echo "
                                     </p>
@@ -303,50 +315,50 @@ class __TwigTemplate_71135a2e26e524172d5569acc5992a20d7a5e7945ff2f6668b9aa86f994
                             </div>
                             <div class=\"container mb-3\">
                                 ";
-                // line 100
+                // line 105
                 echo twig_get_attribute($this->env, $this->source, $context["message"], "content", array());
                 echo "
                             </div>
 
                             ";
-                // line 104
+                // line 109
                 echo "                            <div class=\"container my-3\">
                                 <div class=\"row justify-content-end\">
                                     ";
-                // line 106
+                // line 111
                 if ((($context["sessionUser"] ?? null) && (twig_get_attribute($this->env, $this->source, $context["message"], "idUser", array()) != twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())))) {
-                    // line 107
+                    // line 112
                     echo "                                        <form method=\"post\" class=\"wow fadeIn\">
                                             <input type=\"hidden\" name=\"vote_author\"
                                                    value=\"";
-                    // line 109
+                    // line 114
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "idUser", array()), "html", null, true);
                     echo "\">
                                             <input type=\"hidden\" name=\"vote_message\"
                                                    value=\"";
-                    // line 111
+                    // line 116
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "id", array()), "html", null, true);
                     echo "\">
                                             <button class=\"btn py-1\" name=\"button_like\"
                                                     title=\"Apprécier le message de ";
-                    // line 113
+                    // line 118
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "pseudo", array()), "html", null, true);
                     echo "\"
                                                     ";
-                    // line 114
+                    // line 119
                     $context['_parent'] = $context;
                     $context['_seq'] = twig_ensure_traversable(($context["showUpvote"] ?? null));
                     foreach ($context['_seq'] as $context["_key"] => $context["vote"]) {
-                        if ((twig_get_attribute($this->env, $this->source,                         // line 115
+                        if ((twig_get_attribute($this->env, $this->source,                         // line 120
 $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this->source, $context["message"], "id", array()))) {
-                            // line 116
+                            // line 121
                             echo "                                                ";
                             if ((twig_get_attribute($this->env, $this->source, $context["vote"], "is_liked", array()) && (twig_get_attribute($this->env, $this->source, $context["vote"], "idPoster", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())))) {
-                                // line 117
+                                // line 122
                                 echo "                                                    disabled
                                                 ";
                             }
-                            // line 119
+                            // line 124
                             echo "                                                    ";
                         }
                     }
@@ -358,24 +370,24 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                                             </button>
                                             <button class=\"btn py-1\" name=\"button_dislike\"
                                                     title=\"Déprécier le message de ";
-                    // line 123
+                    // line 128
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["message"], "pseudo", array()), "html", null, true);
                     echo "\"
                                                     ";
-                    // line 124
+                    // line 129
                     $context['_parent'] = $context;
                     $context['_seq'] = twig_ensure_traversable(($context["showUpvote"] ?? null));
                     foreach ($context['_seq'] as $context["_key"] => $context["vote"]) {
-                        if ((twig_get_attribute($this->env, $this->source,                         // line 125
+                        if ((twig_get_attribute($this->env, $this->source,                         // line 130
 $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this->source, $context["message"], "id", array()))) {
-                            // line 126
+                            // line 131
                             echo "                                                ";
                             if ((twig_get_attribute($this->env, $this->source, $context["vote"], "is_disliked", array()) && (twig_get_attribute($this->env, $this->source, $context["vote"], "idPoster", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())))) {
-                                // line 127
+                                // line 132
                                 echo "                                                    disabled
                                                 ";
                             }
-                            // line 129
+                            // line 134
                             echo "                                                    ";
                         }
                     }
@@ -388,18 +400,18 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                                         </form>
                                     ";
                 }
-                // line 134
+                // line 139
                 echo "
 
                                     ";
-                // line 136
+                // line 141
                 if (((twig_get_attribute($this->env, $this->source, $context["message"], "idUser", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())) || (twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2))) {
-                    // line 137
+                    // line 142
                     echo "                                        <a class=\"btn mx-1 py-1 wow fadeIn\" data-toggle=\"tooltip\"
                                            data-placement=\"top\"
                                            title=\"Éditer\"
                                            href=\"/forum/";
-                    // line 140
+                    // line 145
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "slug", array()), "html", null, true);
                     echo "/topics/";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "id", array()), "html", null, true);
@@ -410,7 +422,7 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                                         </a>
                                     ";
                 }
-                // line 144
+                // line 149
                 echo "                                </div>
                             </div>
 
@@ -429,39 +441,39 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 150
+            // line 155
             echo "
                 ";
-            // line 152
+            // line 157
             echo "                <div class=\"container my-5\">
                     <div class=\"row\">
                         <div class=\"col-6\">
                             <form method=\"post\">
                                 ";
-            // line 156
+            // line 161
             if (((twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "idUser", array()) == twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "id", array())) || (twig_get_attribute($this->env, $this->source, ($context["sessionUser"] ?? null), "idGroup", array()) >= 2))) {
-                // line 157
+                // line 162
                 echo "                                    ";
                 if ((twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "is_closed", array()) == 0)) {
-                    // line 158
+                    // line 163
                     echo "                                        <button name=\"close_subject\" class=\"btn mb-3\">
                                             Clôturer le sujet
                                         </button>
                                     ";
                 } else {
-                    // line 162
+                    // line 167
                     echo "                                        <button name=\"close_subject\" class=\"btn mb-3\">
                                             Rouvrir le sujet
                                         </button>
                                     ";
                 }
-                // line 166
+                // line 171
                 echo "                                ";
             }
-            // line 167
+            // line 172
             echo "                            </form>
                             <a href=\"/forum/";
-            // line 168
+            // line 173
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "slug", array()), "html", null, true);
             echo "/topics\" class=\"btn\">
                                 Retour
@@ -476,20 +488,20 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                 </div>
             ";
         }
-        // line 180
+        // line 185
         echo "        </section>
 
         ";
-        // line 183
+        // line 188
         echo "        ";
         if ((( !(null === ($context["sessionUser"] ?? null)) && (twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "is_closed", array()) == 0)) &&  !(null === twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "slug", array())))) {
-            // line 184
+            // line 189
             echo "            ";
             if (((twig_get_attribute($this->env, $this->source, ($context["valideAccount"] ?? null), "characterValide", array()) == 1) || (twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "freeAccess", array()) == 1))) {
-                // line 185
+                // line 190
                 echo "                ";
                 if ((twig_get_attribute($this->env, $this->source, ($context["valideAccount"] ?? null), "isBanned", array()) == 0)) {
-                    // line 186
+                    // line 191
                     echo "                    <section class=\"container-fluid p-5 mt-auto box--message\">
                         <form method=\"post\" class=\"container\">
                             <fieldset>
@@ -497,16 +509,16 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                                 <div>
                                     <ul class=\"list-group\">
                                         ";
-                    // line 192
+                    // line 197
                     $context['_parent'] = $context;
                     $context['_seq'] = twig_ensure_traversable(($context["addMessage"] ?? null));
                     foreach ($context['_seq'] as $context["_key"] => $context["error"]) {
                         if ( !(null === $context["error"])) {
-                            // line 193
+                            // line 198
                             echo "                                            <li class=\"list-unstyled\">
                                                 <span class=\"badge badge-warning\">Erreur</span>
                                                 ";
-                            // line 195
+                            // line 200
                             echo twig_escape_filter($this->env, $context["error"], "html", null, true);
                             echo "
                                             </li>
@@ -516,7 +528,7 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                     $_parent = $context['_parent'];
                     unset($context['_seq'], $context['_iterated'], $context['_key'], $context['error'], $context['_parent'], $context['loop']);
                     $context = array_intersect_key($context, $_parent) + $_parent;
-                    // line 198
+                    // line 203
                     echo "                                    </ul>
                                 </div>
                                 <div>
@@ -531,16 +543,16 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                     </section>
                 ";
                 }
-                // line 211
+                // line 216
                 echo "            ";
             }
-            // line 212
+            // line 217
             echo "        ";
         }
-        // line 213
+        // line 218
         echo "        ";
         if ((null === ($context["sessionUser"] ?? null))) {
-            // line 214
+            // line 219
             echo "            <section class=\"box--message container-fluid p-5\">
                 <div class=\"row justify-content-center\">
                     <p class=\"m-auto\">Vous devez être connecté pour poster un nouveau message.</p>
@@ -548,10 +560,10 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
             </section>
         ";
         }
-        // line 220
+        // line 225
         echo "        ";
         if (((null === twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "slug", array())) &&  !(null === ($context["sessionUser"] ?? null)))) {
-            // line 221
+            // line 226
             echo "            <section class=\"box--message container-fluid py-4 my-5\">
                 <div class=\"row flex-column align-items-center\">
                     <p class=\"m-auto\">Ce sujet n'existe pas.</p>
@@ -560,22 +572,22 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
             </section>
         ";
         }
-        // line 228
+        // line 233
         echo "        ";
         if (((twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "is_closed", array()) == 1) &&  !(null === ($context["sessionUser"] ?? null)))) {
-            // line 229
+            // line 234
             echo "            <section class=\"box--message container-fluid py-4 my-5\">
                 <div class=\"row flex-column align-items-center\">
                     <p class=\"m-auto\">Ce sujet est clôt.</p>
                     <a class=\"card-link\" href=\"/forum/";
-            // line 232
+            // line 237
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["singleTopic"] ?? null), "slug", array()), "html", null, true);
             echo "/topics\">Retour</a>
                 </div>
             </section>
         ";
         }
-        // line 236
+        // line 241
         echo "    </main>
 ";
     }
@@ -592,7 +604,7 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
 
     public function getDebugInfo()
     {
-        return array (  579 => 236,  572 => 232,  567 => 229,  564 => 228,  555 => 221,  552 => 220,  544 => 214,  541 => 213,  538 => 212,  535 => 211,  520 => 198,  510 => 195,  506 => 193,  501 => 192,  493 => 186,  490 => 185,  487 => 184,  484 => 183,  480 => 180,  465 => 168,  462 => 167,  459 => 166,  453 => 162,  447 => 158,  444 => 157,  442 => 156,  436 => 152,  433 => 150,  414 => 144,  403 => 140,  398 => 137,  396 => 136,  392 => 134,  379 => 129,  375 => 127,  372 => 126,  370 => 125,  366 => 124,  362 => 123,  350 => 119,  346 => 117,  343 => 116,  341 => 115,  337 => 114,  333 => 113,  328 => 111,  323 => 109,  319 => 107,  317 => 106,  313 => 104,  307 => 100,  299 => 95,  290 => 93,  280 => 86,  276 => 85,  267 => 83,  258 => 81,  252 => 80,  246 => 77,  241 => 75,  238 => 74,  235 => 73,  232 => 72,  229 => 71,  226 => 70,  223 => 69,  220 => 68,  217 => 67,  214 => 66,  211 => 65,  208 => 64,  205 => 63,  202 => 62,  199 => 61,  196 => 60,  193 => 59,  190 => 57,  187 => 56,  184 => 55,  181 => 54,  178 => 53,  175 => 52,  172 => 51,  169 => 50,  166 => 49,  163 => 48,  160 => 47,  157 => 46,  154 => 45,  151 => 44,  148 => 43,  145 => 42,  141 => 39,  136 => 38,  132 => 37,  129 => 36,  127 => 35,  122 => 33,  118 => 32,  113 => 31,  111 => 30,  105 => 27,  101 => 26,  97 => 25,  90 => 21,  86 => 19,  69 => 18,  65 => 16,  54 => 12,  51 => 11,  49 => 10,  45 => 9,  42 => 8,  39 => 7,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  591 => 241,  584 => 237,  579 => 234,  576 => 233,  567 => 226,  564 => 225,  556 => 219,  553 => 218,  550 => 217,  547 => 216,  532 => 203,  522 => 200,  518 => 198,  513 => 197,  505 => 191,  502 => 190,  499 => 189,  496 => 188,  492 => 185,  477 => 173,  474 => 172,  471 => 171,  465 => 167,  459 => 163,  456 => 162,  454 => 161,  448 => 157,  445 => 155,  426 => 149,  415 => 145,  410 => 142,  408 => 141,  404 => 139,  391 => 134,  387 => 132,  384 => 131,  382 => 130,  378 => 129,  374 => 128,  362 => 124,  358 => 122,  355 => 121,  353 => 120,  349 => 119,  345 => 118,  340 => 116,  335 => 114,  331 => 112,  329 => 111,  325 => 109,  319 => 105,  311 => 100,  302 => 98,  292 => 91,  288 => 90,  279 => 88,  270 => 86,  264 => 85,  258 => 82,  253 => 80,  250 => 79,  247 => 78,  244 => 77,  241 => 76,  238 => 75,  235 => 74,  232 => 73,  229 => 72,  226 => 71,  223 => 70,  220 => 69,  217 => 68,  214 => 67,  211 => 66,  208 => 65,  205 => 64,  202 => 62,  199 => 61,  196 => 60,  193 => 59,  190 => 58,  187 => 57,  184 => 56,  181 => 55,  178 => 54,  175 => 53,  172 => 52,  169 => 51,  166 => 50,  163 => 49,  160 => 48,  157 => 47,  153 => 44,  148 => 43,  144 => 42,  141 => 41,  139 => 40,  134 => 38,  130 => 37,  125 => 36,  123 => 35,  117 => 32,  112 => 31,  106 => 29,  100 => 27,  98 => 26,  90 => 21,  86 => 19,  69 => 18,  65 => 16,  54 => 12,  51 => 11,  49 => 10,  45 => 9,  42 => 8,  39 => 7,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -621,7 +633,12 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                                  style=\"box-shadow: 0 0 .5rem black;width: 250px;height: 400px;\">
                             <div class=\"avatar-info--message rounded border\">
                                 <h5 class=\"text-center text-ln-gold\">Infos</h5>
-                                <span class=\"text-ln-gold d-block\">Âge :</span> {{ message.age }} ans
+                                <span class=\"text-ln-gold d-block\">Âge :</span>
+                                {% if message.age > 1 %}
+                                    {{ message.age }} ans
+                                {% else %}
+                                    {{ message.age }} an
+                                {% endif %}
                                 <span class=\"text-ln-gold d-block\">Sexe :</span> {{ message.sexe }}
                                 <span class=\"text-ln-gold d-block\">Race :</span> {{ message.race }}
                                 <hr>
@@ -638,40 +655,40 @@ $context["vote"], "idMessage", array()) == twig_get_attribute($this->env, $this-
                                                 {% endif %}\">
 
                                 {# Positif #}
-                                {% if reput >= 0 and reput < 100 %}
-                                {% set grade = 'anodin' %}
-                                {% endif %}
-                                {% if reput >= 100 and reput < 200 %}
-                                {% set grade = 'familier' %}
-                                {% endif %}
-                                {% if reput >= 200 and reput < 300 %}
-                                {% set grade = 'célèbre' %}
-                                {% endif %}
-                                {% if reput >= 300 and reput < 400 %}
-                                {% set grade = 'héroïque' %}
-                                {% endif %}
-                                {% if reput >= 400 %}
-                                {% set grade = 'légendaire' %}
-                                {% endif %}
+                                    {% if reput >= 0 and reput < 100 %}
+                                        {% set grade = 'anodin' %}
+                                    {% endif %}
+                                    {% if reput >= 100 and reput < 200 %}
+                                        {% set grade = 'familier' %}
+                                    {% endif %}
+                                    {% if reput >= 200 and reput < 300 %}
+                                        {% set grade = 'célèbre' %}
+                                    {% endif %}
+                                    {% if reput >= 300 and reput < 400 %}
+                                        {% set grade = 'héroïque' %}
+                                    {% endif %}
+                                    {% if reput >= 400 %}
+                                        {% set grade = 'légendaire' %}
+                                    {% endif %}
 
-                                {# Negatif #}
-                                {% if reput < 0 and reput > -100 %}
-                                {% set grade = 'méprisable' %}
-                                {% endif %}
-                                {% if reput <= -100 and reput > -200 %}
-                                {% set grade = 'exécrable' %}
-                                {% endif %}
-                                {% if reput <= -200 and reput > -300 %}
-                                {% set grade = 'effrayant' %}
-                                {% endif %}
-                                {% if reput <= -300 and reput > -400 %}
-                                {% set grade = 'monstrueux' %}
-                                {% endif %}
-                                {% if reput <= -400 %}
-                                {% set grade = 'démoniaque' %}
-                                {% endif %}
+                                    {# Negatif #}
+                                    {% if reput < 0 and reput > -100 %}
+                                        {% set grade = 'méprisable' %}
+                                    {% endif %}
+                                    {% if reput <= -100 and reput > -200 %}
+                                        {% set grade = 'exécrable' %}
+                                    {% endif %}
+                                    {% if reput <= -200 and reput > -300 %}
+                                        {% set grade = 'effrayant' %}
+                                    {% endif %}
+                                    {% if reput <= -300 and reput > -400 %}
+                                        {% set grade = 'monstrueux' %}
+                                    {% endif %}
+                                    {% if reput <= -400 %}
+                                        {% set grade = 'démoniaque' %}
+                                    {% endif %}
 
-                                {{ grade }}
+                                    {{ grade }}
                             </span>
                                 <span class=\"text-ln-gold d-block\">Alignement :</span> {{ message.alignement }}
                             </div>

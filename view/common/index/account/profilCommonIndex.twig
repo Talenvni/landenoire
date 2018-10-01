@@ -9,6 +9,13 @@
                     <div class="col-lg-12 text-center">
                         <h1 class="m-0">{{ showAccount.pseudo }}</h1>
                         <h5 class="m-0">{{ showAccount.groupName }}</h5>
+                        {% if doubleAccount.checked == 1 %}
+                            <h6 class="m-0">
+                                Compte secondaire de <a href="/account/character-{{ doubleAccount.id }}">
+                                    {{ doubleAccount.pseudo }}
+                                </a>
+                            </h6>
+                        {% endif %}
                     </div>
                 </div>
             </section>

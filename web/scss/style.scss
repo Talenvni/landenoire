@@ -370,6 +370,61 @@
       display: none;
     }
   }
+  .messenger {
+    border-radius: 1rem;
+    border: .1rem solid $ln-gold;
+    overflow: hidden;
+
+    .title--messenger {
+      background: rgba(129, 115, 84, .3);
+      border-bottom: .1rem solid $ln-gold;
+      padding: .5rem;
+    }
+    .users--messenger {
+      height: 75vh;
+      overflow-y: auto;
+      border-bottom-left-radius: 1rem;
+      background: $ln-gold-ghost;
+      box-shadow: 0 0 1rem $ln-coal inset;
+    }
+    .message--messenger {
+      height: 75vh;
+      background: $ln-coal;
+      border-bottom-right-radius: 1rem;
+      padding: 0;
+
+      .message-block--messenger {
+        overflow-y: auto;
+        padding: 1rem;
+
+        div {
+          border-radius: .5rem;
+        }
+      }
+
+      .messenger-form {
+        .trumbowyg-box {
+          min-height: 0 !important;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+
+          .trumbowyg-editor {
+            min-height: 10vh !important;
+            max-height: 50vh !important;
+          }
+        }
+
+        button {
+          border-bottom-right-radius: 1rem;
+        }
+      }
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 
   // ------
   // Module
@@ -389,3 +444,4 @@
     }
   }
 }
+

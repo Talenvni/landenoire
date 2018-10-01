@@ -37,9 +37,10 @@ class HomeAdminEdit {
 			$_POST['editEmail']  = Helper::secureString( strtolower( $_POST['editEmail'] ) );
 
 			$edit = new Validator();
-			$edit->isPreg( '/(^[A-Z]{1}[\D\s]{3,20}[a-z\é]$)/', $_POST['editPseudo'], 'Pseudo invalide' );
 			$edit->isEmail( $_POST['editEmail'], 'Email invalide' );
-			$edit->isDiff( $user->idGroup, 3, 'Administration non modifiable' );
+			if ( $_GET['userId'] == 1 ) :
+				$_POST['editGroup'] = 3;
+			endif;
 
 			if ( isset( $_POST['editBan'] ) ) :
 				$ban = 1;

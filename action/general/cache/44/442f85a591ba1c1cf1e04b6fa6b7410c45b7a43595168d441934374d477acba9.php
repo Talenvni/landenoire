@@ -32,54 +32,94 @@ class __TwigTemplate_0ab6e74ba0535ac9275370e4598eb3306c387a8df1d41fec11cf6cccaa4
     public function block_main($context, array $blocks = array())
     {
         // line 4
-        echo "
-    ";
-        // line 5
-        if ((($context["codexTab"] ?? null) == "history")) {
-            // line 6
-            echo "        ";
-            $this->loadTemplate("codex/context.twig", "/codex/codexCommonIndex.twig", 6)->display($context);
-            // line 7
-            echo "    ";
-        }
+        echo "    <main>
+        ";
+        // line 6
+        echo "        ";
+        // line 7
+        echo "        ";
         // line 8
-        echo "
-    ";
-        // line 10
-        echo "    ";
-        if ((($context["codexTab"] ?? null) == "race")) {
+        echo "        ";
+        // line 9
+        echo "        ";
+        if ((($context["codexTab"] ?? null) == "guide")) {
+            // line 10
+            echo "            ";
+            $this->loadTemplate("codex/guide/guide.twig", "/codex/codexCommonIndex.twig", 10)->display($context);
             // line 11
             echo "        ";
-            $this->loadTemplate("codex/race.twig", "/codex/codexCommonIndex.twig", 11)->display($context);
-            // line 12
-            echo "    ";
         }
-        // line 13
+        // line 12
         echo "
-    ";
+        ";
+        // line 14
+        echo "        ";
         // line 15
-        echo "    ";
+        echo "        ";
+        // line 16
+        echo "        ";
+        // line 17
+        echo "        ";
         if ((($context["codexTab"] ?? null) == "align")) {
-            // line 16
+            // line 18
+            echo "            ";
+            $this->loadTemplate("codex/character/align.twig", "/codex/codexCommonIndex.twig", 18)->display($context);
+            // line 19
             echo "        ";
-            $this->loadTemplate("codex/align.twig", "/codex/codexCommonIndex.twig", 16)->display($context);
-            // line 17
-            echo "    ";
         }
-        // line 18
-        echo "
-    ";
         // line 20
-        echo "    ";
-        if ((($context["codexTab"] ?? null) == "faq")) {
-            // line 21
-            echo "        ";
-            $this->loadTemplate("codex/faq.twig", "/codex/codexCommonIndex.twig", 21)->display($context);
+        echo "        ";
+        // line 21
+        echo "        ";
+        if ((($context["codexTab"] ?? null) == "character")) {
             // line 22
-            echo "    ";
+            echo "            ";
+            $this->loadTemplate("codex/character/character.twig", "/codex/codexCommonIndex.twig", 22)->display($context);
+            // line 23
+            echo "        ";
         }
-        // line 23
+        // line 24
         echo "
+        ";
+        // line 26
+        echo "        ";
+        // line 27
+        echo "        ";
+        // line 28
+        echo "        ";
+        // line 29
+        echo "        ";
+        if ((($context["codexTab"] ?? null) == "faq")) {
+            // line 30
+            echo "            ";
+            $this->loadTemplate("codex/general/faq.twig", "/codex/codexCommonIndex.twig", 30)->display($context);
+            // line 31
+            echo "        ";
+        }
+        // line 32
+        echo "        ";
+        // line 33
+        echo "        ";
+        if ((($context["codexTab"] ?? null) == "character-arrivant")) {
+            // line 34
+            echo "            ";
+            $this->loadTemplate("codex/general/guideArrivant.twig", "/codex/codexCommonIndex.twig", 34)->display($context);
+            // line 35
+            echo "        ";
+        }
+        // line 36
+        echo "        ";
+        // line 37
+        echo "        ";
+        if ((($context["codexTab"] ?? null) == "reglement-general")) {
+            // line 38
+            echo "            ";
+            $this->loadTemplate("codex/general/generalRules.twig", "/codex/codexCommonIndex.twig", 38)->display($context);
+            // line 39
+            echo "        ";
+        }
+        // line 40
+        echo "    </main>
 ";
     }
 
@@ -95,7 +135,7 @@ class __TwigTemplate_0ab6e74ba0535ac9275370e4598eb3306c387a8df1d41fec11cf6cccaa4
 
     public function getDebugInfo()
     {
-        return array (  82 => 23,  79 => 22,  76 => 21,  73 => 20,  70 => 18,  67 => 17,  64 => 16,  61 => 15,  58 => 13,  55 => 12,  52 => 11,  49 => 10,  46 => 8,  43 => 7,  40 => 6,  38 => 5,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  122 => 40,  119 => 39,  116 => 38,  113 => 37,  111 => 36,  108 => 35,  105 => 34,  102 => 33,  100 => 32,  97 => 31,  94 => 30,  91 => 29,  89 => 28,  87 => 27,  85 => 26,  82 => 24,  79 => 23,  76 => 22,  73 => 21,  71 => 20,  68 => 19,  65 => 18,  62 => 17,  60 => 16,  58 => 15,  56 => 14,  53 => 12,  50 => 11,  47 => 10,  44 => 9,  42 => 8,  40 => 7,  38 => 6,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -103,26 +143,43 @@ class __TwigTemplate_0ab6e74ba0535ac9275370e4598eb3306c387a8df1d41fec11cf6cccaa4
         return new Twig_Source("{% extends 'base.twig' %}
 
 {% block main %}
+    <main>
+        {# // ------- #}
+        {# // Context #}
+        {# // ------- #}
+        {# Context Page #}
+        {% if codexTab == 'guide' %}
+            {% include 'codex/guide/guide.twig' %}
+        {% endif %}
 
-    {% if codexTab == 'history' %}
-        {% include 'codex/context.twig' %}
-    {% endif %}
+        {# // ------------------- #}
+        {# // Guide de l'arrivant #}
+        {# // ------------------- #}
+        {# Align Page #}
+        {% if codexTab == 'align' %}
+            {% include 'codex/character/align.twig' %}
+        {% endif %}
+        {# Character Page #}
+        {% if codexTab == 'character' %}
+            {% include 'codex/character/character.twig' %}
+        {% endif %}
 
-    {# FAQ Page #}
-    {% if codexTab == 'race' %}
-        {% include 'codex/race.twig' %}
-    {% endif %}
-
-    {# Align Page #}
-    {% if codexTab == 'align' %}
-        {% include 'codex/align.twig' %}
-    {% endif %}
-
-    {# FAQ Page #}
-    {% if codexTab == 'faq' %}
-        {% include 'codex/faq.twig' %}
-    {% endif %}
-
+        {# // #}
+        {# // Général #}
+        {# // #}
+        {# FAQ Page #}
+        {% if codexTab == 'faq' %}
+            {% include 'codex/general/faq.twig' %}
+        {% endif %}
+        {# Guide Page #}
+        {% if codexTab == 'character-arrivant' %}
+            {% include 'codex/general/guideArrivant.twig' %}
+        {% endif %}
+        {# Rules Page #}
+        {% if codexTab == 'reglement-general' %}
+            {% include 'codex/general/generalRules.twig' %}
+        {% endif %}
+    </main>
 {% endblock main %}", "/codex/codexCommonIndex.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\codex\\codexCommonIndex.twig");
     }
 }

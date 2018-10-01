@@ -161,14 +161,14 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
                             </p>
                             <p>
                                 Voilà six semaines qu'un mystérieux obélisque est apparu au-dessus
-                                des landes de PériClave. Une brume opaque s'en est échappée dès les premiers jours,
+                                des landes de Création. Une brume opaque s'en est échappée dès les premiers jours,
                                 s'immisçant dans les rivières, les bois et les villages. Puis sont arrivées les
                                 disparitions, suivies du chaos et de la peur.
                             </p>
                             <p>
                                 Les tambours de guerre résonnent à nouveau.
                                 L'empire s'affaiblit et ses ennemis y voient profit.
-                                Vous êtes un natif des royaumes du Nord en quête de vous-même.<br>
+                                Vous êtes un natif d'Arcadie ou d'Olderion en quête de vous-même.
                                 Mais quelque soit votre mission initiale, celle-ci dégénérera très vite.
                                 Dans ce Monde, les apparences sont trompeuses.
                                 Votre esprit sera mis à rude épreuve,
@@ -181,12 +181,9 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
                                 Ne faites confiance à personne, pas même à vos sens. Dans la pénombre de la folie,
                                 les créatures attendent leur heure.
                             </p>
-                            <div class=\"d-flex justify-content-around mt-5\">
-                                <a href=\"/codex/history\" class=\"btn\">
-                                    Découvrir le contexte
-                                </a>
-                                <a href=\"/codex/race\" class=\"btn\">
-                                    Découvrir les races
+                            <div class=\"d-flex justify-content-center mt-5\">
+                                <a href=\"/codex/guide\" class=\"btn\">
+                                    Découvrir l'Univers
                                 </a>
                             </div>
                         </div>
@@ -308,14 +305,14 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
                             </p>
                             <p>
                                 Voilà six semaines qu'un mystérieux obélisque est apparu au-dessus
-                                des landes de PériClave. Une brume opaque s'en est échappée dès les premiers jours,
+                                des landes de Création. Une brume opaque s'en est échappée dès les premiers jours,
                                 s'immisçant dans les rivières, les bois et les villages. Puis sont arrivées les
                                 disparitions, suivies du chaos et de la peur.
                             </p>
                             <p>
                                 Les tambours de guerre résonnent à nouveau.
                                 L'empire s'affaiblit et ses ennemis y voient profit.
-                                Vous êtes un natif des royaumes du Nord en quête de vous-même.<br>
+                                Vous êtes un natif d'Arcadie ou d'Olderion en quête de vous-même.
                                 Mais quelque soit votre mission initiale, celle-ci dégénérera très vite.
                                 Dans ce Monde, les apparences sont trompeuses.
                                 Votre esprit sera mis à rude épreuve,
@@ -328,12 +325,9 @@ class __TwigTemplate_0fdf897caf18213ebe792f29dd4c3172e27a7dedab1293aef497c9d31d0
                                 Ne faites confiance à personne, pas même à vos sens. Dans la pénombre de la folie,
                                 les créatures attendent leur heure.
                             </p>
-                            <div class=\"d-flex justify-content-around mt-5\">
-                                <a href=\"/codex/history\" class=\"btn\">
-                                    Découvrir le contexte
-                                </a>
-                                <a href=\"/codex/race\" class=\"btn\">
-                                    Découvrir les races
+                            <div class=\"d-flex justify-content-center mt-5\">
+                                <a href=\"/codex/guide\" class=\"btn\">
+                                    Découvrir l'Univers
                                 </a>
                             </div>
                         </div>

@@ -95,6 +95,42 @@
                                        class="form-control" required>
                             </label>
                         </div>
+                        {# Double Account checkbox #}
+                        <div class="form-check my-3">
+                            <input type="checkbox" class="form-check-input" id="double-account"
+                                   name="double_account_check">
+                            <label class="form-check-label" for="double-account">
+                                Cochez si c'est un compte secondaire.
+                            </label>
+                                <span class="display-info text-ln-gold">
+                                        <i class="fas fa-info-circle"></i>
+                                        <small class="content-info text-justify">
+                                            Afin de répertorier les comptes secondaires, merci de cocher
+                                            cette case si ce n'est pas votre première inscription.
+                                            Dans le cas contraire, laissez la case vide.
+                                        </small>
+                                    </span>
+                        </div>
+                        {# Double account #}
+                        <div id="double-account-email" class="form-group d-none">
+                            <label for="double-account-input" class="w-100">
+                                Email du premier compte
+                                <span class="text-danger">*</span>
+                                <input id="double-account-input"
+                                       placeholder="Entrer l'email du compte principal"
+                                       type="email" name="double_account_input"
+                                       class="form-control">
+                            </label>
+                        </div>
+                        {# Double Account checkbox #}
+                        <div class="form-check my-3">
+                            <input type="checkbox" class="form-check-input" id="rule-accepted"
+                                   name="rule_accepted" value="1">
+                            <label class="form-check-label" for="rule-accepted">
+                                En vous inscrivant, vous acceptez le
+                                <a href="/codex/reglement-general">règlement général</a>.
+                            </label>
+                        </div>
                         {# Captcha #}
                         <div class="g-recaptcha form-group"
                              data-sitekey="6Lc_aUwUAAAAANbh1215itunfHXiXjzuKH_kQspw"></div>
@@ -123,3 +159,16 @@
         </section>
     </main>
 {% endblock main %}
+
+{% block script %}
+    <script>
+        $('#double-account').click(function(){
+            if (this.checked) {
+                $('#double-account-email').removeClass('d-none')
+            }
+            if (!this.checked) {
+                $('#double-account-email').addClass('d-none')
+            }
+        })
+    </script>
+{% endblock script %}

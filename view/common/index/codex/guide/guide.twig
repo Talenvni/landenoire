@@ -1,0 +1,84 @@
+<div class="container my-5">
+    <nav id="nav" class="navbar navbar-expand-lg navbar-dark p-0 position-fixed border-top"
+         style="left: 0; right: 0; top: 5.4vh; z-index: 999;">
+        {# Button #}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#codex"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {# Navbar #}
+        <div id="codex" class="collapse navbar-collapse justify-content-center text-center">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Récits
+                    </a>
+                    <div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/codex/guide/arcane">Contexte de l'Arcane</a>
+                        <a class="dropdown-item" href="/codex/guide/creation">Le Monde</a>
+                        <a class="dropdown-item" href="/codex/guide/lande-noire">
+                            Contexte de Lande Noire
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Races
+                    </a>
+                    <div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/codex/guide/ondins">Ondins</a>
+                        <a class="dropdown-item" href="/codex/guide/humains">Humains</a>
+                        <a class="dropdown-item" href="/codex/guide/askafroas">Askafroas</a>
+                        <a class="dropdown-item" href="/codex/guide/automates">Automates</a>
+                        <a class="dropdown-item" href="/codex/guide/malemorts">Malemorts</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% if subCodex is null %}
+        <h1>Guide</h1>
+        <p>Bienvenue, voyageur !</p>
+        <p>
+            Dans la section guide, vous trouverez les récits relatifs à l'Univers qui vous
+            permettront de mieux appréhender le jeu.
+        </p>
+    {% endif %}
+
+    {# // ------- #}
+    {# // History #}
+    {# // ------- #}
+    {% if subCodex == 'arcane' %}
+        {% include 'codex/guide/context/arcane.twig' %}
+    {% endif %}
+    {% if subCodex == 'creation' %}
+        {% include 'codex/guide/context/creation.twig' %}
+    {% endif %}
+    {% if subCodex == 'lande-noire' %}
+        {% include 'codex/guide/context/landenoire.twig' %}
+    {% endif %}
+
+    {# // ----- #}
+    {# // Races #}
+    {# // ----- #}
+    {% if subCodex == 'ondins' %}
+        {% include 'codex/guide/race/ondin.twig' %}
+    {% endif %}
+    {% if subCodex == 'humains' %}
+        {% include 'codex/guide/race/humain.twig' %}
+    {% endif %}
+    {% if subCodex == 'automates' %}
+        {% include 'codex/guide/race/automate.twig' %}
+    {% endif %}
+    {% if subCodex == 'malemorts' %}
+        {% include 'codex/guide/race/malemort.twig' %}
+    {% endif %}
+    {% if subCodex == 'askafroas' %}
+        {% include 'codex/guide/race/askafroa.twig' %}
+    {% endif %}
+</div>

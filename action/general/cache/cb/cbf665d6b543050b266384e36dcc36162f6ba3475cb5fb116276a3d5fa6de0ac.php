@@ -15,6 +15,7 @@ class __TwigTemplate_8420dacb1de59f09f80314c228a98d3d8638964529d2d7c89b10f968dc0
         $this->parent = $this->loadTemplate("base.twig", "/sign/signupCommonIndex.twig", 1);
         $this->blocks = array(
             'main' => array($this, 'block_main'),
+            'script' => array($this, 'block_script'),
         );
     }
 
@@ -162,6 +163,45 @@ class __TwigTemplate_8420dacb1de59f09f80314c228a98d3d8638964529d2d7c89b10f968dc0
                         </div>
                         ";
         // line 99
+        echo "                        <div class=\"form-check my-3\">
+                            <input type=\"checkbox\" class=\"form-check-input\" id=\"double-account\"
+                                   name=\"double_account_check\">
+                            <label class=\"form-check-label\" for=\"double-account\">
+                                Cochez si c'est un compte secondaire.
+                            </label>
+                                <span class=\"display-info text-ln-gold\">
+                                        <i class=\"fas fa-info-circle\"></i>
+                                        <small class=\"content-info text-justify\">
+                                            Afin de répertorier les comptes secondaires, merci de cocher
+                                            cette case si ce n'est pas votre première inscription.
+                                            Dans le cas contraire, laissez la case vide.
+                                        </small>
+                                    </span>
+                        </div>
+                        ";
+        // line 115
+        echo "                        <div id=\"double-account-email\" class=\"form-group d-none\">
+                            <label for=\"double-account-input\" class=\"w-100\">
+                                Email du premier compte
+                                <span class=\"text-danger\">*</span>
+                                <input id=\"double-account-input\"
+                                       placeholder=\"Entrer l'email du compte principal\"
+                                       type=\"email\" name=\"double_account_input\"
+                                       class=\"form-control\">
+                            </label>
+                        </div>
+                        ";
+        // line 126
+        echo "                        <div class=\"form-check my-3\">
+                            <input type=\"checkbox\" class=\"form-check-input\" id=\"rule-accepted\"
+                                   name=\"rule_accepted\" value=\"1\">
+                            <label class=\"form-check-label\" for=\"rule-accepted\">
+                                En vous inscrivant, vous acceptez le
+                                <a href=\"/codex/reglement-general\">règlement général</a>.
+                            </label>
+                        </div>
+                        ";
+        // line 135
         echo "                        <div class=\"g-recaptcha form-group\"
                              data-sitekey=\"6Lc_aUwUAAAAANbh1215itunfHXiXjzuKH_kQspw\"></div>
                         <hr>
@@ -191,6 +231,23 @@ class __TwigTemplate_8420dacb1de59f09f80314c228a98d3d8638964529d2d7c89b10f968dc0
 ";
     }
 
+    // line 163
+    public function block_script($context, array $blocks = array())
+    {
+        // line 164
+        echo "    <script>
+        \$('#double-account').click(function(){
+            if (this.checked) {
+                \$('#double-account-email').removeClass('d-none')
+            }
+            if (!this.checked) {
+                \$('#double-account-email').addClass('d-none')
+            }
+        })
+    </script>
+";
+    }
+
     public function getTemplateName()
     {
         return "/sign/signupCommonIndex.twig";
@@ -203,7 +260,7 @@ class __TwigTemplate_8420dacb1de59f09f80314c228a98d3d8638964529d2d7c89b10f968dc0
 
     public function getDebugInfo()
     {
-        return array (  165 => 99,  153 => 88,  132 => 68,  110 => 47,  90 => 28,  86 => 25,  76 => 22,  72 => 20,  66 => 19,  56 => 16,  52 => 14,  47 => 13,  43 => 11,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  238 => 164,  235 => 163,  205 => 135,  195 => 126,  183 => 115,  166 => 99,  154 => 88,  133 => 68,  111 => 47,  91 => 28,  87 => 25,  77 => 22,  73 => 20,  67 => 19,  57 => 16,  53 => 14,  48 => 13,  44 => 11,  36 => 4,  33 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -305,6 +362,42 @@ class __TwigTemplate_8420dacb1de59f09f80314c228a98d3d8638964529d2d7c89b10f968dc0
                                        class=\"form-control\" required>
                             </label>
                         </div>
+                        {# Double Account checkbox #}
+                        <div class=\"form-check my-3\">
+                            <input type=\"checkbox\" class=\"form-check-input\" id=\"double-account\"
+                                   name=\"double_account_check\">
+                            <label class=\"form-check-label\" for=\"double-account\">
+                                Cochez si c'est un compte secondaire.
+                            </label>
+                                <span class=\"display-info text-ln-gold\">
+                                        <i class=\"fas fa-info-circle\"></i>
+                                        <small class=\"content-info text-justify\">
+                                            Afin de répertorier les comptes secondaires, merci de cocher
+                                            cette case si ce n'est pas votre première inscription.
+                                            Dans le cas contraire, laissez la case vide.
+                                        </small>
+                                    </span>
+                        </div>
+                        {# Double account #}
+                        <div id=\"double-account-email\" class=\"form-group d-none\">
+                            <label for=\"double-account-input\" class=\"w-100\">
+                                Email du premier compte
+                                <span class=\"text-danger\">*</span>
+                                <input id=\"double-account-input\"
+                                       placeholder=\"Entrer l'email du compte principal\"
+                                       type=\"email\" name=\"double_account_input\"
+                                       class=\"form-control\">
+                            </label>
+                        </div>
+                        {# Double Account checkbox #}
+                        <div class=\"form-check my-3\">
+                            <input type=\"checkbox\" class=\"form-check-input\" id=\"rule-accepted\"
+                                   name=\"rule_accepted\" value=\"1\">
+                            <label class=\"form-check-label\" for=\"rule-accepted\">
+                                En vous inscrivant, vous acceptez le
+                                <a href=\"/codex/reglement-general\">règlement général</a>.
+                            </label>
+                        </div>
                         {# Captcha #}
                         <div class=\"g-recaptcha form-group\"
                              data-sitekey=\"6Lc_aUwUAAAAANbh1215itunfHXiXjzuKH_kQspw\"></div>
@@ -332,6 +425,19 @@ class __TwigTemplate_8420dacb1de59f09f80314c228a98d3d8638964529d2d7c89b10f968dc0
             </div>
         </section>
     </main>
-{% endblock main %}", "/sign/signupCommonIndex.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\sign\\signupCommonIndex.twig");
+{% endblock main %}
+
+{% block script %}
+    <script>
+        \$('#double-account').click(function(){
+            if (this.checked) {
+                \$('#double-account-email').removeClass('d-none')
+            }
+            if (!this.checked) {
+                \$('#double-account-email').addClass('d-none')
+            }
+        })
+    </script>
+{% endblock script %}", "/sign/signupCommonIndex.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\sign\\signupCommonIndex.twig");
     }
 }

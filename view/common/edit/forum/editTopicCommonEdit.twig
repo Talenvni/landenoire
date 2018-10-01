@@ -16,9 +16,21 @@
                             {% endfor %}
                         </ul>
                         <div class="form-group">
-                                <input type="text" name="edit_topic" placeholder="Titre du sujet"
-                                       value="{{ getTopic.subject }}" class="form-control-lg" required>
+                            <input type="text" name="edit_topic" placeholder="Titre du sujet"
+                                   value="{{ getTopic.subject }}" class="form-control-lg" required>
                         </div>
+                        {% if sessionUser.idGroup >= 2 %}
+                            <div class="form-group">
+                                <label for="topic-subcategory-edit">Sous-catégorie</label>
+                                <select name="subcategory" id="topic-subcategory-edit"
+                                        class="form-control">
+                                    {% for subcategory in getSubcategory %}
+                                        <option value="{{ subcategory.id }}"
+                                                {% if subcategory.id == getTopic.idSubcategory %}selected{% endif %}>{{ subcategory.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        {% endif %}
                         <div class="mt-2 text-center">
                             <button name="edit_topic_submit" type="submit" class="btn">Éditer</button>
                         </div>

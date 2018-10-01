@@ -1,6 +1,6 @@
 <?php
 
-/* codex/context.twig */
+/* codex/guide.twig */
 class __TwigTemplate_58b63cf0e9b2670c4e370bdbc1f7c4dfe8d6c225c5e1d35dced63b01bc3661b7 extends Twig_Template
 {
     private $source;
@@ -33,7 +33,7 @@ class __TwigTemplate_58b63cf0e9b2670c4e370bdbc1f7c4dfe8d6c225c5e1d35dced63b01bc3
 
     public function getTemplateName()
     {
-        return "codex/context.twig";
+        return "codex/guide.twig";
     }
 
     public function getDebugInfo()
@@ -51,6 +51,6 @@ class __TwigTemplate_58b63cf0e9b2670c4e370bdbc1f7c4dfe8d6c225c5e1d35dced63b01bc3
         </p>
     </div>
 </main>
-", "codex/context.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\codex\\context.twig");
+", "codex/guide.twig", "C:\\wamp64\\www\\landenoire\\view\\common\\index\\codex\\guide.twig");
     }
 }

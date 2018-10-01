@@ -29,10 +29,38 @@ class SigninCommonIndex {
 	 * @return mixed|null Connexion page
 	 */
 	private static function signIn() {
+		if(isset($_COOKIE['captainCook']) && !isset($_SESSION['user']) ){
+
+			$remember_token = $_COOKIE['captainCook'];
+			$parts = explode('==', $remember_token);
+			$user_id = $parts[0];
+			$cookie = Database::getQuery( '
+	        SELECT u.id, email, pseudo, password, isConnect, isBanned, idGroup, groupName, avatar, characterValide, tokenCookie
+	        FROM ln_users AS u
+	        LEFT JOIN ln_users_group AS g ON u.idGroup = g.id
+	        LEFT JOIN ln_users_info i on u.id = i.idUser
+	        WHERE u.id = ? AND tokenConfirm IS NOT NULL AND isBanned = ?',
+				[ $user_id, 0 ] )->fetch( \PDO::FETCH_OBJ );
+
+			if($cookie){
+				$expected = $user_id . '==' . $cookie->tokenCookie . sha1( $cookie->id . 'putTheCookieDown' );
+				if($expected == $remember_token){
+					$_SESSION['user'] = $cookie;
+					setcookie('captainCook', $remember_token, time() + 60 * 60 * 24 * 7);
+					MessageFlash::setFlash( 'success', 'Bon retour, ' . $cookie->pseudo );
+					Helper::redirection( '/account/character-' . $cookie->id );
+				} else{
+					setcookie('captainCook', null, -1);
+				}
+			}else{
+				setcookie('captainCook', null, -1);
+			}
+		}
+
+
 		if ( isset( $_POST['signin_submit'] ) ) :
 			$lower_email = strtolower( $_POST['signin_email'] );
 
-			Database::getInstance();
 			$signin_verify = Database::getQuery( '
 	        SELECT u.id, email, pseudo, password, isConnect, isBanned, idGroup, groupName, avatar, characterValide
 	        FROM ln_users AS u
@@ -60,7 +88,7 @@ class SigninCommonIndex {
 				Database::getQuery( '
                 UPDATE ln_users
                 SET isConnect = ?, tokenValidation = NULL 
-                WHERE id = ?', [1, $_SESSION['user']->id ] );
+                WHERE id = ?', [1, $signin_verify->id ] );
 
 				// If cookie
 				if ( isset( $_POST['signin_checkbox'] ) ) :
@@ -70,12 +98,12 @@ class SigninCommonIndex {
 					UPDATE ln_users
 					SET tokenCookie = ?
 					WHERE id = ?',
-					[ $cookie_token, $_SESSION['user']->id ] );
+					[ $cookie_token, $signin_verify->id ] );
 
-					setcookie( 'captainCook', $_SESSION['user']->id . '==' . $cookie_token . sha1( $_SESSION['user']->id . 'putTheCookieDown' ), time() + 60 * 60 * 24 * 365 );
+					setcookie( 'captainCook', $signin_verify->id . '==' . $cookie_token . sha1( $signin_verify->id . 'putTheCookieDown' ), time() + 60 * 60 * 24 * 7 );
 				endif;
-				MessageFlash::setFlash( 'success', 'Bienvenue, ' . $_SESSION['user']->pseudo );
-				Helper::redirection( '/account/character-' . $_SESSION['user']->id );
+				MessageFlash::setFlash( 'success', 'Bienvenue, ' . $signin_verify->pseudo );
+				Helper::redirection( '/account/character-' . $signin_verify->id );
 			else :
 				return $signin_validator->getFail();
 			endif;

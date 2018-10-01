@@ -1,0 +1,86 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <main>
+        <section class="container my-5">
+            <div class="messenger row">
+                <div class="title--messenger container text-center">
+                    <h5 class="m-0">
+                        Discussion
+                        {% if receiver %}
+                            avec <a href="/account/character-{{ receiver.id }}">{{ receiver.pseudo }}</a>
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="users--messenger col-lg-3 p-0">
+                    {% for user in listUsers %}
+                        <a href="/messenger/{{ user.pseudo|lower|replace({' ': '-'}) }}"
+                           class="d-block h5 p-3 {% if not loop.last %} border-bottom {% endif %}">
+                            <img src="/web/img/avatar/{{ user.avatar }}" alt="{{ user.avatar }}"
+                                 class="img-fluid rounded-circle">
+                            {{ user.pseudo }}
+                            {% for alert in alertMessage if alert.idPoster == user.id %}
+                                <small class="badge-pill bg-ln-coal-ghost">{{ alert.total }}</small>
+                            {% endfor %}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="message--messenger col-lg-9 d-flex flex-column justify-content-end">
+                    <div id="scroll-messenger" class="message-block--messenger d-flex flex-column">
+                        <i class="fa fa-bars"></i>
+                        <div class="pb-4">
+                            {% for message in showMessage %}
+                                {% if sessionUser.id == message.idUser %}
+                                    <div class="d-flex my-3 justify-content-end">
+                                        <div class="col-lg-5 bg-ln-green-ghost" style="min-height: 5vh;">
+                                            <div class="py-2" style="line-height: 5vh;">
+                                                {{ message.content|raw }}
+                                            </div>
+                                        </div>
+                                        <img src="/web/img/avatar/{{ message.avatar }}"
+                                             alt="{{ message.avatar }}"
+                                             class="img-fluid rounded-circle ml-2">
+                                    </div>
+                                {% else %}
+                                    <div class="d-flex my-3">
+                                        <img src="/web/img/avatar/{{ message.avatar }}"
+                                             alt="{{ message.avatar }}"
+                                             class="img-fluid rounded-circle mr-2">
+                                        <div class="col-lg-5 bg-ln-green" style="min-height: 5vh;">
+                                            <div class="py-2" style="line-height: 5vh;">
+                                                {{ message.content|raw }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if showForm is not null %}
+                        <form id="messenger-form" method="post"
+                              class="messenger-form container form-group mb-0">
+                            <div class="row justify-content-around align-items-center">
+                            <textarea id="messenger-message" name="messenger_message"
+                                      class="form-control col-lg-10"
+                                      placeholder="Message"></textarea>
+                                <div id="messenger--error"></div>
+                            </div>
+                            <div class="row">
+                                <button type="submit" name="messenger_submit" class="btn w-100 py-1">
+                                    Envoyer cette missive à {{ receiver.pseudo }}
+                                </button>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock main %}
+
+{% block script %}
+    <script>
+        let element = document.getElementById('scroll-messenger');
+        element.scrollTop = element.scrollHeight;
+    </script>
+{% endblock script %}

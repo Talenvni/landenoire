@@ -2,28 +2,36 @@
 
 {% block main %}
     <main>
-        {% if codexTab == 'context' %}
-            {% include 'codex/context.twig' %}
+        {# // ------- #}
+        {# // Context #}
+        {# // ------- #}
+        {# Context Page #}
+        {% if codexTab == 'guide' %}
+            {% include 'codex/guide/guide.twig' %}
         {% endif %}
 
-        {# Race Page #}
-        {% if codexTab == 'race' %}
-            {% include 'codex/race.twig' %}
-        {% endif %}
-
+        {# // ------------------- #}
+        {# // Guide de l'arrivant #}
+        {# // ------------------- #}
         {# Align Page #}
         {% if codexTab == 'align' %}
-            {% include 'codex/align.twig' %}
+            {% include 'codex/character/align.twig' %}
         {% endif %}
-
-        {# FAQ Page #}
-        {% if codexTab == 'faq' %}
-            {% include 'codex/faq.twig' %}
-        {% endif %}
-
         {# Character Page #}
         {% if codexTab == 'character' %}
-            {% include 'codex/character.twig' %}
+            {% include 'codex/character/character.twig' %}
+        {% endif %}
+
+        {# // #}
+        {# // Général #}
+        {# // #}
+        {# FAQ Page #}
+        {% if codexTab == 'faq' %}
+            {% include 'codex/general/faq.twig' %}
+        {% endif %}
+        {# Rules Page #}
+        {% if codexTab == 'reglement-general' %}
+            {% include 'codex/general/generalRules.twig' %}
         {% endif %}
     </main>
 {% endblock main %}

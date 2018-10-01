@@ -7,7 +7,8 @@ class CodexCommonIndex {
 		try {
 			echo TwigLabs::loadTwig()->render( '/codex/codexCommonIndex.twig', [
 				'title'   => 'Codex',
-				'codexTab'     => $_GET['codex'] = $_GET['codex'] ?? null
+				'codexTab'     => $_GET['codex'] = $_GET['codex'] ?? null,
+				'subCodex'     => $_GET['codex'] = $_GET['subcodex'] ?? null
 			] );
 		} catch ( \Twig_Error_Loader $e ) {
 			die( 'ERROR FROM TWIG : ' . $e->getMessage() );
